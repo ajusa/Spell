@@ -70,6 +70,14 @@ function gameLoop() {
                 player2.y = obj.y;
             }
         });
+        socket.on("spell", function(msg) {
+            obj = JSON.parse(msg);
+            if (player.id == obj.id) {
+
+            } else {
+                Spells.push(new Spell(obj.x, obj.y, obj.speed));
+            }
+        });
         //Background
         ctx.fillStyle = "#34495e";
         ctx.fillRect(0, 0, WIDTH, HEIGHT);
