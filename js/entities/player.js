@@ -36,9 +36,29 @@ function Player(xval, yval, width, height, color) {
             this.speed = -Math.abs(this.speed)
         };
         if (Math.random() >= .5)
-            Spells.push(new Spell(this.x + this.width, this.y + this.height / 2 + 10 * Math.random(), this.speed));
-        else
-            Spells.push(new Spell(this.x + this.width, this.y + this.height / 2 - 10 * Math.random(), this.speed));
+           { x = this.x + this.width;
+                       y = this.y + this.height / 2 + 10 * Math.random();
+                       speed = this.speed;
+                       Spells.push(new Spell(x, y, speed));
+                       socket.emit("spell", JSON.stringify({
+                       x: x,
+                       y: y,
+                       speed: speed,
+                       id: player.id,
+                   })); //Multiplayer
+                   }
+        else{
+            x = this.x + this.width;
+            y = this.y + this.height / 2 - 10 * Math.random();
+            speed = this.speed;
+            Spells.push(new Spell(x, y, speed));
+            socket.emit("spell", JSON.stringify({
+            x: x,
+            y: y,
+            speed: speed,
+            id: player.id,
+        })); //Multiplayer
+            }
     }
     this.takeDamage = function(damage) {
         this.health -= damage;
