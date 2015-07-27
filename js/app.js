@@ -34,15 +34,13 @@ function init() {
     container.style.cssText = "text-align: center;";
     canvas.width = WIDTH;
     canvas.height = HEIGHT;
-    socket.on("id", function(msg) {
-        player.id = msg;
-    });
+    player.id = guid();
     socket.on("spell", function(msg) {
         obj = JSON.parse(msg);
         if (player.id == obj.id) {
 
         } else {
-            Spells.push(new Spell(obj.x, obj.y, obj.speed, obj.damage));
+            Spells.push(new Spell(obj.x, obj.y, obj.speed,1, obj.damage));
         }
     });
     socket.on("player", function(msg) {
