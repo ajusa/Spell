@@ -14,6 +14,7 @@ function Player(xval, yval, width, height, color, id) {
     this.right = true;
     this.speed = 4;
     this.id = "";
+    this.color = color;
     this.update = function() {
 
         for (var i = Spells.length - 1; i >= 0; i--) {
@@ -26,7 +27,7 @@ function Player(xval, yval, width, height, color, id) {
         //if (this.health < 1) {
         //  this.die();
         // } else {
-        ctx.fillStyle = color;
+        ctx.fillStyle = this.color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
         this.x += this.dx;
         this.y += this.dy;

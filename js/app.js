@@ -38,6 +38,31 @@ function init() {
     socket.on("id", function(msg) {
         player.id = msg;
     });
+    socket.on("spell", function(msg) {
+            obj = JSON.parse(msg);
+            if (player.id == obj.id) {
+
+            } else {
+                Spells.push(new Spell(obj.x, obj.y, obj.speed, obj.damage));
+            }
+        });
+        socket.on("player", function(msg) {
+            obj = JSON.parse(msg);
+            thing = true;
+            if (player.id != obj.id) {
+                for (var i = Players.length - 1; i >= 0; i--) {
+                    if (Players[i].id == obj.id) {
+                        Players[i].x = obj.x;
+                        Players[i].y = obj.y;
+                        Players[i].health = obj.health;
+                        thing = false;
+                    }
+                };
+                if (thing) {Players.push(new Player(obj.x, obj.y, 50, 100, "f00", obj.id))};
+                
+
+            }
+        });
     requestAnimationFrame(gameLoop);
 }
 
@@ -63,29 +88,7 @@ function gameLoop() {
             health: player.health,
         })); //Multiplayer
 
-        socket.on("player", function(msg) {
-            obj = JSON.parse(msg);
-            if (player.id != obj.id) {
-                for (var i = Players.length - 1; i >= 0; i--) {
-                    if (Players[i].id == obj.id) {
-                        Players[i].x = obj.x;
-                        Players[i].y = obj.y;
-                        Players[i].health = obj.health;
-                    }
-                };
-                if (Players.length == 0) {Players.push(new Player(obj.x, obj.y, 50, 100, "f00", obj.id))};
-                
-
-            }
-        });
-        socket.on("spell", function(msg) {
-            obj = JSON.parse(msg);
-            if (player.id == obj.id) {
-
-            } else {
-                Spells.push(new Spell(obj.x, obj.y, obj.speed, obj.damage));
-            }
-        });
+        
         //Background
         ctx.fillStyle = "#34495e";
         ctx.fillRect(0, 0, WIDTH, HEIGHT);
