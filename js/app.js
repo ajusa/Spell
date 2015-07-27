@@ -16,6 +16,7 @@ var VERSION = "Alpha 0.1",
         height: 50
     };
 var Spells = [],
+    Players = [],
     player2 = new Player(WIDTH / 2 - 85, 450, 50, 100, "#3498db"),
     player = new Player(WIDTH / 2 - 25, 450, 50, 100, "#e67e22"),
     screens = [true, false, false],
@@ -64,12 +65,17 @@ function gameLoop() {
 
         socket.on("player", function(msg) {
             obj = JSON.parse(msg);
+            for (var i = Players.length - 1; i >= 0; i--) {
+                if (Players[i].id == obj.id) {
+                    Players[i].x = obj.x;
+                    Players[i].y = obj.y;
+                    Players[i].health = obj.health;
+                }
+            };
             if (player.id == obj.id) {
 
             } else {
-                player2.x = obj.x;
-                player2.y = obj.y;
-                player2.health = obj.health;
+                Players.push(new Player(obj.x, obj.y, 50, 100, "f00", obj.id))
             }
         });
         socket.on("spell", function(msg) {
@@ -86,16 +92,18 @@ function gameLoop() {
         //Stats
         ctx.font = "30px LCD";
         ctx.fillStyle = "#FFF";
-        ctx.fillText("Orange" , 160, 100);
-        ctx.fillText(player.money + ' Mana', 160, 200);
+        ctx.fillText("Orange", 160, 100);
+        ctx.fillText(player.mana + ' Mana', 160, 200);
         ctx.fillText(player.health + ' Hearts', 160, 150);
-        ctx.fillText("Blue" , 460, 100);
-        ctx.fillText(player2.money + ' Mana', 460, 200);
+        ctx.fillText("Blue", 460, 100);
+        ctx.fillText(player2.mana + ' Mana', 460, 200);
         ctx.fillText(player2.health + ' Hearts', 460, 150);
 
         //Updates the players
         player.update();
-        player2.update();
+        for (var i = Players.length - 1; i >= 0; i--) {
+            Players[i].update();
+        };
         for (var i = Spells.length - 1; i >= 0; i--)
             Spells[i].update(i);
         //Ground
@@ -138,7 +146,7 @@ function onKeyDown(key) {
             player.right = true;
         }
 
-    
+
 
     }
 }
@@ -149,12 +157,9 @@ function onKeyUp(key) {
         if (keyCode == 83 && player.inShot)
             player.inShot = false;
 
-    
+
 
         if (keyCode == 65 || keyCode == 68)
             player.dx = 0;
-
-    
-
     }
 }
