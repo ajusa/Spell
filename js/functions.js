@@ -4,16 +4,31 @@ function isCollide(a, b) {
         (a.y > (b.y + b.height)) ||
         ((a.x + a.width) < b.x) ||
         (a.x > (b.x + b.width))
-    );	//I copied this collide code for my game, hope ya don't mind -Jackson
+    ); //I copied this collide code for my game, hope ya don't mind -Jackson
 }
-function randomNumber (low, high) {
+
+function randomNumber(low, high) {
     return Math.floor(Math.random() * (high - low + 1) + low);
 }
+
 function getRandomColor() {
     var letters = '0123456789ABCDEF'.split('');
     var color = '#';
-    for (var i = 0; i < 6; i++ ) {
+    for (var i = 0; i < 6; i++) {
         color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
+}
+
+function checkForPlayers(obj) {
+    exists = false;
+    for (var i = Players.length - 1; i >= 0; i--) {
+        if (Players[i].id == obj.id) {
+            Players[i].x = obj.x;
+            Players[i].y = obj.y;
+            Players[i].health = obj.health;
+            exists = true;
+        }
+    };
+    return exists;
 }
