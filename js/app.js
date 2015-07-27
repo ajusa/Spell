@@ -65,17 +65,17 @@ function gameLoop() {
 
         socket.on("player", function(msg) {
             obj = JSON.parse(msg);
-            for (var i = Players.length - 1; i >= 0; i--) {
-                if (Players[i].id == obj.id) {
-                    Players[i].x = obj.x;
-                    Players[i].y = obj.y;
-                    Players[i].health = obj.health;
-                }
-            };
-            if (player.id == obj.id) {
+            if (player.id != obj.id) {
+                for (var i = Players.length - 1; i >= 0; i--) {
+                    if (Players[i].id == obj.id) {
+                        Players[i].x = obj.x;
+                        Players[i].y = obj.y;
+                        Players[i].health = obj.health;
+                    }
+                };
+                if (Players.length == 0) {Players.push(new Player(obj.x, obj.y, 50, 100, "f00", obj.id))};
+                
 
-            } else {
-                Players.push(new Player(obj.x, obj.y, 50, 100, "f00", obj.id))
             }
         });
         socket.on("spell", function(msg) {
