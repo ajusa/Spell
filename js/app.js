@@ -128,10 +128,6 @@ function onKeyDown(key) {
             player.shoot();
             player.inShot = true;
         }
-        if (keyCode == 40) {
-            player2.shoot();
-            player2.inShot = true;
-        }
         if (keyCode == 65) {
             player.dx = -5;
             player.right = false;
@@ -142,15 +138,7 @@ function onKeyDown(key) {
             player.right = true;
         }
 
-        if (keyCode == 37) {
-            player2.dx = -5;
-            player2.right = false;
-        }
-
-        if (keyCode == 39) {
-            player2.dx = 5;
-            player2.right = true;
-        }
+    
 
     }
 }
@@ -161,14 +149,12 @@ function onKeyUp(key) {
         if (keyCode == 83 && player.inShot)
             player.inShot = false;
 
-        if (keyCode == 40 && player2.inShot)
-            player2.inShot = false;
+    
 
         if (keyCode == 65 || keyCode == 68)
             player.dx = 0;
 
-        if (keyCode == 37 || keyCode == 39)
-            player2.dx = 0;
+    
 
     }
 }
