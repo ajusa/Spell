@@ -13,7 +13,7 @@ function Player(xval, yval, width, height, color, id) {
     this.inShot = false;
     this.right = true;
     this.speed = 4;
-    this.id = "";
+    this.id = id;
     this.color = color;
     this.update = function() {
 

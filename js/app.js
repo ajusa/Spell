@@ -17,7 +17,6 @@ var VERSION = "Alpha 0.1",
     };
 var Spells = [],
     Players = [],
-    player2 = new Player(WIDTH / 2 - 85, 450, 50, 100, "#3498db"),
     player = new Player(WIDTH / 2 - 25, 450, 50, 100, "#e67e22"),
     screens = [true, false, false],
     Speed = 4;
@@ -39,30 +38,22 @@ function init() {
         player.id = msg;
     });
     socket.on("spell", function(msg) {
-            obj = JSON.parse(msg);
-            if (player.id == obj.id) {
+        obj = JSON.parse(msg);
+        if (player.id == obj.id) {
 
-            } else {
-                Spells.push(new Spell(obj.x, obj.y, obj.speed, obj.damage));
+        } else {
+            Spells.push(new Spell(obj.x, obj.y, obj.speed, obj.damage));
+        }
+    });
+    socket.on("player", function(msg) {
+        obj = JSON.parse(msg);
+        thing = true;
+        if (player.id != obj.id) {
+            if(!checkForPlayers(obj)){
+                Players.push(new Player(obj.x, obj.y, 50, 100, getRandomColor(), obj.id))
             }
-        });
-        socket.on("player", function(msg) {
-            obj = JSON.parse(msg);
-            thing = true;
-            if (player.id != obj.id) {
-                for (var i = Players.length - 1; i >= 0; i--) {
-                    if (Players[i].id == obj.id) {
-                        Players[i].x = obj.x;
-                        Players[i].y = obj.y;
-                        Players[i].health = obj.health;
-                        thing = false;
-                    }
-                };
-                if (thing) {Players.push(new Player(obj.x, obj.y, 50, 100, "f00", obj.id))};
-                
-
-            }
-        });
+        }
+    });
     requestAnimationFrame(gameLoop);
 }
 
@@ -87,21 +78,15 @@ function gameLoop() {
             id: player.id,
             health: player.health,
         })); //Multiplayer
-
-        
         //Background
         ctx.fillStyle = "#34495e";
         ctx.fillRect(0, 0, WIDTH, HEIGHT);
         //Stats
         ctx.font = "30px LCD";
         ctx.fillStyle = "#FFF";
-        ctx.fillText("Orange", 160, 100);
-        ctx.fillText(player.mana + ' Mana', 160, 200);
-        ctx.fillText(player.health + ' Hearts', 160, 150);
-        ctx.fillText("Blue", 460, 100);
-        ctx.fillText(player2.mana + ' Mana', 460, 200);
-        ctx.fillText(player2.health + ' Hearts', 460, 150);
-
+        ctx.fillText("You", 320, 100);
+        ctx.fillText(player.mana + ' Mana', 320, 200);
+        ctx.fillText(player.health + ' Hearts', 320, 150);
         //Updates the players
         player.update();
         for (var i = Players.length - 1; i >= 0; i--) {
