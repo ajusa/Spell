@@ -1,9 +1,10 @@
-function Spell(xval, yval, speed, spell) {
+function Spell(xval, yval, speed, spell, damage) {
     this.x = xval;
     this.y = yval;
     this.speed = speed;
     this.width = 20;
     this.height = 10;
+    this.damage = damage;
     //ctx.drawImage(arrowImg,  xval, yval);
     this.update = function(i) {
 

@@ -59,6 +59,7 @@ function gameLoop() {
             x: player.x,
             y: player.y,
             id: player.id,
+            health: player.health,
         })); //Multiplayer
 
         socket.on("player", function(msg) {
@@ -68,6 +69,7 @@ function gameLoop() {
             } else {
                 player2.x = obj.x;
                 player2.y = obj.y;
+                player2.health = obj.health;
             }
         });
         socket.on("spell", function(msg) {
@@ -75,7 +77,7 @@ function gameLoop() {
             if (player.id == obj.id) {
 
             } else {
-                Spells.push(new Spell(obj.x, obj.y, obj.speed));
+                Spells.push(new Spell(obj.x, obj.y, obj.speed, obj.damage));
             }
         });
         //Background
@@ -84,8 +86,13 @@ function gameLoop() {
         //Stats
         ctx.font = "30px LCD";
         ctx.fillStyle = "#FFF";
-        ctx.fillText("$" + player.money, 260, 200);
-        ctx.fillText(player.health + ' Hearts', 260, 100);
+        ctx.fillText("Orange" , 160, 100);
+        ctx.fillText(player.money + ' Mana', 160, 200);
+        ctx.fillText(player.health + ' Hearts', 160, 150);
+        ctx.fillText("Blue" , 460, 100);
+        ctx.fillText(player2.money + ' Mana', 460, 200);
+        ctx.fillText(player2.health + ' Hearts', 460, 150);
+
         //Updates the players
         player.update();
         player2.update();
@@ -117,7 +124,7 @@ function onKeyDown(key) {
     }
 
     if (screens[1]) {
-        if (keyCode == 83) {
+        if (keyCode == 83 && !player.inShot) {
             player.shoot();
             player.inShot = true;
         }
