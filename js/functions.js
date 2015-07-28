@@ -32,6 +32,13 @@ function checkForPlayers(obj) {
     };
     return exists;
 }
+function killPlayer(id){
+	for (var i = Players.length - 1; i >= 0; i--) {
+		if(Players[i].id == id){
+			array.splice(i, 1);
+		}
+	};
+}
 function guid() {
   function s4() {
     return Math.floor((1 + Math.random()) * 0x10000)

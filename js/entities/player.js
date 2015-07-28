@@ -22,16 +22,16 @@ function Player(xval, yval, width, height, color, id) {
                 this.health = this.health - Spells[i].damage;
                 Spells[i].kill(i);
             };
-            
+
         };
-        //if (this.health < 1) {
-        //  this.die();
-        // } else {
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-        this.x += this.dx;
-        this.y += this.dy;
-        //}
+        if (this.health < 1) {
+            this.die();
+        } else {
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+            this.x += this.dx;
+            this.y += this.dy;
+        }
     }
 
     this.shoot = function() {
@@ -69,6 +69,7 @@ function Player(xval, yval, width, height, color, id) {
 
     this.die = function() {
         //Setting to gameover screen
+        socket.emit("death", this.id)
         screens[1] = false;
         screens[2] = true;
     }

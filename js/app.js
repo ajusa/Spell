@@ -42,6 +42,10 @@ function init() {
         } else {
             Spells.push(new Spell(obj.x, obj.y, obj.speed,1, obj.damage));
         }
+
+    });
+    socket.on("death", function(msg){
+        killPlayer(msg);
     });
     socket.on("player", function(msg) {
         obj = JSON.parse(msg);
