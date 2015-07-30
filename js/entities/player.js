@@ -11,8 +11,11 @@ function Player(xval, yval, width, height, color, id) {
     this.mana = STARTING_MANA;
     this.health = STARTING_HEALTH;
     this.inShot = false;
+    this.g = true; //State variable for when player is touching the ground.
+    //this.wPressed = false;
     this.right = true;
     this.speed = 4;
+    this.velocity = 0; //For parabolic jumps
     this.id = id;
     this.color = color;
     this.update = function() {
@@ -24,13 +27,20 @@ function Player(xval, yval, width, height, color, id) {
             };
 
         };
+
+        if (isCollide(GROUND, this) && this.velocity < 0) {
+            this.velocity = 0;
+            this.g = true;
+            //document.getElementById("log").innerHTML = "Found player on ground";
+        }
         
-            ctx.fillStyle = this.color;
-            ctx.fillRect(this.x, this.y, this.width, this.height);
-            this.x += this.dx;
-            this.y += this.dy;
-        
-    }
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+        this.x += this.dx;
+        this.y -= this.velocity;
+        if (!isCollide(GROUND, this)) this.velocity -= 0.5;
+        //document.getElementById("log").innerHTML += this.velocity + " ";
+        }
 
     this.shoot = function() {
         this.mana--;

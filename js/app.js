@@ -143,7 +143,12 @@ function onKeyDown(key) {
             player.right = true;
         }
 
-
+        if (keyCode == 87 && player.g) {
+            player.velocity = 10;
+            player.g = false;
+            //player.wPressed = true;
+            //document.getElementById("log").innerHTML = "Detected key press";
+        }
 
     }
 }
@@ -154,9 +159,12 @@ function onKeyUp(key) {
         if (keyCode == 83 && player.inShot)
             player.inShot = false;
 
-
-
         if (keyCode == 65 || keyCode == 68)
             player.dx = 0;
+
+        //if (keycode == 87)
+            //player.wPressed = false;
+
+        //document.getElementById("log").innerHTML = ""
     }
 }
