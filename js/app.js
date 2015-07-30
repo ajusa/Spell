@@ -23,7 +23,7 @@ var Spells = [],
 var socket;
 
 function init() {
-    socket = io("http://68.48.163.27:5000");
+    socket = io("http://localhost:5000");
     //Event listeners
     window.addEventListener("keydown", onKeyDown);
     window.addEventListener("keyup", onKeyUp);
@@ -34,7 +34,7 @@ function init() {
     container.style.cssText = "text-align: center;";
     canvas.width = WIDTH;
     canvas.height = HEIGHT;
-    player.id = guid();
+    //player.id = guid();
     socket.on("spell", function(msg) {
         obj = JSON.parse(msg);
         if (player.id == obj.id) {
@@ -42,6 +42,13 @@ function init() {
         } else {
             Spells.push(new Spell(obj.x, obj.y, obj.speed,1, obj.damage));
         }
+
+    });
+    socket.on("death", function(msg){
+        killPlayer(msg);
+    });
+    socket.on("id", function(msg){
+        player.id = msg;
     });
     socket.on("player", function(msg) {
         obj = JSON.parse(msg);
@@ -87,6 +94,10 @@ function gameLoop() {
         ctx.fillText(player.health + ' Hearts', 320, 150);
         //Updates the players
         player.update();
+        if (player.health < 1) {
+            socket.emit("death", player.id)
+            player.die();
+        } 
         for (var i = Players.length - 1; i >= 0; i--) {
             Players[i].update();
         };
@@ -132,7 +143,12 @@ function onKeyDown(key) {
             player.right = true;
         }
 
-
+        if (keyCode == 87 && player.g) {
+            player.velocity = 10;
+            player.g = false;
+            //player.wPressed = true;
+            //document.getElementById("log").innerHTML = "Detected key press";
+        }
 
     }
 }
@@ -143,9 +159,12 @@ function onKeyUp(key) {
         if (keyCode == 83 && player.inShot)
             player.inShot = false;
 
-
-
         if (keyCode == 65 || keyCode == 68)
             player.dx = 0;
+
+        //if (keycode == 87)
+            //player.wPressed = false;
+
+        //document.getElementById("log").innerHTML = ""
     }
 }
