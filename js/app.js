@@ -23,7 +23,7 @@ var Spells = [],
 var socket;
 
 function init() {
-    socket = io("http://68.48.163.27:5000");
+    socket = io("http://localhost:5000");
     //Event listeners
     window.addEventListener("keydown", onKeyDown);
     window.addEventListener("keyup", onKeyUp);
@@ -34,7 +34,7 @@ function init() {
     container.style.cssText = "text-align: center;";
     canvas.width = WIDTH;
     canvas.height = HEIGHT;
-    player.id = guid();
+    //player.id = guid();
     socket.on("spell", function(msg) {
         obj = JSON.parse(msg);
         if (player.id == obj.id) {
@@ -46,6 +46,9 @@ function init() {
     });
     socket.on("death", function(msg){
         killPlayer(msg);
+    });
+    socket.on("id", function(msg){
+        player.id = msg;
     });
     socket.on("player", function(msg) {
         obj = JSON.parse(msg);
@@ -91,6 +94,10 @@ function gameLoop() {
         ctx.fillText(player.health + ' Hearts', 320, 150);
         //Updates the players
         player.update();
+        if (player.health < 1) {
+            socket.emit("death", player.id)
+            player.die();
+        } 
         for (var i = Players.length - 1; i >= 0; i--) {
             Players[i].update();
         };

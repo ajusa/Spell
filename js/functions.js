@@ -35,7 +35,7 @@ function checkForPlayers(obj) {
 function killPlayer(id){
 	for (var i = Players.length - 1; i >= 0; i--) {
 		if(Players[i].id == id){
-			array.splice(i, 1);
+			Players.splice(i, 1);
 		}
 	};
 }
