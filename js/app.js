@@ -23,7 +23,7 @@ var Spells = [],
 var socket;
 
 function init() {
-    socket = io("http://localhost:5000");
+    socket = io("http://68.48.163.27:5000");
     //Event listeners
     window.addEventListener("keydown", onKeyDown);
     window.addEventListener("keyup", onKeyUp);
