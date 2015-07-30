@@ -40,19 +40,25 @@ function init() {
         if (player.id == obj.id) {
 
         } else {
-            Spells.push(new Spell(obj.x, obj.y, obj.speed,1, obj.damage));
+            Spells.push(new Spell(obj.x, obj.y, obj.speed, 1, obj.damage));
         }
 
     });
-    socket.on("death", function(msg){
+    socket.on('disconnect', function() {
+        socket.emit("death", player.id)
+        player.die();
+    });
+    socket.on("death", function(msg) {
         killPlayer(msg);
     });
-    player.id = guid();
+    socket.on("id", function(msg){
+        player.id = msg;
+
+    })
     socket.on("player", function(msg) {
         obj = JSON.parse(msg);
-        thing = true;
         if (player.id != obj.id) {
-            if(!checkForPlayers(obj)){
+            if (!checkForPlayers(obj)) {
                 Players.push(new Player(obj.x, obj.y, 50, 100, getRandomColor(), obj.id))
             }
         }
@@ -95,7 +101,7 @@ function gameLoop() {
         if (player.health < 1) {
             socket.emit("death", player.id)
             player.die();
-        } 
+        }
         for (var i = Players.length - 1; i >= 0; i--) {
             Players[i].update();
         };
@@ -161,7 +167,7 @@ function onKeyUp(key) {
             player.dx = 0;
 
         //if (keycode == 87)
-            //player.wPressed = false;
+        //player.wPressed = false;
 
         //document.getElementById("log").innerHTML = ""
     }
