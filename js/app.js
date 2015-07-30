@@ -47,9 +47,7 @@ function init() {
     socket.on("death", function(msg){
         killPlayer(msg);
     });
-    socket.on("id", function(msg){
-        player.id = msg;
-    });
+    player.id = guid();
     socket.on("player", function(msg) {
         obj = JSON.parse(msg);
         thing = true;
