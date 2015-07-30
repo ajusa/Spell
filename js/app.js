@@ -5,7 +5,7 @@ var canvas = document.createElement('canvas'),
     window.mozRequestAnimationFrame ||
     window.webkitRequestAnimationFrame ||
     window.msRequestAnimationFrame;
-
+var hasSentId = false;
 var VERSION = "Alpha 0.1",
     WIDTH = 800,
     HEIGHT = 600,
@@ -44,15 +44,14 @@ function init() {
         }
 
     });
-    socket.on('disconnect', function() {
-        socket.emit("death", player.id)
-        player.die();
-    });
     socket.on("death", function(msg) {
         killPlayer(msg);
     });
     socket.on("id", function(msg){
+        if (!hasSentId) {
         player.id = msg;
+        hasSentId = true;
+    }
 
     })
     socket.on("player", function(msg) {
