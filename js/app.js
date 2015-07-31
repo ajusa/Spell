@@ -25,8 +25,8 @@ var socket;
 function init() {
     socket = io("http://68.48.163.27:5000");
     //Event listeners
-    window.addEventListener("keydown", onKeyDown);
-    window.addEventListener("keyup", onKeyUp);
+    //window.addEventListener("keydown", onKeyDown);
+    //window.addEventListener("keyup", onKeyUp);
     //loadRandomMusic();
     document.body.appendChild(container);
     container.appendChild(canvas);
@@ -121,53 +121,124 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-function onKeyDown(key) {
-    var keyCode = key.keyCode;
-
+//NEW INPUT CODE
+var map = [] //{ w: false, a: false, s: false, d: false, enter: false };
+onkeydown = onkeyup = function (e) {
+    e = e || event;
+    map[e.keyCode] = e.type == 'keydown';
     if (screens[0]) {
-        if (keyCode == 13) {
+        if (map[13]) {
             screens[0] = false;
             screens[1] = true;
         }
-    }
-
-    if (screens[1]) {
-        if (keyCode == 83 && !player.inShot) {
+    } else {
+        if (map[83] && !player.inShot && map[87] && map[68] && player.g) { //Shoot + Jump + Right
             player.shoot();
             player.inShot = true;
-        }
-        if (keyCode == 65) {
-            player.dx = -5;
-            player.right = false;
-        }
-
-        if (keyCode == 68) {
             player.dx = 5;
             player.right = true;
-        }
-
-        if (keyCode == 87 && player.g) {
             player.velocity = 10;
             player.g = false;
-            //player.wPressed = true;
-            //document.getElementById("log").innerHTML = "Detected key press";
-        }
-
-    }
-}
-
-function onKeyUp(key) {
-    var keyCode = key.keyCode;
-    if (screens[1]) {
-        if (keyCode == 83 && player.inShot)
+        } else if (map[83] && !player.inShot && map[87] && map[65] && player.g) { //Shoot + Jump + Left
+            player.shoot();
+            player.inShot = true;
+            player.dx = -5;
+            player.right = false;
+            player.velocity = 10;
+            player.g = false;
+        } else if (map[83] && !player.inShot && map[68]) { //Shoot + Right
+            player.shoot();
+            player.inShot = true;
+            player.dx = 5;
+            player.right = true;
+        } else if (map[83] && !player.inShot && map[65]) { //Shoot + Left
+            player.shoot();
+            player.inShot = true;
+            player.dx = -5;
+            player.right = false;
+        } else if (map[87] && map[68] && player.g) { //Jump + Right
+            player.dx = 5;
+            player.right = true;
+            player.velocity = 10;
+            player.g = false;
             player.inShot = false;
-
-        if (keyCode == 65 || keyCode == 68)
+        } else if (map[87] && map[65] && player.g) { //Jump + Left
+            player.dx = -5;
+            player.right = false;
+            player.velocity = 10;
+            player.g = false;
+            player.inShot = false;
+        } else if (map[83] && !player.inShot && map[87] && player.g) { //Shoot + Jump
+            player.shoot();
+            player.inShot = true;
+            player.velocity = 10;
+            player.g = false;
             player.dx = 0;
-
-        //if (keycode == 87)
-        //player.wPressed = false;
-
-        //document.getElementById("log").innerHTML = ""
+        } else if (map[68]) { //Right
+            player.dx = 5;
+            player.right = true;
+            player.inShot = false;
+        } else if (map[65]) { //Left
+            player.dx = -5;
+            player.right = false;
+            player.inShot = false;
+        } else if (map[87] && player.g) { //Jump
+            player.velocity = 10;
+            player.g = false;
+            player.dx = 0;
+            player.inShot = false;
+        } else if (map[83] && !player.inShot) { //Shoot
+            player.shoot();
+            player.inShot = true;
+            player.dx = 0;
+        } else {
+            player.dx = 0;
+            player.inShot = true;
+        }
     }
 }
+
+// OLD INPUT CODE
+//function onKeyDown(key) {
+//    var keyCode = key.keyCode;
+
+//    if (screens[0]) {
+//        if (keyCode == 13) {
+//            screens[0] = false;
+//            screens[1] = true;
+//        }
+//    }
+
+//    if (screens[1]) {
+//        if (keyCode == 83 && !player.inShot) {
+//            player.shoot();
+//            player.inShot = true;
+//        }
+//        if (keyCode == 65) {
+//            player.dx = -5;
+//            player.right = false;
+//        }
+
+//        if (keyCode == 68) {
+//            player.dx = 5;
+//            player.right = true;
+//        }
+
+//        if (keyCode == 87 && player.g) {
+//            player.velocity = 10;
+//            player.g = false;
+//        }
+
+//    }
+//}
+
+//function onKeyUp(key) {
+//    var keyCode = key.keyCode;
+//    if (screens[1]) {
+//        if (keyCode == 83 && player.inShot)
+//            player.inShot = false;
+
+//        if (keyCode == 65 || keyCode == 68)
+//            player.dx = 0;
+//    }
+//}
