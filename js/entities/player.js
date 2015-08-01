@@ -28,13 +28,13 @@ function Player(xval, yval, width, height, color, id) {
 
         };
 
-        if (isCollide(GROUND, this) && !this.g) {
+        if (isCollide(GROUND, this) && (this.velocity < 0)) { //&& !this.g) {
             this.velocity = 0;
             this.g = true;
-            //document.getElementById("log").innerHTML = "Found player on ground";
-        } else {
-            this.g = false;
-        }
+        } //else {
+        //    this.g = false;
+        //}
+        document.getElementById("log").innerHTML = this.g;
         
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x, this.y, this.width, this.height);

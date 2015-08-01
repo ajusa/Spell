@@ -7,8 +7,8 @@ var canvas = document.createElement('canvas'),
     window.msRequestAnimationFrame;
 var hasSentId = false;
 var VERSION = "Alpha 0.1",
-    WIDTH = 800,
-    HEIGHT = 600,
+    WIDTH = 1280,
+    HEIGHT = 720,
     GROUND = {
         x: 0,
         y: HEIGHT - 50,
@@ -70,10 +70,10 @@ function gameLoop() {
         ctx.fillRect(0, 0, WIDTH, HEIGHT);
         ctx.font = "70px LCD";
         ctx.fillStyle = "#FFF";
-        ctx.fillText("Spell", 300, 200);
+        ctx.fillText("Spell", (WIDTH / 2) - 100, (HEIGHT / 2) - 100);
         ctx.font = "30px LCD";
         ctx.fillStyle = "#FFF";
-        ctx.fillText("[Enter to start]", 260, 400);
+        ctx.fillText("[Enter to start]", (WIDTH / 2) - 150, (HEIGHT / 2) + 100);
         ctx.font = "15px LCD";
         ctx.fillText(VERSION, 10, 20);
     } else if (screens[1]) { //Main Game
@@ -134,8 +134,8 @@ onkeydown = onkeyup = function (e) {
             player.inShot = true;
             player.dx = 5;
             player.right = true;
-            player.velocity = 10;
             player.g = false;
+            player.velocity = 10;
         } else if (map[83] && !player.inShot && map[87] && map[65] && player.g) { //Shoot + Jump + Left
             player.shoot();
             player.inShot = true;
