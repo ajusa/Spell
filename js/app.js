@@ -24,9 +24,6 @@ var socket;
 
 function init() {
     socket = io("http://68.48.163.27:5000");
-    //Event listeners
-    //window.addEventListener("keydown", onKeyDown);
-    //window.addEventListener("keyup", onKeyUp);
     //loadRandomMusic();
     document.body.appendChild(container);
     container.appendChild(canvas);
@@ -193,52 +190,7 @@ onkeydown = onkeyup = function (e) {
             player.dx = 0;
         } else {
             player.dx = 0;
-            player.inShot = true;
+            player.inShot = false;
         }
     }
 }
-
-// OLD INPUT CODE
-//function onKeyDown(key) {
-//    var keyCode = key.keyCode;
-
-//    if (screens[0]) {
-//        if (keyCode == 13) {
-//            screens[0] = false;
-//            screens[1] = true;
-//        }
-//    }
-
-//    if (screens[1]) {
-//        if (keyCode == 83 && !player.inShot) {
-//            player.shoot();
-//            player.inShot = true;
-//        }
-//        if (keyCode == 65) {
-//            player.dx = -5;
-//            player.right = false;
-//        }
-
-//        if (keyCode == 68) {
-//            player.dx = 5;
-//            player.right = true;
-//        }
-
-//        if (keyCode == 87 && player.g) {
-//            player.velocity = 10;
-//            player.g = false;
-//        }
-
-//    }
-//}
-
-//function onKeyUp(key) {
-//    var keyCode = key.keyCode;
-//    if (screens[1]) {
-//        if (keyCode == 83 && player.inShot)
-//            player.inShot = false;
-
-//        if (keyCode == 65 || keyCode == 68)
-//            player.dx = 0;
-//    }
-//}
