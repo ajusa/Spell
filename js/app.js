@@ -27,7 +27,7 @@ function init() {
     //loadRandomMusic();
     document.body.appendChild(container);
     container.appendChild(canvas);
-    canvas.style.cssText = "border: 1px solid black; width: " + WIDTH + "px; height: " + HEIGHT + "px;";
+    canvas.style.cssText = "border: 1px solid black; width: " + 64 + "%; height: " + 36 + "%;";
     container.style.cssText = "text-align: center;";
     canvas.width = WIDTH;
     canvas.height = HEIGHT;
