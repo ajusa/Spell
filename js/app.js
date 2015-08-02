@@ -90,9 +90,9 @@ function gameLoop() {
         //Stats
         ctx.font = "30px LCD";
         ctx.fillStyle = "#FFF";
-        ctx.fillText("You", 320, 100);
-        ctx.fillText(player.mana + ' Mana', 320, 200);
-        ctx.fillText(player.health + ' Hearts', 320, 150);
+        //ctx.fillText("You", 320, 100);
+        ctx.fillText(player.mana + ' Mana', 200, 150);
+        ctx.fillText(player.health + ' Hearts', 200, 100);
         //Updates the players
         player.update();
         if (player.health < 1) {
@@ -125,9 +125,14 @@ function gameLoop() {
     }
 
     if (screens[1]) {
-        ctx.fillStyle = "#D";
+        ctx.fillStyle = "#19232D";
+        ctx.fillRect(1000, 100, 150, 20);
+        ctx.fillStyle = "#DDD";
         ctx.fillRect(1000, 100, spellTimer * 3, 20);
+        ctx.fillStyle = "#DDD";
         ctx.fillText(spellString, 1000, 150);
+        ctx.fillStyle = "#C0392b";
+        ctx.fillText(spellID, 600, 200);
     }
     
     requestAnimationFrame(gameLoop);
@@ -136,6 +141,7 @@ function gameLoop() {
 //NEW INPUT CODE
 var spellString = "";
 var lastSpellKey = 0;
+var spellID = 0;
 var keyUp = [];
 var map = []; //{ w: false, a: false, s: false, d: false, enter: false };
 onkeydown = onkeyup = function (e) {
@@ -216,7 +222,7 @@ onkeydown = onkeyup = function (e) {
     if (screens[1]) {
         //var eLength = 0;
         if (spellString.length >= 6) {
-            // Do spell parsing here
+            spellID = getSpell(spellString);
             
             spellTimer = 0;
             spellString = "";
