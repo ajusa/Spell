@@ -19,9 +19,8 @@ var Spells = [],
     Players = [],
     player = new Player(WIDTH / 2 - 25, 450, 50, 100, "#e67e22"),
     screens = [true, false, false],
-    Speed = 4;
+    Speed = 6;
 var socket;
-var manaTimer = setInterval(function () { player.regen() }, 1000);
 
 function init() {
     socket = io("http://68.48.163.27:5000");
@@ -60,8 +59,11 @@ function init() {
             }
         }
     });
+
     requestAnimationFrame(gameLoop);
 }
+
+setInterval(function() { player.regen() }, 1000);
 
 var spellTimer = 0;
 function gameLoop() {
@@ -71,10 +73,9 @@ function gameLoop() {
         ctx.fillStyle = "#000";
         ctx.fillRect(0, 0, WIDTH, HEIGHT);
         ctx.font = "70px LCD";
-        ctx.fillStyle = "#FFF";
+        ctx.fillStyle = "#ECF0F1";
         ctx.fillText("Spell", (WIDTH / 2) - 100, (HEIGHT / 2) - 100);
         ctx.font = "30px LCD";
-        ctx.fillStyle = "#FFF";
         ctx.fillText("[Enter to start]", (WIDTH / 2) - 150, (HEIGHT / 2) + 100);
         ctx.font = "15px LCD";
         ctx.fillText(VERSION, 10, 20);
@@ -91,9 +92,27 @@ function gameLoop() {
         //Stats
         ctx.font = "30px LCD";
         ctx.fillStyle = "#FFF";
+        //Spells
+        ctx.fillStyle = "#BDC3C7";
+        ctx.fillRect(1000, 100, 150, 20);
+        ctx.fillStyle = "#ECF0F1";
+        ctx.fillRect(1000, 100, spellTimer * 3, 20);
+        ctx.fillText(spellString, 1000, 150);
+        ctx.fillStyle = "#E67E22";
+        ctx.fillText("Spell " + spellID, 600, 200);
         //ctx.fillText("You", 320, 100);
-        ctx.fillText(player.mana + ' / ' + player.maxMana + ' Mana', 200, 150);
-        ctx.fillText(player.health + ' Hearts', 200, 100);
+        ctx.fillStyle = "#ECF0F1";
+        ctx.fillText(player.health + ' / ' + player.maxHealth + ' Hearts', 100, 100);
+        ctx.fillText(player.mana + ' / ' + player.maxMana + ' Mana', 100, 200);
+
+        ctx.fillStyle = "#C0392B";
+        ctx.fillRect(100, 110, 250, 20);
+        ctx.fillStyle = "#8E44Ad";
+        ctx.fillRect(100, 210, 250, 20);
+        ctx.fillStyle = "#E74C3C";
+        ctx.fillRect(100, 110, (player.health / player.maxHealth) * 250, 20);
+        ctx.fillStyle = "#9B59B6";
+        ctx.fillRect(100, 210, (player.mana / player.maxMana) * 250, 20);
         //Updates the players
         player.update();
         if (player.health < 1) {
@@ -112,7 +131,7 @@ function gameLoop() {
         ctx.fillStyle = "#000";
         ctx.fillRect(0, 0, WIDTH, HEIGHT);
         ctx.font = "70px LCD";
-        ctx.fillStyle = "#F00";
+        ctx.fillStyle = "#E74C3C";
         ctx.fillText("Game Over", 150, 200);
         pauseMusic();
     }
@@ -125,17 +144,6 @@ function gameLoop() {
         lastSpellKey = 0;
     }
 
-    if (screens[1]) {
-        ctx.fillStyle = "#19232D";
-        ctx.fillRect(1000, 100, 150, 20);
-        ctx.fillStyle = "#DDD";
-        ctx.fillRect(1000, 100, spellTimer * 3, 20);
-        ctx.fillStyle = "#DDD";
-        ctx.fillText(spellString, 1000, 150);
-        ctx.fillStyle = "#C0392b";
-        ctx.fillText(spellID, 600, 200);
-    }
-    
     requestAnimationFrame(gameLoop);
 }
 
@@ -158,8 +166,8 @@ onkeydown = onkeyup = function (e) {
         if (map[83] && !player.inShot && map[87] && map[68] && player.g) { //Shoot + Jump + Right
             player.shoot();
             player.inShot = true;
-            player.dx = 5;
             player.right = true;
+            player.dx = 5;
             player.g = false;
             player.dy = 10;
         } else if (map[83] && !player.inShot && map[87] && map[65] && player.g) { //Shoot + Jump + Left
