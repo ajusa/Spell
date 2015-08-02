@@ -21,6 +21,7 @@ var Spells = [],
     screens = [true, false, false],
     Speed = 4;
 var socket;
+var manaTimer = setInterval(function () { player.regen() }, 1000);
 
 function init() {
     socket = io("http://68.48.163.27:5000");
@@ -91,7 +92,7 @@ function gameLoop() {
         ctx.font = "30px LCD";
         ctx.fillStyle = "#FFF";
         //ctx.fillText("You", 320, 100);
-        ctx.fillText(player.mana + ' Mana', 200, 150);
+        ctx.fillText(player.mana + ' / ' + player.maxMana + ' Mana', 200, 150);
         ctx.fillText(player.health + ' Hearts', 200, 100);
         //Updates the players
         player.update();
@@ -160,13 +161,13 @@ onkeydown = onkeyup = function (e) {
             player.dx = 5;
             player.right = true;
             player.g = false;
-            player.velocity = 10;
+            player.dy = 10;
         } else if (map[83] && !player.inShot && map[87] && map[65] && player.g) { //Shoot + Jump + Left
             player.shoot();
             player.inShot = true;
             player.dx = -5;
             player.right = false;
-            player.velocity = 10;
+            player.dy = 10;
             player.g = false;
         } else if (map[83] && !player.inShot && map[68]) { //Shoot + Right
             player.shoot();
@@ -181,19 +182,19 @@ onkeydown = onkeyup = function (e) {
         } else if (map[87] && map[68] && player.g) { //Jump + Right
             player.dx = 5;
             player.right = true;
-            player.velocity = 10;
+            player.dy = 10;
             player.g = false;
             player.inShot = false;
         } else if (map[87] && map[65] && player.g) { //Jump + Left
             player.dx = -5;
             player.right = false;
-            player.velocity = 10;
+            player.dy = 10;
             player.g = false;
             player.inShot = false;
         } else if (map[83] && !player.inShot && map[87] && player.g) { //Shoot + Jump
             player.shoot();
             player.inShot = true;
-            player.velocity = 10;
+            player.dy = 10;
             player.g = false;
             player.dx = 0;
         } else if (map[68]) { //Right
@@ -205,7 +206,7 @@ onkeydown = onkeyup = function (e) {
             player.right = false;
             player.inShot = false;
         } else if (map[87] && player.g) { //Jump
-            player.velocity = 10;
+            player.dy = 10;
             player.g = false;
             player.dx = 0;
             player.inShot = false;
