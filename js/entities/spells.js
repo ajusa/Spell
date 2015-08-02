@@ -9,7 +9,7 @@ function Spell(xval, yval, speed, spell, damage) {
     this.update = function(i) {
 
         //ctx.drawImage(arrowImg, this.x, this.y);
-        if(this.x>800||this.x<0)
+        if(this.x > WIDTH || this.x < 0)
             Spells[i].kill(i);
         this.x += this.speed;
         ctx.fillStyle = "#000"

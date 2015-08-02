@@ -7,8 +7,8 @@ var canvas = document.createElement('canvas'),
     window.msRequestAnimationFrame;
 var hasSentId = false;
 var VERSION = "Alpha 0.1",
-    WIDTH = 800,
-    HEIGHT = 600,
+    WIDTH = 1280,
+    HEIGHT = 720,
     GROUND = {
         x: 0,
         y: HEIGHT - 50,
@@ -21,16 +21,14 @@ var Spells = [],
     screens = [true, false, false],
     Speed = 4;
 var socket;
+var manaTimer = setInterval(function () { player.regen() }, 1000);
 
 function init() {
     socket = io("http://68.48.163.27:5000");
-    //Event listeners
-    //window.addEventListener("keydown", onKeyDown);
-    //window.addEventListener("keyup", onKeyUp);
     //loadRandomMusic();
     document.body.appendChild(container);
     container.appendChild(canvas);
-    canvas.style.cssText = "border: 1px solid black; width: " + WIDTH + "px; height: " + HEIGHT + "px;";
+    canvas.style.cssText = "border: 1px solid black; width: " + 64 + "%; height: " + 36 + "%;";
     container.style.cssText = "text-align: center;";
     canvas.width = WIDTH;
     canvas.height = HEIGHT;
@@ -65,6 +63,7 @@ function init() {
     requestAnimationFrame(gameLoop);
 }
 
+var spellTimer = 0;
 function gameLoop() {
     ctx.clearRect(0, 0, WIDTH, HEIGHT);
 
@@ -73,10 +72,10 @@ function gameLoop() {
         ctx.fillRect(0, 0, WIDTH, HEIGHT);
         ctx.font = "70px LCD";
         ctx.fillStyle = "#FFF";
-        ctx.fillText("Spell", 300, 200);
+        ctx.fillText("Spell", (WIDTH / 2) - 100, (HEIGHT / 2) - 100);
         ctx.font = "30px LCD";
         ctx.fillStyle = "#FFF";
-        ctx.fillText("[Enter to start]", 260, 400);
+        ctx.fillText("[Enter to start]", (WIDTH / 2) - 150, (HEIGHT / 2) + 100);
         ctx.font = "15px LCD";
         ctx.fillText(VERSION, 10, 20);
     } else if (screens[1]) { //Main Game
@@ -92,9 +91,9 @@ function gameLoop() {
         //Stats
         ctx.font = "30px LCD";
         ctx.fillStyle = "#FFF";
-        ctx.fillText("You", 320, 100);
-        ctx.fillText(player.mana + ' Mana', 320, 200);
-        ctx.fillText(player.health + ' Hearts', 320, 150);
+        //ctx.fillText("You", 320, 100);
+        ctx.fillText(player.mana + ' / ' + player.maxMana + ' Mana', 200, 150);
+        ctx.fillText(player.health + ' Hearts', 200, 100);
         //Updates the players
         player.update();
         if (player.health < 1) {
@@ -118,14 +117,38 @@ function gameLoop() {
         pauseMusic();
     }
 
+    if (spellTimer > 0) {
+        spellTimer--;
+    } else {
+        spellString = "";
+        //player.spellKeyDown = false;
+        lastSpellKey = 0;
+    }
+
+    if (screens[1]) {
+        ctx.fillStyle = "#19232D";
+        ctx.fillRect(1000, 100, 150, 20);
+        ctx.fillStyle = "#DDD";
+        ctx.fillRect(1000, 100, spellTimer * 3, 20);
+        ctx.fillStyle = "#DDD";
+        ctx.fillText(spellString, 1000, 150);
+        ctx.fillStyle = "#C0392b";
+        ctx.fillText(spellID, 600, 200);
+    }
+    
     requestAnimationFrame(gameLoop);
 }
 
 //NEW INPUT CODE
-var map = [] //{ w: false, a: false, s: false, d: false, enter: false };
+var spellString = "";
+var lastSpellKey = 0;
+var spellID = 0;
+var keyUp = [];
+var map = []; //{ w: false, a: false, s: false, d: false, enter: false };
 onkeydown = onkeyup = function (e) {
-    e = e || event;
+    e = e || event; //IE
     map[e.keyCode] = e.type == 'keydown';
+    keyUp[e.keyCode] = e.type == 'keyup';
     if (screens[0]) {
         if (map[13]) {
             screens[0] = false;
@@ -137,14 +160,14 @@ onkeydown = onkeyup = function (e) {
             player.inShot = true;
             player.dx = 5;
             player.right = true;
-            player.velocity = 10;
             player.g = false;
+            player.dy = 10;
         } else if (map[83] && !player.inShot && map[87] && map[65] && player.g) { //Shoot + Jump + Left
             player.shoot();
             player.inShot = true;
             player.dx = -5;
             player.right = false;
-            player.velocity = 10;
+            player.dy = 10;
             player.g = false;
         } else if (map[83] && !player.inShot && map[68]) { //Shoot + Right
             player.shoot();
@@ -159,19 +182,19 @@ onkeydown = onkeyup = function (e) {
         } else if (map[87] && map[68] && player.g) { //Jump + Right
             player.dx = 5;
             player.right = true;
-            player.velocity = 10;
+            player.dy = 10;
             player.g = false;
             player.inShot = false;
         } else if (map[87] && map[65] && player.g) { //Jump + Left
             player.dx = -5;
             player.right = false;
-            player.velocity = 10;
+            player.dy = 10;
             player.g = false;
             player.inShot = false;
         } else if (map[83] && !player.inShot && map[87] && player.g) { //Shoot + Jump
             player.shoot();
             player.inShot = true;
-            player.velocity = 10;
+            player.dy = 10;
             player.g = false;
             player.dx = 0;
         } else if (map[68]) { //Right
@@ -183,7 +206,7 @@ onkeydown = onkeyup = function (e) {
             player.right = false;
             player.inShot = false;
         } else if (map[87] && player.g) { //Jump
-            player.velocity = 10;
+            player.dy = 10;
             player.g = false;
             player.dx = 0;
             player.inShot = false;
@@ -193,52 +216,56 @@ onkeydown = onkeyup = function (e) {
             player.dx = 0;
         } else {
             player.dx = 0;
-            player.inShot = true;
+            player.inShot = false;
         }
     }
+    
+    if (screens[1]) {
+        //var eLength = 0;
+        if (spellString.length >= 6) {
+            spellID = getSpell(spellString);
+            
+            spellTimer = 0;
+            spellString = "";
+            lastSpellKey = 0;
+        } else {
+            if (keyUp[85] && lastSpellKey == 1) {
+                lastSpellKey = 0;
+            } else if (keyUp[73] && lastSpellKey == 2) {
+                lastSpellKey = 0;
+            } else if (keyUp[79] && lastSpellKey == 3) {
+                lastSpellKey = 0;
+            } else if (keyUp[80] && lastSpellKey == 4) {
+                lastSpellKey = 0;
+            }
+            //if (!player.spellKeyDown) {
+                if (map[85] && (lastSpellKey != 1)) {
+                    spellString += "U ";
+                    lastSpellKey = 1;
+                    spellTimer = 50;
+                } else if (map[73] && (lastSpellKey != 2)) {
+                    spellString += "I ";
+                    lastSpellKey = 2;
+                    spellTimer = 50;
+                } else if (map[79] && (lastSpellKey != 3)) {
+                    spellString += "O ";
+                    lastSpellKey = 3;
+                    spellTimer = 50;
+                } else if (map[80] && (lastSpellKey != 4)) {
+                    spellString += "P ";
+                    lastSpellKey = 4;
+                    spellTimer = 50;
+                } //else {
+                    //player.spellKeyDown = false;
+                //}
+            //}
+        }
+        
+        //if (map[85] || map[73] || map[79] || map[80]) {
+        //    spellTimer = 60;
+        //    player.spellKeyDown = true;
+        //} else {
+        //    player.spellKeyDown = false;
+        //}
+    }
 }
-
-// OLD INPUT CODE
-//function onKeyDown(key) {
-//    var keyCode = key.keyCode;
-
-//    if (screens[0]) {
-//        if (keyCode == 13) {
-//            screens[0] = false;
-//            screens[1] = true;
-//        }
-//    }
-
-//    if (screens[1]) {
-//        if (keyCode == 83 && !player.inShot) {
-//            player.shoot();
-//            player.inShot = true;
-//        }
-//        if (keyCode == 65) {
-//            player.dx = -5;
-//            player.right = false;
-//        }
-
-//        if (keyCode == 68) {
-//            player.dx = 5;
-//            player.right = true;
-//        }
-
-//        if (keyCode == 87 && player.g) {
-//            player.velocity = 10;
-//            player.g = false;
-//        }
-
-//    }
-//}
-
-//function onKeyUp(key) {
-//    var keyCode = key.keyCode;
-//    if (screens[1]) {
-//        if (keyCode == 83 && player.inShot)
-//            player.inShot = false;
-
-//        if (keyCode == 65 || keyCode == 68)
-//            player.dx = 0;
-//    }
-//}

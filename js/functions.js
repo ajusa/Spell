@@ -48,3 +48,43 @@ function guid() {
   return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
     s4() + '-' + s4() + s4() + s4();
 }
+
+function getSpell(inS){
+    var spellMap = ["UUU", "UUI", "UUO", "UUP", "UII", "UIO", "UIP", "UOO", "UOP", "UPP",
+        "III", "IIO", "IIP", "IOO", "IOP", "IPP",
+        "OOO", "OOP", "OPP",
+        "PPP"];
+    var inA = inS.trim().split(" ");
+    var u = 0,
+        i = 0,
+        o = 0,
+        p = 0;
+    for (k = 0; k < inA.length; k++){
+        if (inA[k] == "U") {
+            u++;
+        } else if (inA[k] == "I") {
+            i++;
+        } else if (inA[k] == "O") {
+            o++;
+        } else if (inA[k] == "P") {
+            p++;
+        }
+    }
+    var outS = "";
+    for (k = 0; k < u; k++) {
+        outS += "U"
+    }
+    for (k = 0; k < i; k++) {
+        outS += "I"
+    }
+    for (k = 0; k < o; k++) {
+        outS += "O"
+    }
+    for (k = 0; k < p; k++) {
+        outS += "P"
+    }
+
+    for (k = 0; k < spellMap.length; k++) {
+        if (outS == spellMap[k].toString()) return k
+    }
+}
