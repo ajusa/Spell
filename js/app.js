@@ -62,6 +62,7 @@ function init() {
     requestAnimationFrame(gameLoop);
 }
 
+var spellTimer = 0;
 function gameLoop() {
     ctx.clearRect(0, 0, WIDTH, HEIGHT);
 
@@ -115,14 +116,32 @@ function gameLoop() {
         pauseMusic();
     }
 
+    if (spellTimer > 0) {
+        spellTimer--;
+    } else {
+        spellString = "";
+        //player.spellKeyDown = false;
+        lastSpellKey = 0;
+    }
+
+    if (screens[1]) {
+        ctx.fillStyle = "#D";
+        ctx.fillRect(1000, 100, spellTimer * 3, 20);
+        ctx.fillText(spellString, 1000, 150);
+    }
+    
     requestAnimationFrame(gameLoop);
 }
 
 //NEW INPUT CODE
-var map = [] //{ w: false, a: false, s: false, d: false, enter: false };
+var spellString = "";
+var lastSpellKey = 0;
+var keyUp = [];
+var map = []; //{ w: false, a: false, s: false, d: false, enter: false };
 onkeydown = onkeyup = function (e) {
-    e = e || event;
+    e = e || event; //IE
     map[e.keyCode] = e.type == 'keydown';
+    keyUp[e.keyCode] = e.type == 'keyup';
     if (screens[0]) {
         if (map[13]) {
             screens[0] = false;
@@ -192,5 +211,54 @@ onkeydown = onkeyup = function (e) {
             player.dx = 0;
             player.inShot = false;
         }
+    }
+    
+    if (screens[1]) {
+        //var eLength = 0;
+        if (spellString.length >= 6) {
+            // Do spell parsing here
+            
+            spellTimer = 0;
+            spellString = "";
+            lastSpellKey = 0;
+        } else {
+            if (keyUp[85] && lastSpellKey == 1) {
+                lastSpellKey = 0;
+            } else if (keyUp[73] && lastSpellKey == 2) {
+                lastSpellKey = 0;
+            } else if (keyUp[79] && lastSpellKey == 3) {
+                lastSpellKey = 0;
+            } else if (keyUp[80] && lastSpellKey == 4) {
+                lastSpellKey = 0;
+            }
+            //if (!player.spellKeyDown) {
+                if (map[85] && (lastSpellKey != 1)) {
+                    spellString += "U ";
+                    lastSpellKey = 1;
+                    spellTimer = 50;
+                } else if (map[73] && (lastSpellKey != 2)) {
+                    spellString += "I ";
+                    lastSpellKey = 2;
+                    spellTimer = 50;
+                } else if (map[79] && (lastSpellKey != 3)) {
+                    spellString += "O ";
+                    lastSpellKey = 3;
+                    spellTimer = 50;
+                } else if (map[80] && (lastSpellKey != 4)) {
+                    spellString += "P ";
+                    lastSpellKey = 4;
+                    spellTimer = 50;
+                } //else {
+                    //player.spellKeyDown = false;
+                //}
+            //}
+        }
+        
+        //if (map[85] || map[73] || map[79] || map[80]) {
+        //    spellTimer = 60;
+        //    player.spellKeyDown = true;
+        //} else {
+        //    player.spellKeyDown = false;
+        //}
     }
 }

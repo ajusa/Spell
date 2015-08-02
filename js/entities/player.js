@@ -18,6 +18,7 @@ function Player(xval, yval, width, height, color, id) {
     this.velocity = 0; //For parabolic jumps
     this.id = id;
     this.color = color;
+    //this.spellKeyDown = false;
     this.update = function() {
 
         for (var i = Spells.length - 1; i >= 0; i--) {
@@ -34,7 +35,7 @@ function Player(xval, yval, width, height, color, id) {
         } //else {
         //    this.g = false;
         //}
-        document.getElementById("log").innerHTML = this.g;
+        //document.getElementById("log").innerHTML = this.g;
         
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
