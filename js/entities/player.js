@@ -19,7 +19,8 @@ function Player(xval, yval, width, height, color, id) {
     this.color = color;
     this.mps = 1;
     //this.spellKeyDown = false;
-    this.update = function() {
+
+}    this.update = function() {
 
         for (var i = Spells.length - 1; i >= 0; i--) {
             if (isCollide(Spells[i], this)) {
@@ -79,13 +80,6 @@ function Player(xval, yval, width, height, color, id) {
                 y = this.y + this.height / 2;
                 speed = this.speed;
                 Spells.push(new Spell(x, y, speed, 1, 1));
-                socket.emit("spell", JSON.stringify({
-                    x: x,
-                    y: y,
-                    speed: speed,
-                    id: player.id,
-                    damage: 1,
-                })); //Multiplayer
             }
         }
 
@@ -104,4 +98,3 @@ function Player(xval, yval, width, height, color, id) {
             if (this.mana != this.maxMana) this.mana++;
         }
     }
-}

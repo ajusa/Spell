@@ -20,10 +20,10 @@ var Spells = [],
     player = new Player(WIDTH / 2 - 25, 450, 50, 100, "#e67e22"),
     screens = [true, false, false],
     Speed = 6;
-var socket;
+
 
 function init() {
-    socket = io("http://68.48.163.27:5000");
+
     //loadRandomMusic();
     document.body.appendChild(container);
     container.appendChild(canvas);
@@ -32,33 +32,6 @@ function init() {
     canvas.width = WIDTH;
     canvas.height = HEIGHT;
     //player.id = guid();
-    socket.on("spell", function(msg) {
-        obj = JSON.parse(msg);
-        if (player.id == obj.id) {
-
-        } else {
-            Spells.push(new Spell(obj.x, obj.y, obj.speed, 1, obj.damage));
-        }
-
-    });
-    socket.on("death", function(msg) {
-        killPlayer(msg);
-    });
-    socket.on("id", function(msg){
-        if (!hasSentId) {
-        player.id = msg;
-        hasSentId = true;
-    }
-
-    })
-    socket.on("player", function(msg) {
-        obj = JSON.parse(msg);
-        if (player.id != obj.id) {
-            if (!checkForPlayers(obj)) {
-                Players.push(new Player(obj.x, obj.y, 50, 100, getRandomColor(), obj.id))
-            }
-        }
-    });
 
     requestAnimationFrame(gameLoop);
 }
@@ -80,12 +53,6 @@ function gameLoop() {
         ctx.font = "15px LCD";
         ctx.fillText(VERSION, 10, 20);
     } else if (screens[1]) { //Main Game
-        socket.emit("player", JSON.stringify({
-            x: player.x,
-            y: player.y,
-            id: player.id,
-            health: player.health,
-        })); //Multiplayer
         //Background
         ctx.fillStyle = "#34495e";
         ctx.fillRect(0, 0, WIDTH, HEIGHT);
@@ -116,7 +83,6 @@ function gameLoop() {
         //Updates the players
         player.update();
         if (player.health < 1) {
-            socket.emit("death", player.id)
             player.die();
         }
         for (var i = Players.length - 1; i >= 0; i--) {
