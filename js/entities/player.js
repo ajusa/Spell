@@ -14,7 +14,7 @@ function Player(xval, yval, width, height, color, id) {
     this.g = false; //State variable for when player is touching the ground.
     //this.wPressed = false;
     this.right = true;
-    this.speed = 6; //Changed from 4 so you can't hit yourself.
+    this.speed = 6; //Changed from 4 so you can't hit yourself. Thanks - Arham
     this.id = id;
     this.color = color;
     this.mps = 1;
