@@ -23,10 +23,11 @@ var Spells = [],
 
 
 function init() {
-    var socket = new WebSocket("ws://www.example.com/socketserver");
+    var socket = new WebSocket("ws:/localhost:5000/ws");
     // When the connection is open, send some data to the server
     socket.onopen = function() {
         blob = {
+            type: "player",
             x: player.x,
             y: player.y,
             id: player.id,
@@ -34,23 +35,26 @@ function init() {
         socket.send(JSON.stringify(blob));
     };
 
-    // Log errors
     socket.onerror = function(error) {
-        console.log('WebSocket Error ' + error);
+        //Implement some error handling code here
     };
 
     // Log messages from the server
     socket.onmessage = function(e) {
-        console.log('Server: ' + e.data);
+        obj = JSON.parse(e);
+        if (obj.type == "player") {
+            playerHandler();
+        } else if (obj.type == "spell") {
+            spellHandler();
+        }
     };
-    //loadRandomMusic();
     document.body.appendChild(container);
     container.appendChild(canvas);
     canvas.style.cssText = "border: 1px solid black; width: " + 64 + "%; height: " + 36 + "%;";
     container.style.cssText = "text-align: center;";
     canvas.width = WIDTH;
     canvas.height = HEIGHT;
-    //player.id = guid();
+    player.id = guid();
 
     requestAnimationFrame(gameLoop);
 }

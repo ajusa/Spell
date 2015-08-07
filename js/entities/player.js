@@ -20,7 +20,7 @@ function Player(xval, yval, width, height, color, id) {
     this.mps = 1;
     //this.spellKeyDown = false;
 
-}    this.update = function() {
+    this.update = function() {
 
         for (var i = Spells.length - 1; i >= 0; i--) {
             if (isCollide(Spells[i], this)) {
@@ -58,7 +58,7 @@ function Player(xval, yval, width, height, color, id) {
         if (this.x >= WIDTH - width) {
             this.x = WIDTH - width;
         }
-
+}
         this.shoot = function () {
             if (this.mana > 0) {
                 this.mana--;
@@ -82,6 +82,7 @@ function Player(xval, yval, width, height, color, id) {
                 Spells.push(new Spell(x, y, speed, 1, 1));
             }
         }
+
 
         this.takeDamage = function(damage) {
             this.health -= damage;
