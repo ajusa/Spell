@@ -32,34 +32,37 @@ function checkForPlayers(obj) {
     };
     return exists;
 }
-function killPlayer(id){
-	for (var i = Players.length - 1; i >= 0; i--) {
-		if(Players[i].id == id){
-			Players.splice(i, 1);
-		}
-	};
-}
-function guid() {
-  function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1);
-  }
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-    s4() + '-' + s4() + s4() + s4();
+
+function killPlayer(id) {
+    for (var i = Players.length - 1; i >= 0; i--) {
+        if (Players[i].id == id) {
+            Players.splice(i, 1);
+        }
+    };
 }
 
-function getSpell(inS){
+function guid() {
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+        s4() + '-' + s4() + s4() + s4();
+}
+
+function getSpell(inS) {
     var spellMap = ["UUU", "UUI", "UUO", "UUP", "UII", "UIO", "UIP", "UOO", "UOP", "UPP",
         "III", "IIO", "IIP", "IOO", "IOP", "IPP",
         "OOO", "OOP", "OPP",
-        "PPP"];
+        "PPP"
+    ];
     var inA = inS.trim().split(" ");
     var u = 0,
         i = 0,
         o = 0,
         p = 0;
-    for (k = 0; k < inA.length; k++){
+    for (k = 0; k < inA.length; k++) {
         if (inA[k] == "U") {
             u++;
         } else if (inA[k] == "I") {
@@ -87,4 +90,9 @@ function getSpell(inS){
     for (k = 0; k < spellMap.length; k++) {
         if (outS == spellMap[k].toString()) return k
     }
+}
+
+function fillRect(color, x, y, width, height) {
+        ctx.fillStyle = color;
+        ctx.fillRect(x, y, width, height);
 }
