@@ -1,5 +1,6 @@
-
-var container = document.createElement('div'),
+var canvas = document.createElement('canvas'),
+    ctx = canvas.getContext('2d'),
+    container = document.createElement('div'),
     requestAnimationFrame = window.requestAnimationFrame ||
     window.mozRequestAnimationFrame ||
     window.webkitRequestAnimationFrame ||
@@ -37,6 +38,8 @@ function init() {
     // When the connection is open, send some data to the server
     renderer.view.style.cssText = "border: 1px solid black; width: " + 64 + "%; height: " + 36 + "%;";
     container.style.cssText = "text-align: center;";
+    canvas.width = WIDTH;
+    canvas.height = HEIGHT;
     player.id = guid();
     requestAnimationFrame(gameLoop);
 }
