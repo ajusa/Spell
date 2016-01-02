@@ -4,7 +4,7 @@ function isCollide(a, b) {
         (a.y > (b.y + b.height)) ||
         ((a.x + a.width) < b.x) ||
         (a.x > (b.x + b.width))
-    ); //I copied this collide code for my game, hope ya don't mind -Jackson
+    );
 }
 
 function randomNumber(low, high) {
@@ -63,36 +63,24 @@ function getSpell(inS) {
         o = 0,
         p = 0;
     for (k = 0; k < inA.length; k++) {
-        if (inA[k] == "U") {
-            u++;
-        } else if (inA[k] == "I") {
-            i++;
-        } else if (inA[k] == "O") {
-            o++;
-        } else if (inA[k] == "P") {
-            p++;
-        }
-    }
-    var outS = "";
-    for (k = 0; k < u; k++) {
-        outS += "U"
-    }
-    for (k = 0; k < i; k++) {
-        outS += "I"
-    }
-    for (k = 0; k < o; k++) {
-        outS += "O"
-    }
-    for (k = 0; k < p; k++) {
-        outS += "P"
+        if (inA[k] == "U") { u++; }
+        else if (inA[k] == "I") { i++; }
+        else if (inA[k] == "O") { o++; }
+        else if (inA[k] == "P") { p++; }
     }
 
+    var outS = "";
+    for (k = 0; k < u; k++) { outS += "U"; }
+    for (k = 0; k < i; k++) { outS += "I"; }
+    for (k = 0; k < o; k++) { outS += "O"; }
+    for (k = 0; k < p; k++) { outS += "P"; }
+
     for (k = 0; k < spellMap.length; k++) {
-        if (outS == spellMap[k].toString()) return k
+        if (outS == spellMap[k].toString()) return k;
     }
 }
 
 function fillRect(color, x, y, width, height) {
-        ctx.fillStyle = color;
-        ctx.fillRect(x, y, width, height);
+    ctx.fillStyle = color;
+    ctx.fillRect(x, y, width, height);
 }
