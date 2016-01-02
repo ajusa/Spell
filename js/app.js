@@ -71,12 +71,15 @@
         bg.drawRect(GROUND.x, GROUND.y, GROUND.width, GROUND.height);
         bg.endFill();
         stage.addChild(bg);
+        player = new Player(WIDTH / 2 - 25, 450, 50, 100)
+        stage.addChild(player.sprite)
     }
 
     function gameLoop() {
         if (screens[1]) {
             //gamelogic
-            console.log("Hey!")
+            console.log(player.x)
+            player.update();
 
         };
         requestAnimationFrame(gameLoop);

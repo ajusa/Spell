@@ -1,4 +1,4 @@
-function Player(xval, yval, width, height, color, id) {
+function Player(xval, yval, width, height, id) {
     //Note that all of those must be given some value on creation
     this.x = xval;
     this.y = yval;
@@ -16,11 +16,14 @@ function Player(xval, yval, width, height, color, id) {
     this.right = true;
     this.speed = 6; //Changed from 4 so you can't hit yourself. Thanks - Arham
     this.id = id;
-    this.color = color;
+    this.color = 0xe67e22;
     this.mps = 1;
+    this.sprite = new PIXI.Sprite(playerImg);
     //this.spellKeyDown = false;
 
     this.update = function() {
+        this.sprite.x = this.x;
+        this.sprite.y = this.y;
         if (player.health < 1) {
             player.die();
         }
@@ -39,9 +42,6 @@ function Player(xval, yval, width, height, color, id) {
         //}
         //document.getElementById("log").innerHTML = this.g;
 
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-
         //if (this.dx > 5) this.dx = 5;
         //if (this.dx < 0) this.dx = 0;
         //if (this.right) {
@@ -59,6 +59,7 @@ function Player(xval, yval, width, height, color, id) {
         if (this.x >= WIDTH - width) {
             this.x = WIDTH - width;
         }
+
     }
     this.shoot = function() {
         if (this.mana > 0) {
