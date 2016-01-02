@@ -63,6 +63,14 @@
     function gameStart() {
         stage.removeChildren();
         screens = [false, true, false]
+        bg = new PIXI.Graphics();
+        bg.beginFill(0x34495e); 
+        bg.drawRect(0, 0, WIDTH, HEIGHT);
+        bg.endFill();
+        bg.beginFill(0x95a5a6); 
+        bg.drawRect(GROUND.x, GROUND.y, GROUND.width, GROUND.height);
+        bg.endFill();
+        stage.addChild(bg);
     }
 
     function gameLoop() {
