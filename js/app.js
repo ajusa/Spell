@@ -71,7 +71,7 @@
         bg.drawRect(GROUND.x, GROUND.y, GROUND.width, GROUND.height);
         bg.endFill();
         stage.addChild(bg);
-        player = new Player(WIDTH / 2 - 25, 450, 50, 100)
+        player = new Player(WIDTH / 2 - 25, 450, 80, 232)
         stage.addChild(player.sprite)
     }
 

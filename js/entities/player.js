@@ -22,8 +22,7 @@ function Player(xval, yval, width, height, id) {
     //this.spellKeyDown = false;
 
     this.update = function() {
-        this.sprite.x = this.x;
-        this.sprite.y = this.y;
+
         if (player.health < 1) {
             player.die();
         }
@@ -59,7 +58,8 @@ function Player(xval, yval, width, height, id) {
         if (this.x >= WIDTH - width) {
             this.x = WIDTH - width;
         }
-
+        this.sprite.x = this.x;
+        this.sprite.y = this.y;
     }
     this.shoot = function() {
         if (this.mana > 0) {
