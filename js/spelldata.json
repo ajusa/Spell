@@ -4,7 +4,7 @@
       {
         "id": 0,
         "keyid": "UUU",
-        "name": "Earthy Bolt",
+        "name": "Earthy Smash",
         "desc": "Fires a simple bolt of rock forward.",
         "damage": 8,
         "speed": 3,
@@ -14,8 +14,8 @@
       {
         "id": 10,
         "keyid": "III",
-        "name": "Fiery Bolt",
-        "desc": "Fires a simple bolt of fire forward.",
+        "name": "Fire Ball",
+        "desc": "Fires a simple ball of fire forward.",
         "damage": 4,
         "speed": 11,
         "cost": 5,
@@ -24,8 +24,8 @@
       {
         "id": 16,
         "keyid": "OOO",
-        "name": "Windy Bolt",
-        "desc": "Fires a simple bolt of wind forward.",
+        "name": "Air Slice",
+        "desc": "Fires a fast bolt of wind forward.",
         "damage": 2,
         "speed": 15,
         "cost": 5,
@@ -34,7 +34,7 @@
       {
         "id": 19,
         "keyid": "PPP",
-        "name": "Water Bolt",
+        "name": "Water Whip",
         "desc": "Fires a simple bolt of water forward.",
         "damage": 6,
         "speed": 7,
