@@ -19,6 +19,8 @@ function Player(xval, yval, width, height, id) {
     this.color = 0xe67e22;
     this.mps = 1;
     this.sprite = new PIXI.Sprite(playerImg);
+    this.sprite.width = width;
+    this.sprite.height = height;
     //this.spellKeyDown = false;
 
     this.update = function() {
