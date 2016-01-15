@@ -24,6 +24,12 @@
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(wf, s);
     })();
+    var spelldata;
+    marmottajax("/js/spelldata.json").then(function(content) {
+        JSON.parse(content);
+        spelldata = content.spelldata;
+    console.log(spelldata);
+    });
     var VERSION = "Alpha 0.1.1",
         WIDTH = 1280,
         HEIGHT = 720,
