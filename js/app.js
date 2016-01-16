@@ -26,8 +26,7 @@
     })();
     var spelldata;
     marmottajax("/js/spelldata.json").then(function(content) {
-        JSON.parse(content);
-        spelldata = content.spelldata;
+        spelldata = JSON.parse(content);
     console.log(spelldata);
     });
     var VERSION = "Alpha 0.1.1",
@@ -84,7 +83,6 @@
     function gameLoop() {
         if (screens[1]) {
             //gamelogic
-            console.log(player.x)
             player.update();
 
         };
