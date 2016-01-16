@@ -26,8 +26,7 @@
     })();
     var spelldata;
     marmottajax("/js/spelldata.json").then(function(content) {
-        JSON.parse(content);
-        spelldata = content.spelldata;
+        spelldata = JSON.parse(content);
     console.log(spelldata);
     });
     var VERSION = "Alpha 0.1.1",
@@ -73,7 +72,7 @@
         bg.beginFill(0x34495e); 
         bg.drawRect(0, 0, WIDTH, HEIGHT);
         bg.endFill();
-        bg.beginFill(0x95a5a6);
+        bg.beginFill(0x95a5a6); 
         bg.drawRect(GROUND.x, GROUND.y, GROUND.width, GROUND.height);
         bg.endFill();
         bg.beginFill(0x660000);
