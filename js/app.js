@@ -29,6 +29,7 @@
         spelldata = JSON.parse(content);
     console.log(spelldata);
     });
+    var multi = new Multiplayer();
     var VERSION = "Alpha 0.1.1",
         WIDTH = 1280,
         HEIGHT = 720,
@@ -40,7 +41,7 @@
         };
     var Spells = [],
         Players = [],
-        player = new Player(WIDTH / 2 - 25, 450, 50, 100, "#e67e22"),
+        player = new Player(WIDTH / 2 - 25, 450, 50, 100, "#e67e22");
         screens = [true, false, false],
         Speed = 6;
     var spellTimer = 0;
@@ -61,7 +62,6 @@
     container.appendChild(renderer.view);
     renderer.view.style.cssText = "border: 1px solid black; width: " + 64 + "%; height: " + 36 + "%;";
     container.style.cssText = "text-align: center;";
-    player.id = guid();
     stage.addChild(splashscreen);
     stage.addChild(text);
 
@@ -76,8 +76,9 @@
         bg.drawRect(GROUND.x, GROUND.y, GROUND.width, GROUND.height);
         bg.endFill();
         stage.addChild(bg);
-        player = new Player(WIDTH / 2 - 25, 450, 80, 232)
+        player = new Player(WIDTH / 2 - 25, 450, 80, 232, multi.id)
         stage.addChild(player.sprite)
+        multi.start();
     }
 
     function gameLoop() {
