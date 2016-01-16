@@ -7,7 +7,7 @@ window.WebFontConfig = {
         families: ['VT323::latin']
     },
 
-    active: function() {
+    active: function () {
         // do something
         gameLoop();
     }
@@ -15,7 +15,7 @@ window.WebFontConfig = {
 
 // include the web-font loader script
 /* jshint ignore:start */
-(function() {
+(function () {
     var wf = document.createElement('script');
     wf.src = ('https:' === document.location.protocol ? 'https' : 'http') +
         '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
@@ -25,9 +25,9 @@ window.WebFontConfig = {
     s.parentNode.insertBefore(wf, s);
 })();
 var spelldata;
-marmottajax("/js/spelldata.json").then(function(content) {
+marmottajax("/js/spelldata.json").then(function (content) {
     spelldata = JSON.parse(content);
-console.log(spelldata);
+    console.log(spelldata);
 });
 var player;
 var VERSION = "Alpha 0.1.1",
@@ -64,7 +64,7 @@ container.style.cssText = "text-align: center;";
 stage.addChild(splashscreen);
 stage.addChild(text);
 setInterval(function () {
-    player.regen()
+    if (screens[1]) player.regen();
 }, 1000);
 var multi;
 function gameStart() {
@@ -73,31 +73,41 @@ function gameStart() {
     stage.removeChildren();
     screens = [false, true, false]
     bg = new PIXI.Graphics();
-    bg.beginFill(0x34495e); 
+    bg.beginFill(0x34495e);
     bg.drawRect(0, 0, WIDTH, HEIGHT);
     bg.endFill();
-    bg.beginFill(0x95a5a6); 
+    bg.beginFill(0x95a5a6);
     bg.drawRect(GROUND.x, GROUND.y, GROUND.width, GROUND.height);
     bg.endFill();
     bg.beginFill(0x660000);
-    bg.drawRect(20, 35, 300, 15);
+    bg.drawRect(0, 10, WIDTH / 2, 15);
     bg.endFill();
     bg.beginFill(0x141452);
-    bg.drawRect(20, 65, 300, 15);
+    bg.drawRect(WIDTH / 2, 10, WIDTH / 2, 15);
+    bg.endFill();
+    bg.beginFill(0x006600);
+    bg.drawRect(0, 0, WIDTH, 10);
     bg.endFill();
     bg.cacheAsBitmap = true; // temporary for less resource usage
     stage.addChild(bg);
-    stage.addChild(player.sprite)
+    stage.addChild(player.sprite);
+
     manaMeter = new PIXI.Sprite(manaBar);
-    manaMeter.x = 20;
-    manaMeter.y = 65;
+    manaMeter.x = WIDTH / 2;
+    manaMeter.y = 10;
     manaMeter.height = 15;
     stage.addChild(manaMeter);
     healthMeter = new PIXI.Sprite(healthBar);
-    healthMeter.x = 20;
-    healthMeter.y = 35;
+    healthMeter.x = 0;
+    healthMeter.y = 10;
     healthMeter.height = 15;
     stage.addChild(healthMeter);
+
+    expMeter = new PIXI.Sprite(expBar);
+    expMeter.x = 0;
+    expMeter.y = 0;
+    expMeter.height = 10;
+    stage.addChild(expMeter);
 }
 
 function gameLoop() {
@@ -105,8 +115,12 @@ function gameLoop() {
         //gamelogic
         // console.log(player.exp + " " + player.lvl)
         player.update();
-        healthMeter.width = 300 * (player.health / player.maxHealth);
-        manaMeter.width = 300 * (player.mana / player.maxMana);
+        healthMeter.width = (WIDTH / 2) * (player.health / player.maxHealth);
+        manaMeter.width = (WIDTH / 2) * (player.mana / player.maxMana);
+        baseEXP = 150 * (Math.exp(player.lvl) - 1);
+        maxEXP = 150 * (Math.exp(player.lvl + 1) - 1) - baseEXP;
+        currentEXP = player.exp - baseEXP;
+        expMeter.width = WIDTH * (currentEXP / maxEXP);
     };
     requestAnimationFrame(gameLoop);
     renderer.render(stage);
