@@ -64,6 +64,9 @@
     player.id = guid();
     stage.addChild(splashscreen);
     stage.addChild(text);
+    setInterval(function () {
+        player.regen()
+    }, 1000);
 
     function gameStart() {
         stage.removeChildren();
@@ -79,7 +82,7 @@
         bg.drawRect(20, 35, 300, 15);
         bg.endFill();
         bg.beginFill(0x141452);
-        bg.drawRect(20, 75, 300, 15);
+        bg.drawRect(20, 65, 300, 15);
         bg.endFill();
         bg.cacheAsBitmap = true; // temporary for less resource usage
         stage.addChild(bg);
@@ -87,24 +90,22 @@
         stage.addChild(player.sprite)
         hpBar = new PIXI.Graphics();
         hpBar.beginFill(0xff0000);
-        hpBar.drawRect(20, 35, 300 * (player.health / player.maxHealth), 15);
+        hpBar.drawRect(20, 35, 300, 15);
         hpBar.endFill();
         stage.addChild(hpBar);
-        manaBar = new PIXI.Graphics();
-        manaBar.beginFill(0x3333cc);
-        manaBar.drawRect(20, 75, 300 * (player.mana / player.maxMana), 15);
-        manaBar.endFill();
-        stage.addChild(manaBar);
+        manaMeter = new PIXI.Sprite(manaBar);
+        manaMeter.x = 20;
+        manaMeter.y = 65;
+        stage.addChild(manaMeter);
     }
 
     function gameLoop() {
         if (screens[1]) {
             //gamelogic
-            console.log(player.exp + " " + player.lvl)
+            console.log(player.exp + " " + player.lvl);
             player.update();
-            manaBar.width = 300 * (player.mana / player.maxMana);
             hpBar.width = 300 * (player.health / player.maxHealth);
-
+            manaMeter.width = 300 * (player.mana / player.maxMana);
         };
         requestAnimationFrame(gameLoop);
         renderer.render(stage);
