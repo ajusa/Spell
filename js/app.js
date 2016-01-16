@@ -102,6 +102,8 @@
             //gamelogic
             console.log(player.exp + " " + player.lvl)
             player.update();
+            manaBar.width = 300 * (player.mana / player.maxMana);
+            hpBar.width = 300 * (player.health / player.maxHealth);
 
         };
         requestAnimationFrame(gameLoop);
