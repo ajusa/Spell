@@ -20,7 +20,8 @@ function Player(xval, yval, width, height, id) {
     this.sprite = new PIXI.Sprite(playerImg);
     this.sprite.width = width;
     this.sprite.height = height;
-    //this.spellKeyDown = false;
+    this.exp = 0;
+    this.lvl = 0;
 
     this.update = function() {
 
@@ -51,6 +52,9 @@ function Player(xval, yval, width, height, id) {
         }
         this.sprite.x = this.x;
         this.sprite.y = this.y;
+
+        this.exp += 1; // TESTING
+        this.lvl = Math.floor(Math.log((this.exp / 150) + 1));
     }
     this.shoot = function() {
         if (this.mana > 0) {

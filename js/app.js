@@ -73,18 +73,35 @@
         bg.beginFill(0x34495e); 
         bg.drawRect(0, 0, WIDTH, HEIGHT);
         bg.endFill();
-        bg.beginFill(0x95a5a6); 
+        bg.beginFill(0x95a5a6);
         bg.drawRect(GROUND.x, GROUND.y, GROUND.width, GROUND.height);
         bg.endFill();
+        bg.beginFill(0x660000);
+        bg.drawRect(20, 35, 300, 15);
+        bg.endFill();
+        bg.beginFill(0x141452);
+        bg.drawRect(20, 75, 300, 15);
+        bg.endFill();
+        bg.cacheAsBitmap = true; // temporary for less resource usage
         stage.addChild(bg);
         player = new Player(WIDTH / 2 - 25, 450, 80, 232)
         stage.addChild(player.sprite)
+        hpBar = new PIXI.Graphics();
+        hpBar.beginFill(0xff0000);
+        hpBar.drawRect(20, 35, 300 * (player.health / player.maxHealth), 15);
+        hpBar.endFill();
+        stage.addChild(hpBar);
+        manaBar = new PIXI.Graphics();
+        manaBar.beginFill(0x3333cc);
+        manaBar.drawRect(20, 75, 300 * (player.mana / player.maxMana), 15);
+        manaBar.endFill();
+        stage.addChild(manaBar);
     }
 
     function gameLoop() {
         if (screens[1]) {
             //gamelogic
-            console.log(player.x)
+            console.log(player.exp + " " + player.lvl)
             player.update();
 
         };
