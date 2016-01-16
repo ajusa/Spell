@@ -1,6 +1,3 @@
-
-//NEW INPUT CODE
-
 var spellString = "";
 var lastSpellKey = 0;
 var spellID = 0;

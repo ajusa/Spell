@@ -12,7 +12,6 @@ function Player(xval, yval, width, height, id) {
     this.maxHealth = 10;
     this.inShot = false;
     this.g = false; //State variable for when player is touching the ground.
-    //this.wPressed = false;
     this.right = true;
     this.speed = 6; //Changed from 4 so you can't hit yourself. Thanks - Arham
     this.id = id;
@@ -38,19 +37,9 @@ function Player(xval, yval, width, height, id) {
         if (isCollide(GROUND, this) && (this.dy < 0)) { //&& !this.g) {
             this.dy = 0;
             this.g = true;
-        } //else {
-        //    this.g = false;
-        //}
-        //document.getElementById("log").innerHTML = this.g;
+        }
 
-        //if (this.dx > 5) this.dx = 5;
-        //if (this.dx < 0) this.dx = 0;
-        //if (this.right) {
         this.x += this.dx
-            //} else {
-            //this.x -= this.dx;
-            //}
-
         this.y -= this.dy;
         if (!this.g) this.dy -= 0.5;
 
