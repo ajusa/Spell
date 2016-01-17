@@ -25,7 +25,7 @@ window.WebFontConfig = {
     s.parentNode.insertBefore(wf, s);
 })();
 var spelldata;
-marmottajax("/js/spelldata.json").then(function(content) {
+marmottajax("js/spelldata.json").then(function(content) {
     spelldata = JSON.parse(content);
     console.log(spelldata);
 });
