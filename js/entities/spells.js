@@ -4,7 +4,7 @@ function Spell(xval, yval, spell) {
     this.width = 24; // 20
     this.height = 24; // 10
 
-    console.log(spelldata.spells[spell].spritepath);
+    // console.log(spelldata.spells[spell].spritepath);
     sprite = new PIXI.Sprite(spelldata.spells[spell].spritepath);
     stage.addChild(sprite);
 

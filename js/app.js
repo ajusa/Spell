@@ -28,7 +28,7 @@ var spelldata;
 marmottajax("js/spelldata.json").then(function(content) {
     spelldata = JSON.parse(content);
     spelldata = spelldata.spelldata;
-    console.log(spelldata);
+    // console.log(spelldata);
 });
 var player;
 var Players = new Map();
