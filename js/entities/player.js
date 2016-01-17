@@ -8,8 +8,10 @@ function Player(xval, yval, width, height, id) {
     this.height = height;
     this.mana = 20;
     this.maxMana = 20;
+    this.manaRegen = 1.0;
     this.health = 10;
     this.maxHealth = 10;
+    this.healthRegen = 0.0;
     this.inShot = false;
     this.g = false; //State variable for when player is touching the ground.
     this.right = true;
@@ -20,7 +22,7 @@ function Player(xval, yval, width, height, id) {
     this.sprite = new PIXI.Sprite(playerImg);
     this.sprite.width = width;
     this.sprite.height = height;
-    this.exp = 0;
+    this.exp = 0.0;
     this.lvl = 0;
 
     this.update = function() {
@@ -88,6 +90,7 @@ function Player(xval, yval, width, height, id) {
     }
 
     this.regen = function() {
-        if (this.mana != this.maxMana) this.mana++;
+        if (this.mana < this.maxMana) this.mana += this.manaRegen;
+        if (this.mana > this.maxMana) this.mana = this.maxMana;
     }
 }

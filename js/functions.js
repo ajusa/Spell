@@ -51,12 +51,12 @@ function guid() {
         s4() + '-' + s4() + s4() + s4();
 }
 
-function getSpell(inS) {
-    var spellMap = ["UUU", "UUI", "UUO", "UUP", "UII", "UIO", "UIP", "UOO", "UOP", "UPP",
+var spellMap = ["UUU", "UUI", "UUO", "UUP", "UII", "UIO", "UIP", "UOO", "UOP", "UPP",
         "III", "IIO", "IIP", "IOO", "IOP", "IPP",
         "OOO", "OOP", "OPP",
         "PPP"
-    ];
+];
+function getSpell(inS) {
     var inA = inS.trim().split(" ");
     var u = 0,
         i = 0,

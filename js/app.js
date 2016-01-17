@@ -71,7 +71,7 @@ function gameStart() {
     multi = new Multiplayer();
     player = new Player(WIDTH / 2 - 25, 450, 80, 232)
     stage.removeChildren();
-    screens = [false, true, false]
+    screens = [false, true, false];
     bg = new PIXI.Graphics();
     bg.beginFill(0x34495e);
     bg.drawRect(0, 0, WIDTH, HEIGHT);
@@ -92,28 +92,51 @@ function gameStart() {
     stage.addChild(bg);
     stage.addChild(player.sprite);
 
-    manaMeter = new PIXI.Sprite(manaBar);
-    manaMeter.x = WIDTH / 2;
-    manaMeter.y = 10;
-    manaMeter.height = 15;
-    stage.addChild(manaMeter);
     healthMeter = new PIXI.Sprite(healthBar);
     healthMeter.x = 0;
     healthMeter.y = 10;
     healthMeter.height = 15;
     stage.addChild(healthMeter);
 
+    manaMeter = new PIXI.Sprite(manaBar);
+    manaMeter.x = WIDTH / 2;
+    manaMeter.y = 10;
+    manaMeter.height = 15;
+    stage.addChild(manaMeter);
+
     expMeter = new PIXI.Sprite(expBar);
     expMeter.x = 0;
     expMeter.y = 0;
     expMeter.height = 10;
     stage.addChild(expMeter);
+    expText = new PIXI.Text("Level 0", {
+        font: '24px VT323',
+        fill: 0xEEEEEE,
+        align: 'left'
+    });
+    expText.x = 5;
+    expText.y = 30;
+    stage.addChild(expText);
+
+    icon1 = new PIXI.Sprite();
+    icon1.x = 539;
+    stage.addChild(icon1);
+    icon2 = new PIXI.Sprite();
+    icon2.x = 608;
+    stage.addChild(icon2);
+    icon3 = new PIXI.Sprite();
+    icon3.x = 677;
+    stage.addChild(icon3);
+    icons = [icon1, icon2, icon3];
+    for (i in icons) {
+        icons[i].y = 40;
+        icons[i].width = 64;
+        icons[i].height = 64;
+    }
 }
 
 function gameLoop() {
     if (screens[1]) {
-        //gamelogic
-        // console.log(player.exp + " " + player.lvl)
         player.update();
         healthMeter.width = (WIDTH / 2) * (player.health / player.maxHealth);
         manaMeter.width = (WIDTH / 2) * (player.mana / player.maxMana);
@@ -121,6 +144,19 @@ function gameLoop() {
         maxEXP = 150 * (Math.exp(player.lvl + 1) - 1) - baseEXP;
         currentEXP = player.exp - baseEXP;
         expMeter.width = WIDTH * (currentEXP / maxEXP);
+        expText.text = "Level " + player.lvl;
+
+        spellCode = spellString.split(" ").join("");
+        keyMap = ["U", "I", "O", "P"];
+        spellMap = [earthIcon, fireIcon, airIcon, waterIcon];
+        if (spellCode.length == 1) {
+            for (i in icons) { icons[i].texture = PIXI.Texture.EMPTY; }
+        }
+        for (i = 0; i < spellCode.length; i++) {
+            for (c in keyMap) {
+                if (keyMap[c] == spellCode.charAt(i)) { icons[i].texture = spellMap[c]; }
+            }
+        }
     };
     requestAnimationFrame(gameLoop);
     renderer.render(stage);
