@@ -67,6 +67,10 @@ setInterval(function () {
     if (screens[1]) player.regen();
 }, 1000);
 var multi;
+
+var filterStrength = 10;
+var frameTime = 0, lastLoop = new Date, thisLoop;
+
 function gameStart() {
     multi = new Multiplayer();
     player = new Player(WIDTH / 2 - 25, 450, 80, 232)
@@ -133,6 +137,18 @@ function gameStart() {
         icons[i].width = 64;
         icons[i].height = 64;
     }
+
+    fps = new PIXI.Text("FPS: 0", {
+        font: '16px VT323',
+        fill: 0x34495e,
+        align: 'left'
+    });
+    fps.x = 2;
+    fps.y = HEIGHT - fps.getBounds().height;
+    stage.addChild(fps);
+    setInterval(function () {
+        fps.text = "FPS: " + Math.round(1000 / frameTime);
+    }, 500);
 }
 
 function gameLoop() {
@@ -158,6 +174,10 @@ function gameLoop() {
             }
         }
     };
+    var thisFrameTime = (thisLoop = new Date) - lastLoop;
+    frameTime += (thisFrameTime - frameTime) / filterStrength;
+    lastLoop = thisLoop;
+
     requestAnimationFrame(gameLoop);
     renderer.render(stage);
 }
