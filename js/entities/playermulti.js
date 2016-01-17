@@ -1,14 +1,16 @@
-function playermulti (x, y, id, color) {
+function playermulti (x, y, id) {
 	this.x = x;
 	this.y = y;
 	this.id = id;
-	this.color = color;
-	this.width = width;
-    this.height = height;
+	this.sprite = new PIXI.Sprite(playerImg);
+	this.sprite.width = 100;
+	this.sprite.height = 200;
+	stage.addChild(this.sprite);
 	this.update = function() {
-
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-
+		this.sprite.x = this.x;
+		this.sprite.y = this.y;
       }  
+      this.death = function(){
+      	stage.removeChild(this.sprite);
+      }
 }

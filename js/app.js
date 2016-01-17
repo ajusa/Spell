@@ -7,7 +7,7 @@ window.WebFontConfig = {
         families: ['VT323::latin']
     },
 
-    active: function () {
+    active: function() {
         // do something
         gameLoop();
     }
@@ -15,7 +15,7 @@ window.WebFontConfig = {
 
 // include the web-font loader script
 /* jshint ignore:start */
-(function () {
+(function() {
     var wf = document.createElement('script');
     wf.src = ('https:' === document.location.protocol ? 'https' : 'http') +
         '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
@@ -25,11 +25,12 @@ window.WebFontConfig = {
     s.parentNode.insertBefore(wf, s);
 })();
 var spelldata;
-marmottajax("/js/spelldata.json").then(function (content) {
+marmottajax("/js/spelldata.json").then(function(content) {
     spelldata = JSON.parse(content);
     console.log(spelldata);
 });
 var player;
+var Players = new Map();
 var VERSION = "Alpha 0.1.1",
     WIDTH = 1280,
     HEIGHT = 720,
@@ -40,7 +41,6 @@ var VERSION = "Alpha 0.1.1",
         height: 50
     };
 var Spells = [],
-    Players = [],
     screens = [true, false, false],
     Speed = 6;
 var spellTimer = 0;
@@ -63,17 +63,20 @@ renderer.view.style.cssText = "border: 1px solid black; width: " + 64 + "%; heig
 container.style.cssText = "text-align: center;";
 stage.addChild(splashscreen);
 stage.addChild(text);
-setInterval(function () {
+setInterval(function() {
     if (screens[1]) player.regen();
 }, 1000);
 var multi;
 
 var filterStrength = 10;
-var frameTime = 0, lastLoop = new Date, thisLoop;
+var frameTime = 0,
+    lastLoop = new Date,
+    thisLoop;
 
 function gameStart() {
     multi = new Multiplayer();
     player = new Player(WIDTH / 2 - 25, 450, 80, 232)
+    multi.start(player);
     stage.removeChildren();
     screens = [false, true, false];
     bg = new PIXI.Graphics();
@@ -146,7 +149,7 @@ function gameStart() {
     fps.x = 2;
     fps.y = HEIGHT - fps.getBounds().height;
     stage.addChild(fps);
-    setInterval(function () {
+    setInterval(function() {
         fps.text = "FPS: " + Math.round(1000 / frameTime);
     }, 500);
 }
@@ -154,6 +157,10 @@ function gameStart() {
 function gameLoop() {
     if (screens[1]) {
         player.update();
+        for (var value of Players.values()) {
+            value.update();
+        }
+        multi.update(player);
         healthMeter.width = (WIDTH / 2) * (player.health / player.maxHealth);
         manaMeter.width = (WIDTH / 2) * (player.mana / player.maxMana);
         baseEXP = 150 * (Math.exp(player.lvl) - 1);
@@ -166,11 +173,15 @@ function gameLoop() {
         keyMap = ["U", "I", "O", "P"];
         spellMap = [earthIcon, fireIcon, airIcon, waterIcon];
         if (spellCode.length == 1) {
-            for (i in icons) { icons[i].texture = PIXI.Texture.EMPTY; }
+            for (i in icons) {
+                icons[i].texture = PIXI.Texture.EMPTY;
+            }
         }
         for (i = 0; i < spellCode.length; i++) {
             for (c in keyMap) {
-                if (keyMap[c] == spellCode.charAt(i)) { icons[i].texture = spellMap[c]; }
+                if (keyMap[c] == spellCode.charAt(i)) {
+                    icons[i].texture = spellMap[c];
+                }
             }
         }
     };
