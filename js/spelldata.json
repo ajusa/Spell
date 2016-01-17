@@ -12,6 +12,97 @@
         "spritepath": "/assets/spells/bolt_earth.png"
       },
       {
+        "id": 1,
+        "keyid": "UUI",
+        "name": "",
+        "desc": "",
+        "damage": null,
+        "speed": null,
+        "cost": null,
+        "spritepath": "/assets/spells/ .png"
+      },
+      {
+        "id": 2,
+        "keyid": "UUO",
+        "name": "",
+        "desc": "",
+        "damage": null,
+        "speed": null,
+        "cost": null,
+        "spritepath": "/assets/spells/ .png"
+      },
+      {
+        "id": 3,
+        "keyid": "UUP",
+        "name": "",
+        "desc": "",
+        "damage": null,
+        "speed": null,
+        "cost": null,
+        "spritepath": "/assets/spells/ .png"
+      },
+      {
+        "id": 4,
+        "keyid": "UII",
+        "name": "",
+        "desc": "",
+        "damage": null,
+        "speed": null,
+        "cost": null,
+        "spritepath": "/assets/spells/ .png"
+      },
+      {
+        "id": 5,
+        "keyid": "UIO",
+        "name": "",
+        "desc": "",
+        "damage": null,
+        "speed": null,
+        "cost": null,
+        "spritepath": "/assets/spells/ .png"
+      },
+      {
+        "id": 6,
+        "keyid": "UIP",
+        "name": "",
+        "desc": "",
+        "damage": null,
+        "speed": null,
+        "cost": null,
+        "spritepath": "/assets/spells/ .png"
+      },
+      {
+        "id": 7,
+        "keyid": "UOO",
+        "name": "",
+        "desc": "",
+        "damage": null,
+        "speed": null,
+        "cost": null,
+        "spritepath": "/assets/spells/ .png"
+      },
+      {
+        "id": 8,
+        "keyid": "UOP",
+        "name": "",
+        "desc": "",
+        "damage": null,
+        "speed": null,
+        "cost": null,
+        "spritepath": "/assets/spells/ .png"
+      },
+      {
+        "id": 9,
+        "keyid": "UPP",
+        "name": "",
+        "desc": "",
+        "damage": null,
+        "speed": null,
+        "cost": null,
+        "spritepath": "/assets/spells/ .png"
+      },
+
+      {
         "id": 10,
         "keyid": "III",
         "name": "Fire Ball",
@@ -20,6 +111,56 @@
         "speed": 11,
         "cost": 5,
         "spritepath": "/assets/spells/bolt_fire.png"
+      },
+      {
+        "id": 11,
+        "keyid": "IIO",
+        "name": "",
+        "desc": "",
+        "damage": null,
+        "speed": null,
+        "cost": null,
+        "spritepath": "/assets/spells/ .png"
+      },
+      {
+        "id": 12,
+        "keyid": "IIP",
+        "name": "",
+        "desc": "",
+        "damage": null,
+        "speed": null,
+        "cost": null,
+        "spritepath": "/assets/spells/ .png"
+      },
+      {
+        "id": 13,
+        "keyid": "IOO",
+        "name": "",
+        "desc": "",
+        "damage": null,
+        "speed": null,
+        "cost": null,
+        "spritepath": "/assets/spells/ .png"
+      },
+      {
+        "id": 14,
+        "keyid": "IOP",
+        "name": "",
+        "desc": "",
+        "damage": null,
+        "speed": null,
+        "cost": null,
+        "spritepath": "/assets/spells/ .png"
+      },
+      {
+        "id": 15,
+        "keyid": "IPP",
+        "name": "",
+        "desc": "",
+        "damage": null,
+        "speed": null,
+        "cost": null,
+        "spritepath": "/assets/spells/ .png"
       },
       {
         "id": 16,
@@ -31,6 +172,27 @@
         "cost": 5,
         "spritepath": "/assets/spells/bolt_air.png"
       },
+      {
+        "id": 17,
+        "keyid": "OOP",
+        "name": "",
+        "desc": "",
+        "damage": null,
+        "speed": null,
+        "cost": null,
+        "spritepath": "/assets/spells/ .png"
+      },
+{
+        "id": 18,
+        "keyid": "OPP",
+        "name": "",
+        "desc": "",
+        "damage": null,
+        "speed": null,
+        "cost": null,
+        "spritepath": "/assets/spells/ .png"
+      },
+
       {
         "id": 19,
         "keyid": "PPP",

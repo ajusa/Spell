@@ -4,6 +4,7 @@ function Spell(xval, yval, spell) {
     this.width = 24; // 20
     this.height = 24; // 10
 
+    console.log(spelldata.spells[spell].spritepath);
     sprite = new PIXI.Sprite(spelldata.spells[spell].spritepath);
     stage.addChild(sprite);
 
@@ -11,7 +12,8 @@ function Spell(xval, yval, spell) {
         if(this.x > WIDTH || this.x < 0)
             Spells[i].kill(i);
         this.x += this.speed;
-        
+        sprite.x = this.x;
+        sprite.y = this.y;
     }
 
     this.kill = function(i) {
