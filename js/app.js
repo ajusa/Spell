@@ -27,6 +27,7 @@ window.WebFontConfig = {
 var spelldata;
 marmottajax("js/spelldata.json").then(function(content) {
     spelldata = JSON.parse(content);
+    spelldata = spelldata.spelldata;
     console.log(spelldata);
 });
 var player;
@@ -157,7 +158,7 @@ function gameStart() {
 function gameLoop() {
     if (screens[1]) {
         player.update();
-        for (var value of Players.values()) {
+        for (var value in Players.values()) {
             value.update();
         }
         multi.update(player);
@@ -171,7 +172,7 @@ function gameLoop() {
 
         spellCode = spellString.split(" ").join("");
         keyMap = ["U", "I", "O", "P"];
-        spellMap = [earthIcon, fireIcon, airIcon, waterIcon];
+        spellIconMap = [earthIcon, fireIcon, airIcon, waterIcon];
         if (spellCode.length == 1) {
             for (i in icons) {
                 icons[i].texture = PIXI.Texture.EMPTY;
@@ -180,7 +181,7 @@ function gameLoop() {
         for (i = 0; i < spellCode.length; i++) {
             for (c in keyMap) {
                 if (keyMap[c] == spellCode.charAt(i)) {
-                    icons[i].texture = spellMap[c];
+                    icons[i].texture = spellIconMap[c];
                 }
             }
         }

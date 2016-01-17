@@ -73,7 +73,7 @@ function Player(xval, yval, width, height, id) {
             }
             y = this.y + this.height / 2;
             speed = this.speed;
-            Spells.push(new Spell(x, y, speed, 1, 1));
+            Spells.push(new Spell(x, y, spellID));
         }
     }
 

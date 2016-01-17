@@ -1,20 +1,17 @@
-function Spell(xval, yval, speed, spell, damage) {
+function Spell(xval, yval, spell) {
     this.x = xval;
     this.y = yval;
-    this.speed = speed;
-    this.width = 20;
-    this.height = 10;
-    this.damage = damage;
-    //ctx.drawImage(arrowImg,  xval, yval);
-    this.update = function(i) {
+    this.width = 24; // 20
+    this.height = 24; // 10
 
-        //ctx.drawImage(arrowImg, this.x, this.y);
+    sprite = new PIXI.Sprite(spelldata.spells[spell].spritepath);
+    stage.addChild(sprite);
+
+    this.update = function(i) {
         if(this.x > WIDTH || this.x < 0)
             Spells[i].kill(i);
         this.x += this.speed;
-        ctx.fillStyle = "#000"
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-
+        
     }
 
     this.kill = function(i) {

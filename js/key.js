@@ -106,7 +106,7 @@ onkeydown = onkeyup = function (e) {
             } else if (map[80] && (lastSpellKey != 4)) {
                 spellString += "P ";
                 lastSpellKey = 4;
-            } 
+            }
         }
 
         if (map[16]) {
