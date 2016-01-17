@@ -109,11 +109,10 @@ onkeydown = onkeyup = function (e) {
             } 
         }
 
-        if (keyUp[16]) {
+        if (map[16]) {
             spellString = "";
             lastSpellKey = 0;
             for (i in icons) { icons[i].texture = PIXI.Texture.EMPTY; }
-            keyUp[16] = false;
         }
     }
 }
