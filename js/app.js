@@ -31,7 +31,7 @@ marmottajax("/js/spelldata.json").then(function(content) {
 });
 var player;
 var Players = new Map();
-var VERSION = "Alpha 0.1.1",
+var VERSION = "Alpha 0.1.3",
     WIDTH = 1280,
     HEIGHT = 720,
     GROUND = {
