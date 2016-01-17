@@ -25,13 +25,13 @@ window.WebFontConfig = {
     s.parentNode.insertBefore(wf, s);
 })();
 var spelldata;
-marmottajax("/js/spelldata.json").then(function(content) {
+marmottajax("js/spelldata.json").then(function(content) {
     spelldata = JSON.parse(content);
     console.log(spelldata);
 });
 var player;
 var Players = new Map();
-var VERSION = "Alpha 0.1.1",
+var VERSION = "Alpha 0.1.3",
     WIDTH = 1280,
     HEIGHT = 720,
     GROUND = {
