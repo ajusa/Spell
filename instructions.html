@@ -1,8 +1,6 @@
 ﻿<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-    <meta charset="utf-8" />
     <title>Spell Instructions</title>
     <style type="text/css">
         h1 {
@@ -10,186 +8,115 @@
             text-align: center;
         }
     </style>
+
+    <!--<script src="js/instructions.js"></script>-->
 </head>
 <body>
     <h1>Instructions</h1>
     <h2>Movement</h2>
-    <table border="1" width="375px">
-        <tr>
-            <th>Key</th>
-            <th>Description</th>
-        </tr>
-        <tr>
-            <td>A</td>
-            <td>Move left</td>
-        </tr>
-        <tr>
-            <td>D</td>
-            <td>Move right</td>
-        </tr>
-        <tr>
-            <td>S</td>
-            <td>Cast invoked spell</td>
-        </tr>
-        <tr>
-            <td>W</td>
-            <td>Jump</td>
-        </tr>
-        <tr>
-            <td>U</td>
-            <td>Select EARTH</td>
-        </tr>
-        <tr>
-            <td>I</td>
-            <td>Select FIRE</td>
-        </tr>
-        <tr>
-            <td>O</td>
-            <td>Select AIR</td>
-        </tr>
-        <tr>
-            <td>P</td>
-            <td>Select WATER</td>
-        </tr>
-        <tr>
-            <td><kbd>SHIFT</kbd></td>
-            <td>Clear invoked spell</td>
-        </tr>
+    <table id="controlTable" border="1" width="375px">
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><center><kbd>A</kbd></center></td>
+                <td>Move left</td>
+            </tr>
+            <tr>
+                <td><center><kbd>D</kbd></center></td>
+                <td>Move right</td>
+            </tr>
+            <tr>
+                <td><center><kbd>S</kbd></center></td>
+                <td>Cast invoked spell</td>
+            </tr>
+            <tr>
+                <td><center><kbd>W</kbd></center></td>
+                <td>Jump</td>
+            </tr>
+            <tr>
+                <td><center><kbd>U</kbd></center></td>
+                <td>Select EARTH</td>
+            </tr>
+            <tr>
+                <td><center><kbd>I</kbd></center></td>
+                <td>Select FIRE</td>
+            </tr>
+            <tr>
+                <td><center><kbd>O</kbd></center></td>
+                <td>Select AIR</td>
+            </tr>
+            <tr>
+                <td><center><kbd>P</kbd></center></td>
+                <td>Select WATER</td>
+            </tr>
+            <tr>
+                <td><center><kbd>SHIFT</kbd></center></td>
+                <td>Clear invoked spell</td>
+            </tr>
+        </tbody>
     </table>
     <h2>Spells</h2>
     <p>
         Use combinations of 3 elements to invoke spells.<br />
         For example, selecting FIRE FIRE AIR invokes and casts <i>spell name</i>.
     </p>
-    <table border="1" width="750px">
-        <tr>
-            <th>Element Combo</th>
-            <th>Spell Name</th>
-            <th>Mana Cost</th>
-            <th>Description</th>
-        </tr>
-        <tr>
-            <td>EARTH EARTH EARTH </td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>EARTH EARTH FIRE </td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>EARTH EARTH AIR </td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>EARTH EARTH WATER </td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>EARTH FIRE FIRE </td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>EARTH FIRE AIR </td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>EARTH FIRE WATER </td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>EARTH AIR AIR </td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>EARTH AIR WATER </td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>EARTH WATER WATER </td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>FIRE FIRE FIRE </td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>FIRE FIRE AIR </td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>FIRE FIRE WATER </td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>FIRE AIR AIR </td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>FIRE AIR WATER </td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>FIRE WATER WATER </td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>AIR AIR AIR </td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>AIR AIR WATER </td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>AIR WATER WATER </td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>WATER WATER WATER </td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+    <table id="spellTable" class="spellTable" border="1" width="95%">
+        <thead>
+            <tr>
+                <th>Element Combo</th>
+                <th>Keystroke</th>
+                <th>Name</th>
+                <th>Damage</th>
+                <th>Mana Cost</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
     </table>
     <h2>Gameplay</h2>
     <p>Not yet implemented.</p>
+
+    <script type="text/javascript" src="js/lib/ajax.min.js"></script>
+    <script type="text/javascript">
+        marmottajax("js/spelldata.json").then(function (content) {
+            var spelldata = JSON.parse(content);
+            spelldata = spelldata.spelldata;
+            // console.log(spelldata);
+
+            function replaceAll(inS, getS, setS) {
+                return inS.split(getS).join(setS);
+            }
+
+            var spellTable = document.getElementById("spellTable");
+            for (i = 0; i < 20; i++) {
+                row = spellTable.insertRow(i + 1);
+                combo = row.insertCell(0);
+                combo.innerHTML = replaceAll(
+                    replaceAll(
+                        replaceAll(
+                            replaceAll(
+                                spelldata.spells[i].keyid,
+                                    "I", "FIRE "),
+                                    "U", "EARTH "),
+                                    "O", "AIR "),
+                                    "P", "WATER ");
+                keys = row.insertCell(1);
+                keys.innerHTML = "<center><kbd>" + spelldata.spells[i].keyid.split('').join(' ') + "</kbd></center>";
+                nme = row.insertCell(2);
+                nme.innerHTML = "<center>" + spelldata.spells[i].name + "</center>";
+                dmg = row.insertCell(3);
+                dmg.innerHTML = "<center>" + spelldata.spells[i].damage + "</center>";
+                manaCost = row.insertCell(4);
+                manaCost.innerHTML = "<center>" + spelldata.spells[i].cost + "</center>";
+                desc = row.insertCell(5);
+                desc.innerHTML = spelldata.spells[i].desc;
+            }
+        });
+    </script>
 </body>
 </html>

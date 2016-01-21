@@ -76,7 +76,7 @@ function getSpell(inS) {
     for (k = 0; k < p; k++) { outS += "P"; }
 
     for (k = 0; k < spellMap.length; k++) {
-        if (outS == spellMap[k].toString()) return k;
+        if (outS == spellMap[k]) return k;
     }
 }
 
