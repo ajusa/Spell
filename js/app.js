@@ -76,7 +76,7 @@ var frameTime = 0,
 
 function gameStart() {
     multi = new Multiplayer();
-    player = new Player(WIDTH / 2 - 25, 450, 80, 232)
+    player = new Player(WIDTH / 2 - 25, 450, 150, 232)
     multi.start(player);
     stage.removeChildren();
     screens = [false, true, false];
