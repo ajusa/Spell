@@ -24,12 +24,15 @@ function Player(xval, yval, width, height, id) {
     this.sprite.height = height;
     this.exp = 0.0;
     this.lvl = 0;
+    this.bias = [0.250, 0.250, 0.250, 0.250]; // earth fire air water
+
+    var lastLvl = -1;
 
     this.update = function() {
-
         if (player.health < 1) {
             player.die();
         }
+
         for (var i = Spells.length - 1; i >= 0; i--) {
             if (isCollide(Spells[i], this)) {
                 this.health = this.health - Spells[i].damage;
@@ -57,7 +60,9 @@ function Player(xval, yval, width, height, id) {
 
         this.exp += 1; // TESTING
         this.lvl = Math.floor(Math.log((this.exp / 150) + 1));
+        if (lastLvl < this.lvl) { this.levelUp(); lastLvl = this.lvl; }
     }
+
     this.shoot = function() {
         if (this.mana > 0) {
             this.mana--;
@@ -77,7 +82,6 @@ function Player(xval, yval, width, height, id) {
         }
     }
 
-
     this.takeDamage = function(damage) {
         this.health -= damage;
     }
@@ -92,5 +96,26 @@ function Player(xval, yval, width, height, id) {
     this.regen = function() {
         if (this.mana < this.maxMana) this.mana += this.manaRegen;
         if (this.mana > this.maxMana) this.mana = this.maxMana;
+    }
+
+    this.levelUp = function () {
+        // add skill buttons to stage
+        // animate levelup somehow
+    }
+
+    this.changeBias = function (keyID) { // Valid keyIDs are 1 2 3 4 for earth fire air water resp.
+        var totalC = 0;
+        for (i = 0; i < 4; i++) {
+            if (i != keyID - 1) {
+                this.bias[i] -= biasStrength;
+                totalC += biasStrength;
+                if (this.bias[i] < 0) {
+                    var diff = -1 * this.bias[i];
+                    this.bias[i] += diff;
+                    totalC -= diff;
+                }
+            }
+        }
+        this.bias[keyID - 1] += totalC;
     }
 }

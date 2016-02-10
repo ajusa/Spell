@@ -74,6 +74,8 @@ var frameTime = 0,
     lastLoop = new Date,
     thisLoop;
 
+var biasStrength = 0.003;
+
 function gameStart() {
     multi = new Multiplayer();
     player = new Player(WIDTH / 2 - 25, 450, 150, 232)
@@ -148,11 +150,40 @@ function gameStart() {
         align: 'left'
     });
     fps.x = 2;
-    fps.y = HEIGHT - fps.getBounds().height;
+    fps.y = HEIGHT - fps.height;
     stage.addChild(fps);
     setInterval(function() {
         fps.text = "FPS: " + Math.round(1000 / frameTime);
     }, 500);
+
+    biasText = new PIXI.Text("Bias", {
+        font: '24px VT323',
+        fill: 0xEEEEEE,
+        align: 'right'
+    });
+    biasText.x = WIDTH - biasText.width - 5;
+    biasText.y = 30;
+    stage.addChild(biasText);
+
+    biasMeterEarth = new PIXI.Sprite(earthBar);
+    biasMeterEarth.y = 55;
+    biasMeterEarth.height = 5;
+    stage.addChild(biasMeterEarth);
+
+    biasMeterFire = new PIXI.Sprite(fireBar);
+    biasMeterFire.y = 60;
+    biasMeterFire.height = 5;
+    stage.addChild(biasMeterFire);
+
+    biasMeterAir = new PIXI.Sprite(airBar);
+    biasMeterAir.y = 65;
+    biasMeterAir.height = 5;
+    stage.addChild(biasMeterAir);
+
+    biasMeterWater = new PIXI.Sprite(waterBar);
+    biasMeterWater.y = 70;
+    biasMeterWater.height = 5;
+    stage.addChild(biasMeterWater);
 }
 
 function gameLoop() {
@@ -185,6 +216,16 @@ function gameLoop() {
                 }
             }
         }
+
+        var biasWidth = 200;
+        biasMeterEarth.width = biasWidth * player.bias[0];
+        biasMeterEarth.x = WIDTH - biasMeterEarth.width;
+        biasMeterFire.width = biasWidth * player.bias[1];
+        biasMeterFire.x = WIDTH - biasMeterFire.width;
+        biasMeterAir.width = biasWidth * player.bias[2];
+        biasMeterAir.x = WIDTH - biasMeterAir.width;
+        biasMeterWater.width = biasWidth * player.bias[3];
+        biasMeterWater.x = WIDTH - biasMeterWater.width;
     };
     var thisFrameTime = (thisLoop = new Date) - lastLoop;
     frameTime += (thisFrameTime - frameTime) / filterStrength;
