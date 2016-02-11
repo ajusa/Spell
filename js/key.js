@@ -97,15 +97,19 @@ onkeydown = onkeyup = function (e) {
             if (map[85] && (lastSpellKey != 1)) {
                 spellString += "U ";
                 lastSpellKey = 1;
+                player.changeBias(1);
             } else if (map[73] && (lastSpellKey != 2)) {
                 spellString += "I ";
                 lastSpellKey = 2;
+                player.changeBias(2);
             } else if (map[79] && (lastSpellKey != 3)) {
                 spellString += "O ";
                 lastSpellKey = 3;
+                player.changeBias(3);
             } else if (map[80] && (lastSpellKey != 4)) {
                 spellString += "P ";
                 lastSpellKey = 4;
+                player.changeBias(4);
             }
         }
 
