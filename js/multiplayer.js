@@ -1,5 +1,6 @@
 function Multiplayer(ip) {
     var socket = io('http://24.127.214.59:3000');
+    //test commit
     socket.on('getId', function(id) {
         this.id = id;
         player.id = id;
