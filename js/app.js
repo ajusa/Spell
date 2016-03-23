@@ -30,6 +30,7 @@ marmottajax("js/spelldata.json").then(function(content) {
     spelldata = spelldata.spelldata;
     // console.log(spelldata);
 });
+var gun = Gun('http://localhost/gun');
 var player;
 var Players = new Map();
 var VERSION = "Alpha 0.1.3",
