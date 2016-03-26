@@ -83,19 +83,19 @@ function gameStart() {
     stage.removeChildren();
     screens = [false, true, false];
     bg = new PIXI.Graphics();
-    bg.beginFill(0x34495e);
+    bg.beginFill('0x34495e');
     bg.drawRect(0, 0, WIDTH, HEIGHT);
     bg.endFill();
-    bg.beginFill(0x95a5a6);
+    bg.beginFill('0x95a5a6');
     bg.drawRect(GROUND.x, GROUND.y, GROUND.width, GROUND.height);
     bg.endFill();
-    bg.beginFill(0x660000);
+    bg.beginFill('0x660000');
     bg.drawRect(0, 10, WIDTH / 2, 15);
     bg.endFill();
-    bg.beginFill(0x141452);
+    bg.beginFill('0x141452');
     bg.drawRect(WIDTH / 2, 10, WIDTH / 2, 15);
     bg.endFill();
-    bg.beginFill(0x006600);
+    bg.beginFill('0x006600');
     bg.drawRect(0, 0, WIDTH, 10);
     bg.endFill();
     bg.cacheAsBitmap = true; // temporary for less resource usage
@@ -145,15 +145,30 @@ function gameStart() {
     }
 
     fps = new PIXI.Text("FPS: 0", {
-        font: '16px VT323',
-        fill: 0x34495e,
+        font: '18px VT323',
+        fill: '#34495e',
         align: 'left'
     });
     fps.x = 2;
     fps.y = HEIGHT - fps.height;
     stage.addChild(fps);
-    setInterval(function() {
-        fps.text = "FPS: " + Math.round(1000 / frameTime);
+    setInterval(function () {
+        var _fps = Math.round(1000 / frameTime);
+        fps.text = "FPS: " + _fps;
+        if (_fps < 60) {
+            fps.style = {
+                font: '18px VT323',
+                fill: 'red',
+                align: 'left'
+            };
+        }
+        else {
+            fps.style = {
+                font: '18px VT323',
+                fill: '#34495e',
+                align: 'left'
+            };
+        }
     }, 500);
 
     biasText = new PIXI.Text("Bias", {
