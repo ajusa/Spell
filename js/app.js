@@ -199,6 +199,15 @@ function gameStart() {
     biasMeterWater.y = 70;
     biasMeterWater.height = 5;
     stage.addChild(biasMeterWater);
+
+    skillDisplay = new PIXI.Text("Skill Points: 0", {
+        font: '36px VT323',
+        fill: 0xf39c12,
+        align: 'center'
+    });
+    skillDisplay.x = (WIDTH / 2) - (skillDisplay.width / 2);
+    skillDisplay.y = 50;
+    stage.addChild(skillDisplay);
 }
 
 function gameLoop() {
@@ -241,6 +250,12 @@ function gameLoop() {
         biasMeterAir.x = WIDTH - biasMeterAir.width;
         biasMeterWater.width = biasWidth * player.bias[3];
         biasMeterWater.x = WIDTH - biasMeterWater.width;
+
+        if (player.skillpoints > 0) {
+            skillDisplay.text = "Skill Points: " + player.skillpoints.toString();
+        } else {
+            skillDisplay.text = "";
+        }
     };
     var thisFrameTime = (thisLoop = new Date) - lastLoop;
     frameTime += (thisFrameTime - frameTime) / filterStrength;
