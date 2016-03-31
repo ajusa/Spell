@@ -30,9 +30,8 @@ marmottajax("js/spelldata.json").then(function(content) {
     spelldata = spelldata.spelldata;
     // console.log(spelldata);
 });
-var gun = Gun('http://localhost/gun');
 var player;
-var Players = new Map();
+var Players = [];
 var VERSION = "Alpha 0.1.3",
     WIDTH = 1280,
     HEIGHT = 720,
@@ -214,10 +213,13 @@ function gameStart() {
 function gameLoop() {
     if (screens[1]) {
         player.update();
-        for (var value in Players.values()) {
-            value.update();
-        }
         multi.update(player);
+        for (var i = Players.length - 1; i >= 0; i--) {
+            Players[i].update()
+            if (Players[i].id == multi.id) {
+                Players[i].death()
+            }
+        }
         healthMeter.width = (WIDTH / 2) * (player.health / player.maxHealth);
         manaMeter.width = (WIDTH / 2) * (player.mana / player.maxMana);
         baseEXP = 150 * (Math.exp(player.lvl) - 1);
