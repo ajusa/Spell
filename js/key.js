@@ -125,15 +125,15 @@ onkeydown = onkeyup = function (e) {
         else if (keyUp[51] && (lastSkillKey = 3)) { lastSkillKey = 0; }
         if (player.skillpoints > 0) {
             if (map[49] && (lastSkillKey != 1)) {
-                player.maxHealth += 2;
+                player.maxHealth = Math.round(player.maxHealth * 1.10);
                 lastSkillKey = 1;
                 player.skillpoints--;
             } else if (map[50] && (lastSkillKey != 2)) {
-                player.maxMana += 2;
+                player.maxMana = Math.round(player.maxMana * 1.15);
                 lastSkillKey = 2;
                 player.skillpoints--;
             } else if (map[51] && (lastSkillKey != 3)) {
-                player.expRate *= 1.25;
+                player.expRate = Math.round(player.expRate * 1.25);
                 lastSkillKey = 3;
                 player.skillpoints--;
             }
