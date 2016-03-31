@@ -3,6 +3,7 @@ var lastSpellKey = 0;
 var spellID = 0;
 var keyUp = [];
 var map = [];
+var lastSkillKey = 0;
 onkeydown = onkeyup = function (e) {
     e = e || event; //IE
     map[e.keyCode] = e.type == 'keydown';
@@ -117,6 +118,25 @@ onkeydown = onkeyup = function (e) {
             spellString = "";
             lastSpellKey = 0;
             for (i in icons) { icons[i].texture = PIXI.Texture.EMPTY; }
+        }
+
+        if (keyUp[49] && (lastSkillKey = 1)) { lastSkillKey = 0; }
+        else if (keyUp[50] && (lastSkillKey = 2)) { lastSkillKey = 0; }
+        else if (keyUp[51] && (lastSkillKey = 3)) { lastSkillKey = 0; }
+        if (player.skillpoints > 0) {
+            if (map[49] && (lastSkillKey != 1)) {
+                player.maxHealth += 2;
+                lastSkillKey = 1;
+                player.skillpoints--;
+            } else if (map[50] && (lastSkillKey != 2)) {
+                player.maxMana += 2;
+                lastSkillKey = 2;
+                player.skillpoints--;
+            } else if (map[51] && (lastSkillKey != 3)) {
+                player.expRate *= 1.25;
+                lastSkillKey = 3;
+                player.skillpoints--;
+            }
         }
     }
 }

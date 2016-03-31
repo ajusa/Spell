@@ -24,7 +24,9 @@ function Player(xval, yval, width, height, id) {
     this.sprite.height = height;
     this.exp = 0.0;
     this.lvl = 0;
+    this.expRate = 1;
     this.bias = [0.250, 0.250, 0.250, 0.250]; // earth fire air water
+    this.skillpoints = 0;
 
     var lastLvl = -1;
 
@@ -58,7 +60,7 @@ function Player(xval, yval, width, height, id) {
         this.sprite.x = this.x;
         this.sprite.y = this.y;
 
-        this.exp += 1; // TESTING
+        this.exp += this.expRate;
         this.lvl = Math.floor(Math.log((this.exp / 150) + 1));
         if (lastLvl < this.lvl) { this.levelUp(); lastLvl = this.lvl; }
     }
@@ -101,6 +103,8 @@ function Player(xval, yval, width, height, id) {
     this.levelUp = function () {
         // add skill buttons to stage
         // animate levelup somehow
+
+        this.skillpoints += 1;
     }
 
     this.changeBias = function (keyID) { // Valid keyIDs are 1 2 3 4 for earth fire air water resp.
