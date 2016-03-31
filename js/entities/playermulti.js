@@ -1,4 +1,4 @@
-function playermulti(x, y, id) {
+function playermulti(x, y, dx, dy, id) {
     this.x = x;
     this.y = y;
     this.dx;
@@ -9,8 +9,8 @@ function playermulti(x, y, id) {
     this.sprite.height = 232;
     stage.addChild(this.sprite);
     this.update = function() {
-    	this.x = this.x + this.dx;
-    	this.y = this.y + this.dx;
+    	//this.x = this.x + this.dx;
+    	//this.y = this.y + this.dx;
         this.sprite.x = this.x;
         this.sprite.y = this.y;
     }

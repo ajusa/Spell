@@ -80,7 +80,7 @@ var biasStrength = 0.003;
 function gameStart() {
     multi = new Multiplayer();
     player = new Player(WIDTH / 2 - 25, 450, 150, 232)
-    setInterval(function(){player.interpolate()}, 20);
+    //setInterval(function(){player.interpolate()}, 20); This don't work right now. Pls fix
     multi.start(player);
     stage.removeChildren();
     screens = [false, true, false];

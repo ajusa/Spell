@@ -27,13 +27,13 @@ function Multiplayer(ip) {
     ref.once("value", function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
             if (childSnapshot.key() != this.id) {
-                Players.push(new playermulti(childSnapshot.val().x, childSnapshot.val().y, childSnapshot.key()))
+                Players.push(new playermulti(childSnapshot.val().x, childSnapshot.val().y, snapshot.val().dx, snapshot.val().dy, childSnapshot.key()))
             }
         });
     });
     ref.on("child_added", function(snapshot) {
         if (snapshot.key() != this.id) {
-            Players.push(new playermulti(snapshot.val().x, snapshot.val().y, snapshot.key()))
+            Players.push(new playermulti(snapshot.val().x, snapshot.val().y, snapshot.val().dx, snapshot.val().dy, snapshot.key()))
         }
     });
     ref.on("child_changed", function(snapshot) {
