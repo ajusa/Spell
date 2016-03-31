@@ -18,6 +18,8 @@ function Multiplayer(ip) {
             obj = {
                 x: client.x,
                 y: client.y,
+                dx: client.dx,
+                dy: client.dy
             }
             this.item.set(obj);
         }
@@ -40,6 +42,8 @@ function Multiplayer(ip) {
                 if (Players[i].id == snapshot.key()) {
                     Players[i].x = snapshot.val().x;
                     Players[i].y = snapshot.val().y;
+                    Players[i].dx = snapshot.val().dx;
+                    Players[i].dy = snapshot.val().dy;
                 }
             }
         }

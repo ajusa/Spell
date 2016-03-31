@@ -67,6 +67,7 @@ stage.addChild(text);
 setInterval(function() {
     if (screens[1]) player.regen();
 }, 1000);
+
 var multi;
 
 var filterStrength = 10;
@@ -79,6 +80,7 @@ var biasStrength = 0.003;
 function gameStart() {
     multi = new Multiplayer();
     player = new Player(WIDTH / 2 - 25, 450, 150, 232)
+    setInterval(function(){player.interpolate()}, 20);
     multi.start(player);
     stage.removeChildren();
     screens = [false, true, false];
@@ -208,6 +210,7 @@ function gameStart() {
     skillDisplay.x = (WIDTH / 2) - (skillDisplay.width / 2);
     skillDisplay.y = 50;
     stage.addChild(skillDisplay);
+
 }
 
 function gameLoop() {
