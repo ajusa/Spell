@@ -31,6 +31,7 @@ function Player(xval, yval, width, height, id) {
     this.expRate = 1;
     this.bias = [0.250, 0.250, 0.250, 0.250]; // earth fire air water
     this.skillpoints = 0;
+    this.sprite.anchor = new PIXI.Point(0.5, 0);
 
     var lastLvl = -1;
 
@@ -55,18 +56,26 @@ function Player(xval, yval, width, height, id) {
         this.y -= this.dy;
         if (!this.g) this.dy -= 0.5;
 
-        if (this.x <= 0) {
-            this.x = 0;
+        if (this.x <= width / 2) {
+            this.x = width / 2;
         }
-        if (this.x >= WIDTH - width) {
-            this.x = WIDTH - width;
+        if (this.x >= WIDTH - width / 2) {
+            this.x = WIDTH - width / 2;
         }
         this.sprite.x = this.x;
         this.sprite.y = this.y;
         this.exp += this.expRate;
         this.lvl = Math.floor(Math.log((this.exp / 150) + 1));
-        if (lastLvl < this.lvl) { this.levelUp();
-            lastLvl = this.lvl; }
+        if (lastLvl < this.lvl) {
+            this.levelUp();
+            lastLvl = this.lvl;
+        }
+
+        if (this.right) {
+            this.sprite.scale.x = 1;
+        } else {
+            this.sprite.scale.x = -1;
+        }
     }
 
     this.shoot = function() {
