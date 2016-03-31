@@ -41,21 +41,22 @@ function killPlayer(id) {
     };
 }
 
-function guid() {
-    function s4() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-            .toString(16)
-            .substring(1);
-    }
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-        s4() + '-' + s4() + s4() + s4();
+function calculateSlope(x1, x2) {
+    // rise over run
+    var s = (x2 - x1);
+    /*if (x1==x2) {
+        // slope is Infinity or -Infinity
+    }*/
+    return s;
 }
 
+
 var spellMap = ["UUU", "UUI", "UUO", "UUP", "UII", "UIO", "UIP", "UOO", "UOP", "UPP",
-        "III", "IIO", "IIP", "IOO", "IOP", "IPP",
-        "OOO", "OOP", "OPP",
-        "PPP"
+    "III", "IIO", "IIP", "IOO", "IOP", "IPP",
+    "OOO", "OOP", "OPP",
+    "PPP"
 ];
+
 function getSpell(inS) {
     var inA = inS.trim().split(" ");
     var u = 0,
@@ -63,10 +64,7 @@ function getSpell(inS) {
         o = 0,
         p = 0;
     for (k = 0; k < inA.length; k++) {
-        if (inA[k] == "U") { u++; }
-        else if (inA[k] == "I") { i++; }
-        else if (inA[k] == "O") { o++; }
-        else if (inA[k] == "P") { p++; }
+        if (inA[k] == "U") { u++; } else if (inA[k] == "I") { i++; } else if (inA[k] == "O") { o++; } else if (inA[k] == "P") { p++; }
     }
 
     var outS = "";

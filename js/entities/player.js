@@ -2,8 +2,12 @@ function Player(xval, yval, width, height, id) {
     //Note that all of those must be given some value on creation
     this.x = xval;
     this.y = yval;
+    this.lastx = xval; // for server interpolation
+    this.lasty = yval; // for server interpolation
     this.dx = 0;
     this.dy = 0;
+    this.sdx = 0; //for server interpolation
+    this.sdy = 0; // for server interpolation
     this.width = width;
     this.height = height;
     this.mana = 20;
@@ -59,10 +63,10 @@ function Player(xval, yval, width, height, id) {
         }
         this.sprite.x = this.x;
         this.sprite.y = this.y;
-
         this.exp += this.expRate;
         this.lvl = Math.floor(Math.log((this.exp / 150) + 1));
-        if (lastLvl < this.lvl) { this.levelUp(); lastLvl = this.lvl; }
+        if (lastLvl < this.lvl) { this.levelUp();
+            lastLvl = this.lvl; }
     }
 
     this.shoot = function() {
@@ -90,7 +94,6 @@ function Player(xval, yval, width, height, id) {
 
     this.die = function() {
         //Setting to gameover screen
-        socket.emit("death", this.id)
         screens[1] = false;
         screens[2] = true;
     }
@@ -100,14 +103,14 @@ function Player(xval, yval, width, height, id) {
         if (this.mana > this.maxMana) this.mana = this.maxMana;
     }
 
-    this.levelUp = function () {
+    this.levelUp = function() {
         // add skill buttons to stage
         // animate levelup somehow
 
         this.skillpoints += 1;
     }
 
-    this.changeBias = function (keyID) { // Valid keyIDs are 1 2 3 4 for earth fire air water resp.
+    this.changeBias = function(keyID) { // Valid keyIDs are 1 2 3 4 for earth fire air water resp.
         var totalC = 0;
         for (i = 0; i < 4; i++) {
             if (i != keyID - 1) {
@@ -121,5 +124,16 @@ function Player(xval, yval, width, height, id) {
             }
         }
         this.bias[keyID - 1] += totalC;
+    }
+    this.interpolate = function() {
+        if (this.lastx != this.x || this.lasty != this.y) {
+            this.sdx = calculateSlope(this.lastx, this.x)
+            this.sdy = calculateSlope(this.lasty, this.y)
+        } else {
+            this.sdx = 0;
+            this.sdy = 0;
+        }
+        this.lastx = this.x;
+        this.lasty = this.y;
     }
 }

@@ -18,6 +18,8 @@ function Multiplayer(ip) {
             obj = {
                 x: client.x,
                 y: client.y,
+                dx: client.dx,
+                dy: client.dy
             }
             this.item.set(obj);
         }
@@ -25,13 +27,13 @@ function Multiplayer(ip) {
     ref.once("value", function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
             if (childSnapshot.key() != this.id) {
-                Players.push(new playermulti(childSnapshot.val().x, childSnapshot.val().y, childSnapshot.key()))
+                Players.push(new playermulti(childSnapshot.val().x, childSnapshot.val().y, snapshot.val().dx, snapshot.val().dy, childSnapshot.key()))
             }
         });
     });
     ref.on("child_added", function(snapshot) {
         if (snapshot.key() != this.id) {
-            Players.push(new playermulti(snapshot.val().x, snapshot.val().y, snapshot.key()))
+            Players.push(new playermulti(snapshot.val().x, snapshot.val().y, snapshot.val().dx, snapshot.val().dy, snapshot.key()))
         }
     });
     ref.on("child_changed", function(snapshot) {
@@ -40,6 +42,8 @@ function Multiplayer(ip) {
                 if (Players[i].id == snapshot.key()) {
                     Players[i].x = snapshot.val().x;
                     Players[i].y = snapshot.val().y;
+                    Players[i].dx = snapshot.val().dx;
+                    Players[i].dy = snapshot.val().dy;
                 }
             }
         }
