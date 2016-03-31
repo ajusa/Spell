@@ -252,7 +252,8 @@ function gameLoop() {
         biasMeterWater.x = WIDTH - biasMeterWater.width;
 
         if (player.skillpoints > 0) {
-            skillDisplay.text = "Skill Points: " + player.skillpoints.toString();
+            skillDisplay.text = "Skill Points: " + player.skillpoints.toString()
+                                + "\n1. Health\n2. Mana\n3. EXP";
         } else {
             skillDisplay.text = "";
         }
