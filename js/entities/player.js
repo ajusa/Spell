@@ -81,19 +81,17 @@ function Player(xval, yval, width, height, id) {
     this.shoot = function() {
         if (this.mana > 0) {
             this.mana--;
+            speed = 0;
+            x = 0;
             if (this.right) {
-                this.speed = Math.abs(this.speed)
-            };
-            if (!this.right) {
-                this.speed = -Math.abs(this.speed)
-            };
-            x = this.x + this.width + 20;
-            if (!this.right) {
+                speed = Math.abs(this.speed);
+                x = this.x + this.width + 20;
+            } else {
+                speed = -Math.abs(this.speed);
                 x = this.x - 40;
             }
             y = this.y + this.height / 2;
-            speed = this.speed;
-            Spells.push(new Spell(x, y, spellID));
+            Spells.push(new Spell(x, y, speed, spellID));
         }
     }
 
