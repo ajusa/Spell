@@ -223,9 +223,6 @@ function gameLoop() {
                 Players[i].death()
             }
         }
-        for (var s in Spells) {
-            Spells[s].update(s);
-        }
         healthMeter.width = (WIDTH / 2) * (player.health / player.maxHealth);
         manaMeter.width = (WIDTH / 2) * (player.mana / player.maxMana);
         baseEXP = 150 * (Math.exp(player.lvl) - 1);
