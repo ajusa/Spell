@@ -26,9 +26,9 @@ function Player(xval, yval, width, height, id) {
     this.sprite = new PIXI.Sprite(playerImg);
     this.sprite.width = width;
     this.sprite.height = height;
-    this.exp = 0;
+    this.exp = 0.0;
     this.lvl = 0;
-    this.expRate = 1.0;
+    this.expRate = 1;
     this.bias = [0.250, 0.250, 0.250, 0.250]; // earth fire air water
     this.skillpoints = 0;
     this.sprite.anchor = new PIXI.Point(0.5, 0);
@@ -81,17 +81,19 @@ function Player(xval, yval, width, height, id) {
     this.shoot = function() {
         if (this.mana > 0) {
             this.mana--;
-            speed = 0;
-            x = 0;
             if (this.right) {
-                speed = Math.abs(this.speed);
-                x = this.x + this.width + 20;
-            } else {
-                speed = -Math.abs(this.speed);
+                this.speed = Math.abs(this.speed)
+            };
+            if (!this.right) {
+                this.speed = -Math.abs(this.speed)
+            };
+            x = this.x + this.width + 20;
+            if (!this.right) {
                 x = this.x - 40;
             }
             y = this.y + this.height / 2;
-            Spells.push(new Spell(x, y, speed, spellID));
+            speed = this.speed;
+            Spells.push(new Spell(x, y, spellID));
         }
     }
 

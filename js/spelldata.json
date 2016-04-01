@@ -9,7 +9,7 @@
         "damage": 8,
         "speed": 3,
         "cost": 5,
-        "spritepath": "assets/elements/projectiles/0.png"
+        "spritepath": "/assets/elements/projectiles/rock_projectile.png"
       },
       {
         "id": 1,
@@ -19,7 +19,7 @@
         "damage": null,
         "speed": null,
         "cost": null,
-        "spritepath": "assets/elements/projectiles/1.png"
+        "spritepath": "/assets/spells/ .png"
       },
       {
         "id": 2,
@@ -29,7 +29,7 @@
         "damage": null,
         "speed": null,
         "cost": null,
-        "spritepath": "assets/elements/projectiles/2.png"
+        "spritepath": "/assets/spells/ .png"
       },
       {
         "id": 3,
@@ -39,7 +39,7 @@
         "damage": null,
         "speed": null,
         "cost": null,
-        "spritepath": "assets/elements/projectiles/3.png"
+        "spritepath": "/assets/spells/ .png"
       },
       {
         "id": 4,
@@ -49,7 +49,7 @@
         "damage": null,
         "speed": null,
         "cost": null,
-        "spritepath": "assets/elements/projectiles/4.png"
+        "spritepath": "/assets/spells/ .png"
       },
       {
         "id": 5,
@@ -59,7 +59,7 @@
         "damage": null,
         "speed": null,
         "cost": null,
-        "spritepath": "assets/elements/projectiles/5.png"
+        "spritepath": "/assets/spells/ .png"
       },
       {
         "id": 6,
@@ -69,7 +69,7 @@
         "damage": null,
         "speed": null,
         "cost": null,
-        "spritepath": "assets/elements/projectiles/6.png"
+        "spritepath": "/assets/spells/ .png"
       },
       {
         "id": 7,
@@ -79,7 +79,7 @@
         "damage": null,
         "speed": null,
         "cost": null,
-        "spritepath": "assets/elements/projectiles/7.png"
+        "spritepath": "/assets/spells/ .png"
       },
       {
         "id": 8,
@@ -89,7 +89,7 @@
         "damage": null,
         "speed": null,
         "cost": null,
-        "spritepath": "assets/elements/projectiles/8.png"
+        "spritepath": "/assets/spells/ .png"
       },
       {
         "id": 9,
@@ -99,8 +99,9 @@
         "damage": null,
         "speed": null,
         "cost": null,
-        "spritepath": "assets/elements/projectiles/9.png"
+        "spritepath": "/assets/spells/ .png"
       },
+
       {
         "id": 10,
         "keyid": "III",
@@ -109,7 +110,7 @@
         "damage": 4,
         "speed": 11,
         "cost": 5,
-        "spritepath": "assets/elements/projectiles/10.png"
+        "spritepath": "/assets/spells/bolt_fire.png"
       },
       {
         "id": 11,
@@ -119,7 +120,7 @@
         "damage": null,
         "speed": null,
         "cost": null,
-        "spritepath": "assets/elements/projectiles/11.png"
+        "spritepath": "/assets/spells/ .png"
       },
       {
         "id": 12,
@@ -129,7 +130,7 @@
         "damage": null,
         "speed": null,
         "cost": null,
-        "spritepath": "assets/elements/projectiles/12.png"
+        "spritepath": "/assets/spells/ .png"
       },
       {
         "id": 13,
@@ -139,7 +140,7 @@
         "damage": null,
         "speed": null,
         "cost": null,
-        "spritepath": "assets/elements/projectiles/13.png"
+        "spritepath": "/assets/spells/ .png"
       },
       {
         "id": 14,
@@ -149,7 +150,7 @@
         "damage": null,
         "speed": null,
         "cost": null,
-        "spritepath": "assets/elements/projectiles/14.png"
+        "spritepath": "/assets/spells/ .png"
       },
       {
         "id": 15,
@@ -159,7 +160,7 @@
         "damage": null,
         "speed": null,
         "cost": null,
-        "spritepath": "assets/elements/projectiles/15.png"
+        "spritepath": "/assets/spells/ .png"
       },
       {
         "id": 16,
@@ -169,7 +170,7 @@
         "damage": 2,
         "speed": 15,
         "cost": 5,
-        "spritepath": "assets/elements/projectiles/16.png"
+        "spritepath": "/assets/spells/bolt_air.png"
       },
       {
         "id": 17,
@@ -179,9 +180,9 @@
         "damage": null,
         "speed": null,
         "cost": null,
-        "spritepath": "assets/elements/projectiles/17.png"
+        "spritepath": "/assets/spells/ .png"
       },
-      {
+{
         "id": 18,
         "keyid": "OPP",
         "name": "",
@@ -189,8 +190,9 @@
         "damage": null,
         "speed": null,
         "cost": null,
-        "spritepath": "assets/elements/projectiles/18.png"
+        "spritepath": "/assets/spells/ .png"
       },
+
       {
         "id": 19,
         "keyid": "PPP",
@@ -199,7 +201,7 @@
         "damage": 6,
         "speed": 7,
         "cost": 5,
-        "spritepath": "assets/elements/projectiles/19.png"
+        "spritepath": "/assets/spells/bolt_water.png"
       }
     ]
   }
