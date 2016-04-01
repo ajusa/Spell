@@ -26,9 +26,9 @@ function Player(xval, yval, width, height, id) {
     this.sprite = new PIXI.Sprite(playerImg);
     this.sprite.width = width;
     this.sprite.height = height;
-    this.exp = 0.0;
+    this.exp = 0;
     this.lvl = 0;
-    this.expRate = 1;
+    this.expRate = 1.0;
     this.bias = [0.250, 0.250, 0.250, 0.250]; // earth fire air water
     this.skillpoints = 0;
     this.sprite.anchor = new PIXI.Point(0.5, 0);
