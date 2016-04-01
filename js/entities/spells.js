@@ -5,7 +5,8 @@ function Spell(xval, yval, spell) {
     this.height = 24; // 10
 
     // console.log(spelldata.spells[spell].spritepath);
-    sprite = new PIXI.Sprite(spelldata.spells[spell].spritepath);
+    var texture = new PIXI.Texture.fromImage(spelldata.spells[spell].spritepath);
+    sprite = new PIXI.Sprite(texture);
     stage.addChild(sprite);
 
     this.update = function(i) {

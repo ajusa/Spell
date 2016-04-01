@@ -9,7 +9,7 @@
         "damage": 8,
         "speed": 3,
         "cost": 5,
-        "spritepath": "/assets/spells/bolt_earth.png"
+        "spritepath": "/assets/elements/projectiles/rock_projectile.png"
       },
       {
         "id": 1,
