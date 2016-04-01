@@ -76,7 +76,7 @@ var frameTime = 0,
     thisLoop;
 
 var biasStrength = 0.003;
-
+var spellIconMap;
 function gameStart() {
     multi = new Multiplayer();
     player = new Player(WIDTH / 2 - 25, 450, 150, 232)
@@ -208,7 +208,7 @@ function gameStart() {
         align: 'center'
     });
     skillDisplay.x = (WIDTH / 2) - (skillDisplay.width / 2);
-    skillDisplay.y = 50;
+    skillDisplay.y = 150;
     stage.addChild(skillDisplay);
 
 }
