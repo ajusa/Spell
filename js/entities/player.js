@@ -43,7 +43,7 @@ function Player(xval, yval, width, height, id) {
         for (var i = Spells.length - 1; i >= 0; i--) {
             if (isCollide(Spells[i], this)) {
                 this.health = this.health - Spells[i].damage;
-                Spells[i].kill(i);
+                multi.spellRemove(Spells[i].id)
             };
         };
 
@@ -91,7 +91,7 @@ function Player(xval, yval, width, height, id) {
                 x = this.x - this.width / 2;
             }
             y = this.y + this.height / 2;
-            Spells.push(new Spell(x, y, speed, spellID));
+            multi.spell(x, y, speed, spellID);
         }
     }
 

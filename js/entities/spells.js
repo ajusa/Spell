@@ -1,9 +1,10 @@
-function Spell(xval, yval, spd, spell) {
+function Spell(xval, yval, spd, spell, id) {
     this.x = xval;
     this.y = yval;
     this.width = 24; // 20
     this.height = 24; // 10
     this.speed = spd;
+    this.id = id;
     this.sprite = new PIXI.Sprite.fromImage(spelldata.spells[spell].spritepath);
     stage.addChild(this.sprite);
 
@@ -15,8 +16,9 @@ function Spell(xval, yval, spd, spell) {
         this.sprite.y = this.y;
     }
 
-    this.kill = function(i) {
-        Spells.splice(i, 1);
+    this.kill = function() {
         stage.removeChild(this.sprite);
+        
+        Spells.splice(i, 1);
     }
 }

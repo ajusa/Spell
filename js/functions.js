@@ -78,7 +78,3 @@ function getSpell(inS) {
     }
 }
 
-function fillRect(color, x, y, width, height) {
-    ctx.fillStyle = color;
-    ctx.fillRect(x, y, width, height);
-}
