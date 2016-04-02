@@ -10,7 +10,7 @@ function Spell(xval, yval, spd, spell, id) {
 
     this.update = function(i) {
         if(this.x > WIDTH || this.x < 0)
-            Spells[i].kill(i);
+            multi.spellRemove(Spells[i].id)
         this.x += this.speed;
         this.sprite.x = this.x;
         this.sprite.y = this.y;
@@ -18,7 +18,6 @@ function Spell(xval, yval, spd, spell, id) {
 
     this.kill = function() {
         stage.removeChild(this.sprite);
-        
         Spells.splice(i, 1);
     }
 }
