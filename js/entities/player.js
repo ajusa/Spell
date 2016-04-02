@@ -43,7 +43,7 @@ function Player(xval, yval, width, height, id) {
         for (var i = Spells.length - 1; i >= 0; i--) {
             if (isCollide(Spells[i], this)) {
                 this.health = this.health - Spells[i].damage;
-                Spells[i].kill(i);
+                multi.spellRemove(Spells[i].id)
             };
         };
 
@@ -77,7 +77,7 @@ function Player(xval, yval, width, height, id) {
             this.sprite.scale.x = -1;
         }
     }
-
+    
     this.shoot = function() {
         if (this.mana > 0) {
             this.mana--;
@@ -85,13 +85,13 @@ function Player(xval, yval, width, height, id) {
             x = 0;
             if (this.right) {
                 speed = Math.abs(this.speed);
-                x = this.x + this.width + 20;
+                x = this.x + this.width + 20; // Changing this breaks something?
             } else {
                 speed = -Math.abs(this.speed);
-                x = this.x - 40;
+                x = this.x - this.width / 2;
             }
             y = this.y + this.height / 2;
-            Spells.push(new Spell(x, y, speed, spellID));
+            multi.spell(x, y, speed, spellID);
         }
     }
 
