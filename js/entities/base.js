@@ -1,3 +1,4 @@
 function Base() {
-	// body...
+	this.x;
+	this.y;
 }
