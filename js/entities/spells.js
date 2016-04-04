@@ -7,7 +7,6 @@ function Spell(xval, yval, spd, spell, id) {
     this.id = id;
     this.sprite = new PIXI.Sprite.fromImage(spelldata.spells[spell].spritepath);
     stage.addChild(this.sprite);
-
     this.update = function(i) {
         if(this.x > WIDTH || this.x < 0)
             multi.spellRemove(Spells[i].id)

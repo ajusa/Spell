@@ -17,6 +17,7 @@ splashscreen.on('touchstart', gameStart).on('mousedown', gameStart)
 // include the web-font loader script
 /* jshint ignore:start */
 
+
 function gameStart() {
     multi = new Multiplayer();
     player = new Player(WIDTH / 2 - 25, 450, 150, 232)
