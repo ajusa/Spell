@@ -18,7 +18,9 @@ splashscreen.on('touchstart', gameStart).on('mousedown', gameStart)
 /* jshint ignore:start */
 
 
+
 function gameStart() {
+	setInterval(function() { publish("update") }, 50);
     multi = new Multiplayer();
     player = new Player(WIDTH / 2 - 25, 450, 150, 232)
     //setInterval(function(){player.interpolate()}, 20); This don't work right now. Pls fix
@@ -73,7 +75,7 @@ function gameStart() {
     fps.x = 2;
     fps.y = HEIGHT - fps.height;
     stage.addChild(fps);
-    setInterval(function () {
+    setInterval(function() {
         var _fps = Math.round(1000 / frameTime);
         fps.text = "FPS: " + _fps;
         if (_fps < 60) {
@@ -82,8 +84,7 @@ function gameStart() {
                 fill: 'red',
                 align: 'left'
             };
-        }
-        else {
+        } else {
             fps.style = {
                 font: '18px VT323',
                 fill: '#34495e',
@@ -116,13 +117,8 @@ function gameStart() {
     skillDisplay.x = (WIDTH / 2) - (skillDisplay.width / 2);
     skillDisplay.y = 150;
     stage.addChild(skillDisplay);
-
 }
-
-function gameLoop() {
-    if (screens[1]) {
-        player.update();
-        multi.update(player);
+subscribe("update", function() {
         for (var i = Players.length - 1; i >= 0; i--) {
             Players[i].update()
             if (Players[i].id == multi.id) {
@@ -162,10 +158,9 @@ function gameLoop() {
             biasMeters[i].value = player.bias[i];
             biasMeters[i].sprite.x = WIDTH - biasMeters[i].sprite.width;
         }
-        
+
         if (player.skillpoints > 0) {
-            skillDisplay.text = "Skill Points: " + player.skillpoints.toString()
-                                + "\n1. Health\n2. Mana\n3. EXP";
+            skillDisplay.text = "Skill Points: " + player.skillpoints.toString() + "\n1. Health\n2. Mana\n3. EXP";
         } else {
             skillDisplay.text = "";
         }
