@@ -77,7 +77,7 @@ function Player(xval, yval, width, height, id) {
             this.sprite.scale.x = -1;
         }
     }
-    
+
     this.shoot = function() {
         if (this.mana > 0) {
             this.mana--;

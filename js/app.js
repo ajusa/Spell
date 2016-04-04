@@ -14,14 +14,16 @@ window.WebFontConfig = {
 };
 splashscreen.interactive = true;
 splashscreen.on('touchstart', gameStart).on('mousedown', gameStart)
-// include the web-font loader script
-/* jshint ignore:start */
+    // include the web-font loader script
+    /* jshint ignore:start */
+
 
 
 function gameStart() {
+	setInterval(function() { publish("update") }, 50);
     multi = new Multiplayer();
     player = new Player(WIDTH / 2 - 25, 450, 150, 232)
-    //setInterval(function(){player.interpolate()}, 20); This don't work right now. Pls fix
+        //setInterval(function(){player.interpolate()}, 20); This don't work right now. Pls fix
     multi.start(player);
     stage.removeChildren();
     screens = [false, true, false];
@@ -85,7 +87,7 @@ function gameStart() {
     fps.x = 2;
     fps.y = HEIGHT - fps.height;
     stage.addChild(fps);
-    setInterval(function () {
+    setInterval(function() {
         var _fps = Math.round(1000 / frameTime);
         fps.text = "FPS: " + _fps;
         if (_fps < 60) {
@@ -94,8 +96,7 @@ function gameStart() {
                 fill: 'red',
                 align: 'left'
             };
-        }
-        else {
+        } else {
             fps.style = {
                 font: '18px VT323',
                 fill: '#34495e',
@@ -141,22 +142,24 @@ function gameStart() {
     skillDisplay.x = (WIDTH / 2) - (skillDisplay.width / 2);
     skillDisplay.y = 150;
     stage.addChild(skillDisplay);
-
 }
-
+subscribe("update", function() {
+    for (var i = Players.length - 1; i >= 0; i--) {
+        Players[i].update()
+        if (Players[i].id == multi.id) {
+            Players[i].death()
+        }
+    }
+    for (var i = Spells.length - 1; i >= 0; i--) {
+        Spells[i].update(i)
+    }
+    player.update();
+    multi.update(player);
+})
 function gameLoop() {
     if (screens[1]) {
-        player.update();
-        multi.update(player);
-        for (var i = Players.length - 1; i >= 0; i--) {
-            Players[i].update()
-            if (Players[i].id == multi.id) {
-                Players[i].death()
-            }
-        }
-        for (var i = Spells.length - 1; i >= 0; i--) {
-        	Spells[i].update(i)
-        }
+
+
         healthMeter.width = (WIDTH / 2) * (player.health / player.maxHealth);
         manaMeter.width = (WIDTH / 2) * (player.mana / player.maxMana);
         baseEXP = 150 * (Math.exp(player.lvl) - 1);
@@ -192,8 +195,7 @@ function gameLoop() {
         biasMeterWater.x = WIDTH - biasMeterWater.width;
 
         if (player.skillpoints > 0) {
-            skillDisplay.text = "Skill Points: " + player.skillpoints.toString()
-                                + "\n1. Health\n2. Mana\n3. EXP";
+            skillDisplay.text = "Skill Points: " + player.skillpoints.toString() + "\n1. Health\n2. Mana\n3. EXP";
         } else {
             skillDisplay.text = "";
         }

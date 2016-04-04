@@ -18,5 +18,4 @@ function playermulti(x, y, dx, dy, id) {
     this.death = function() {
         stage.removeChild(this.sprite);
     }
-
 }
