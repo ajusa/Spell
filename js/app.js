@@ -35,23 +35,11 @@ function gameStart() {
     stage.addChild(bg);
     stage.addChild(player.sprite);
 
-    healthMeter = new PIXI.Sprite(healthBar);
-    healthMeter.x = 0;
-    healthMeter.y = 10;
-    healthMeter.height = 15;
-    stage.addChild(healthMeter);
+    healthMeter = new Bar(0, 10, WIDTH / 2, 15, healthBar, player.health, player.maxHealth);
+    manaMeter = new Bar(WIDTH / 2, 10, WIDTH / 2, 15, manaBar, player.mana, player.maxMana);
+    expMeter = new Bar(0, 0, WIDTH, 10, expBar, player.exp, player.exp);
+    statMeters = [healthMeter, manaMeter, expMeter];
 
-    manaMeter = new PIXI.Sprite(manaBar);
-    manaMeter.x = WIDTH / 2;
-    manaMeter.y = 10;
-    manaMeter.height = 15;
-    stage.addChild(manaMeter);
-
-    expMeter = new PIXI.Sprite(expBar);
-    expMeter.x = 0;
-    expMeter.y = 0;
-    expMeter.height = 10;
-    stage.addChild(expMeter);
     expText = new PIXI.Text("Level 0", {
         font: '24px VT323',
         fill: 0xEEEEEE,
@@ -113,25 +101,12 @@ function gameStart() {
     biasText.y = 30;
     stage.addChild(biasText);
 
-    biasMeterEarth = new PIXI.Sprite(earthBar);
-    biasMeterEarth.y = 55;
-    biasMeterEarth.height = 5;
-    stage.addChild(biasMeterEarth);
-
-    biasMeterFire = new PIXI.Sprite(fireBar);
-    biasMeterFire.y = 60;
-    biasMeterFire.height = 5;
-    stage.addChild(biasMeterFire);
-
-    biasMeterAir = new PIXI.Sprite(airBar);
-    biasMeterAir.y = 65;
-    biasMeterAir.height = 5;
-    stage.addChild(biasMeterAir);
-
-    biasMeterWater = new PIXI.Sprite(waterBar);
-    biasMeterWater.y = 70;
-    biasMeterWater.height = 5;
-    stage.addChild(biasMeterWater);
+    var biasWidth = 200;
+    biasMeterEarth = new Bar(0, 55, biasWidth, 5, earthBar, 0.25, 1);
+    biasMeterFire = new Bar(0, 60, biasWidth, 5, fireBar, 0.25, 1);
+    biasMeterAir = new Bar(0, 65, biasWidth, 5, airBar, 0.25, 1);
+    biasMeterWater = new Bar(0, 70, biasWidth, 5, waterBar, 0.25, 1);
+    biasMeters = [biasMeterEarth, biasMeterFire, biasMeterAir, biasMeterWater];
 
     skillDisplay = new PIXI.Text("Skill Points: 0", {
         font: '36px VT323',
@@ -157,12 +132,14 @@ function gameLoop() {
         for (var i = Spells.length - 1; i >= 0; i--) {
         	Spells[i].update(i)
         }
-        healthMeter.width = (WIDTH / 2) * (player.health / player.maxHealth);
-        manaMeter.width = (WIDTH / 2) * (player.mana / player.maxMana);
+
+        healthMeter.value = player.health;
+        manaMeter.value = player.mana;
         baseEXP = 150 * (Math.exp(player.lvl) - 1);
         maxEXP = 150 * (Math.exp(player.lvl + 1) - 1) - baseEXP;
         currentEXP = player.exp - baseEXP;
-        expMeter.width = WIDTH * (currentEXP / maxEXP);
+        expMeter.max = maxEXP;
+        expMeter.value = currentEXP;
         expText.text = "Level " + player.lvl;
 
         spellCode = spellString.split(" ").join("");
@@ -181,16 +158,11 @@ function gameLoop() {
             }
         }
 
-        var biasWidth = 200;
-        biasMeterEarth.width = biasWidth * player.bias[0];
-        biasMeterEarth.x = WIDTH - biasMeterEarth.width;
-        biasMeterFire.width = biasWidth * player.bias[1];
-        biasMeterFire.x = WIDTH - biasMeterFire.width;
-        biasMeterAir.width = biasWidth * player.bias[2];
-        biasMeterAir.x = WIDTH - biasMeterAir.width;
-        biasMeterWater.width = biasWidth * player.bias[3];
-        biasMeterWater.x = WIDTH - biasMeterWater.width;
-
+        for (var i in biasMeters) {
+            biasMeters[i].value = player.bias[i];
+            biasMeters[i].sprite.x = WIDTH - biasMeters[i].sprite.width;
+        }
+        
         if (player.skillpoints > 0) {
             skillDisplay.text = "Skill Points: " + player.skillpoints.toString()
                                 + "\n1. Health\n2. Mana\n3. EXP";
