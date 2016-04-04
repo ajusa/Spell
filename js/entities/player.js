@@ -2,12 +2,12 @@ function Player(xval, yval, width, height, id) {
     //Note that all of those must be given some value on creation
     this.x = xval;
     this.y = yval;
-    this.lastx = xval; // for server interpolation
-    this.lasty = yval; // for server interpolation
+    this.lastx = xval;
+    this.lasty = yval;
+    this.rx = xval;
+    this.ry = yval;
     this.dx = 0;
     this.dy = 0;
-    this.sdx = 0; //for server interpolation
-    this.sdy = 0; // for server interpolation
     this.width = width;
     this.height = height;
     this.mana = 20;
@@ -32,14 +32,24 @@ function Player(xval, yval, width, height, id) {
     this.bias = [0.250, 0.250, 0.250, 0.250]; // earth fire air water
     this.skillpoints = 0;
     this.sprite.anchor = new PIXI.Point(0.5, 0);
-
+    this.tween = new Tweenable();
     var lastLvl = -1;
-
+    this.render = function() {
+        this.sprite.x = this.tween.get().x;
+        this.sprite.y = this.tween.get().y;
+    }
     this.update = function() {
+        this.tween.tween({
+            from: { x: this.lastx, y: this.lasty },
+            to: { x: this.x, y: this.y },
+            duration: 50,
+            easing: 'swingFromTo',
+        });
+        this.lastx = this.x;
+        this.lasty = this.y;
         if (player.health < 1) {
             player.die();
         }
-
         for (var i = Spells.length - 1; i >= 0; i--) {
             if (isCollide(Spells[i], this)) {
                 this.health = this.health - Spells[i].damage;
@@ -52,8 +62,8 @@ function Player(xval, yval, width, height, id) {
             this.g = true;
         }
 
-        this.x += this.dx
-        this.y -= this.dy;
+        this.x += this.dx * 2;
+        this.y -= this.dy * 2;
         if (!this.g) this.dy -= 0.5;
 
         if (this.x <= width / 2) {
@@ -62,8 +72,7 @@ function Player(xval, yval, width, height, id) {
         if (this.x >= WIDTH - width / 2) {
             this.x = WIDTH - width / 2;
         }
-        this.sprite.x = this.x;
-        this.sprite.y = this.y;
+
         this.exp += this.expRate;
         this.lvl = Math.floor(Math.log((this.exp / 150) + 1));
         if (lastLvl < this.lvl) {
@@ -131,16 +140,5 @@ function Player(xval, yval, width, height, id) {
             }
         }
         this.bias[keyID - 1] += totalC;
-    }
-    this.interpolate = function() {
-        if (this.lastx != this.x || this.lasty != this.y) {
-            this.sdx = calculateSlope(this.lastx, this.x)
-            this.sdy = calculateSlope(this.lasty, this.y)
-        } else {
-            this.sdx = 0;
-            this.sdy = 0;
-        }
-        this.lastx = this.x;
-        this.lasty = this.y;
     }
 }

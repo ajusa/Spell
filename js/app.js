@@ -20,7 +20,7 @@ splashscreen.on('touchstart', gameStart).on('mousedown', gameStart)
 
 
 function gameStart() {
-	setInterval(function() { publish("update") }, 50);
+    setInterval(function() { publish("update") }, 50);
     multi = new Multiplayer();
     player = new Player(WIDTH / 2 - 25, 450, 150, 232)
         //setInterval(function(){player.interpolate()}, 20); This don't work right now. Pls fix
@@ -156,10 +156,14 @@ subscribe("update", function() {
     player.update();
     multi.update(player);
 })
+
 function gameLoop() {
     if (screens[1]) {
+        player.render()
+        for (var i = Players.length - 1; i >= 0; i--) {
+            Players[i].render()
 
-
+        }
         healthMeter.width = (WIDTH / 2) * (player.health / player.maxHealth);
         manaMeter.width = (WIDTH / 2) * (player.mana / player.maxMana);
         baseEXP = 150 * (Math.exp(player.lvl) - 1);

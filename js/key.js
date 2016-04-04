@@ -18,34 +18,34 @@ onkeydown = onkeyup = function (e) {
             player.shoot();
             player.inShot = true;
             player.right = true;
-            player.dx = 5;
+            player.dx = 10;
             player.g = false;
             player.dy = 10;
         } else if (map[83] && !player.inShot && map[87] && map[65] && player.g) { //Shoot + Jump + Left
             player.shoot();
             player.inShot = true;
-            player.dx = -5;
+            player.dx = -10;
             player.right = false;
             player.dy = 10;
             player.g = false;
         } else if (map[83] && !player.inShot && map[68]) { //Shoot + Right
             player.shoot();
             player.inShot = true;
-            player.dx = 5;
+            player.dx = 10;
             player.right = true;
         } else if (map[83] && !player.inShot && map[65]) { //Shoot + Left
             player.shoot();
             player.inShot = true;
-            player.dx = -5;
+            player.dx = -10;
             player.right = false;
         } else if (map[87] && map[68] && player.g) { //Jump + Right
-            player.dx = 5;
+            player.dx = 10;
             player.right = true;
             player.dy = 10;
             player.g = false;
             player.inShot = false;
         } else if (map[87] && map[65] && player.g) { //Jump + Left
-            player.dx = -5;
+            player.dx = -10;
             player.right = false;
             player.dy = 10;
             player.g = false;
@@ -57,11 +57,11 @@ onkeydown = onkeyup = function (e) {
             player.g = false;
             player.dx = 0;
         } else if (map[68]) { //Right
-            player.dx = 5;
+            player.dx = 10;
             player.right = true;
             player.inShot = false;
         } else if (map[65]) { //Left
-            player.dx = -5;
+            player.dx = -10;
             player.right = false;
             player.inShot = false;
         } else if (map[87] && player.g) { //Jump
