@@ -128,11 +128,6 @@ subscribe("update", function() {
         for (var i = Spells.length - 1; i >= 0; i--) {
         	Spells[i].update(i)
         }
-<<<<<<< HEAD
-    }
-    for (var i = Spells.length - 1; i >= 0; i--) {
-        Spells[i].update(i)
-    }
     player.update();
     multi.update(player);
 })
@@ -144,13 +139,9 @@ function gameLoop() {
             Players[i].render()
 
         }
-        healthMeter.width = (WIDTH / 2) * (player.health / player.maxHealth);
-        manaMeter.width = (WIDTH / 2) * (player.mana / player.maxMana);
-=======
-
         healthMeter.value = player.health;
         manaMeter.value = player.mana;
->>>>>>> origin/master
+
         baseEXP = 150 * (Math.exp(player.lvl) - 1);
         maxEXP = 150 * (Math.exp(player.lvl + 1) - 1) - baseEXP;
         currentEXP = player.exp - baseEXP;
