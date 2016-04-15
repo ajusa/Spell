@@ -17,7 +17,7 @@ splashscreen.on('touchstart', gameStart).on('mousedown', gameStart)
 // include the web-font loader script
 /* jshint ignore:start */
 
-
+var healthMeter, manaMeter, expMeter, biasMeterEarth, biasMeterFire, biasMeterWater, biasMeterAir;
 
 function gameStart() {
     setInterval(function() { publish("update") }, 50);
@@ -36,11 +36,6 @@ function gameStart() {
     bg.cacheAsBitmap = true; // temporary for less resource usage
     stage.addChild(bg);
     stage.addChild(player.sprite);
-
-    healthMeter = new Bar(0, 10, WIDTH / 2, 15, healthBar, player.health, player.maxHealth);
-    manaMeter = new Bar(WIDTH / 2, 10, WIDTH / 2, 15, manaBar, player.mana, player.maxMana);
-    expMeter = new Bar(0, 0, WIDTH, 10, expBar, player.exp, player.exp);
-    statMeters = [healthMeter, manaMeter, expMeter];
 
     expText = new PIXI.Text("Level 0", {
         font: '24px VT323',
@@ -102,13 +97,6 @@ function gameStart() {
     biasText.y = 30;
     stage.addChild(biasText);
 
-    var biasWidth = 200;
-    biasMeterEarth = new Bar(0, 55, biasWidth, 5, earthBar, 0.25, 1);
-    biasMeterFire = new Bar(0, 60, biasWidth, 5, fireBar, 0.25, 1);
-    biasMeterAir = new Bar(0, 65, biasWidth, 5, airBar, 0.25, 1);
-    biasMeterWater = new Bar(0, 70, biasWidth, 5, waterBar, 0.25, 1);
-    biasMeters = [biasMeterEarth, biasMeterFire, biasMeterAir, biasMeterWater];
-
     skillDisplay = new PIXI.Text("Skill Points: 0", {
         font: '36px VT323',
         fill: 0xf39c12,
@@ -117,17 +105,30 @@ function gameStart() {
     skillDisplay.x = (WIDTH / 2) - (skillDisplay.width / 2);
     skillDisplay.y = 150;
     stage.addChild(skillDisplay);
+
+    healthMeter = new Bar(0, 10, WIDTH / 2, 15, healthBar, player.health, player.maxHealth);
+    manaMeter = new Bar(WIDTH / 2, 10, WIDTH / 2, 15, manaBar, player.mana, player.maxMana);
+    expMeter = new Bar(0, 0, WIDTH, 10, expBar, player.exp, player.exp);
+    statMeters = [healthMeter, manaMeter, expMeter];
+
+    var biasWidth = 200;
+    biasMeterEarth = new Bar(0, 55, biasWidth, 5, earthBar, 0.25, 1);
+    biasMeterFire = new Bar(0, 60, biasWidth, 5, fireBar, 0.25, 1);
+    biasMeterAir = new Bar(0, 65, biasWidth, 5, airBar, 0.25, 1);
+    biasMeterWater = new Bar(0, 70, biasWidth, 5, waterBar, 0.25, 1);
+    biasMeters = [biasMeterEarth, biasMeterFire, biasMeterAir, biasMeterWater];
+
 }
 subscribe("update", function() {
-        for (var i = Players.length - 1; i >= 0; i--) {
-            Players[i].update()
-            if (Players[i].id == multi.id) {
-                Players[i].death()
-            }
+    for (var i = Players.length - 1; i >= 0; i--) {
+        Players[i].update()
+        if (Players[i].id == multi.id) {
+            Players[i].death()
         }
-        for (var i = Spells.length - 1; i >= 0; i--) {
-        	Spells[i].update(i)
-        }
+    }
+    for (var i = Spells.length - 1; i >= 0; i--) {
+        Spells[i].update(i)
+    }
     player.update();
     multi.update(player);
 })
@@ -179,6 +180,12 @@ function gameLoop() {
     var thisFrameTime = (thisLoop = new Date) - lastLoop;
     frameTime += (thisFrameTime - frameTime) / filterStrength;
     lastLoop = thisLoop;
+
+    if (screens[1]) {
+        console.log("show ded screen");
+        return;
+    }
+
     requestAnimationFrame(gameLoop);
     renderer.render(stage);
 }

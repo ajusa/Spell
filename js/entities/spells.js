@@ -15,7 +15,7 @@ function Spell(xval, yval, spd, spell, id) {
         this.sprite.y = this.y;
     }
 
-    this.kill = function() {
+    this.kill = function(i) {
         stage.removeChild(this.sprite);
         Spells.splice(i, 1);
     }
