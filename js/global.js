@@ -15,7 +15,7 @@ marmottajax("js/spelldata.json").then(function(content) {
 });
 var player;
 var Players = [];
-var VERSION = "Alpha 0.1.5",
+var VERSION = "Alpha 0.1.6",
     WIDTH = 1280,
     HEIGHT = 720,
     GROUND = {
