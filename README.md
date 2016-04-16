@@ -1,5 +1,5 @@
 #Spell 0.1.3
-Play at: [ajusa.github.io/Spell](ajusa.github.io/Spell)
+Play at: [ajusa.github.io/Spell](http://ajusa.github.io/Spell)
 <hr>
 Tis a game, inspired by Magicka. That doesn't really do it justice. It is a MMO magic game, with some elements from RPG's. Currently, the game is in HEAVY development. Alpha 0.2 is expected to be released sometime in March. Till then, report issues and submit some ideas! Use the issues tab for both.
 #Contributors
