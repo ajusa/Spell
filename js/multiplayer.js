@@ -23,7 +23,8 @@ function Multiplayer(ip) {
                 dy: client.dy
             }
             this.item.set(obj);
-        } else if (player.dead) {
+        }
+        if (player.dead) {
             this.item.remove()
         }
     }

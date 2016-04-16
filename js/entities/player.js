@@ -103,6 +103,7 @@ function Player(xval, yval, width, height, id) {
         screens[1] = false;
         screens[2] = true;
         this.dead = true;
+        multi.item.remove();
         //Setting to gameover screen
         
 
