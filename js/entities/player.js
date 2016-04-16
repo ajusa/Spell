@@ -34,13 +34,6 @@ function Player(xval, yval, width, height, id) {
             player.die();
         }
 
-        for (var i = Spells.length - 1; i >= 0; i--) {
-            if (isCollide(Spells[i], this)) {
-                this.health = this.health - Spells[i].damage;
-                multi.spellRemove(Spells[i].id)
-            };
-        };
-
         if (isCollide(GROUND, this) && (this.dy < 0)) { //&& !this.g) {
             this.dy = 0;
             this.g = true;
@@ -73,8 +66,8 @@ function Player(xval, yval, width, height, id) {
     }
     
     this.shoot = function() {
-        if (this.mana > 0) {
-            this.mana--;
+        if (this.mana >= spelldata.spells[spellID].cost) {
+            this.mana = this.mana - spelldata.spells[spellID].cost;
             speed = 0;
             x = 0;
             if (this.right) {
