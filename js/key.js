@@ -20,13 +20,13 @@ onkeydown = onkeyup = function (e) {
             player.right = true;
             player.dx = 5;
             player.g = false;
-            player.dy = 10;
+            player.dy = 15;
         } else if (map[83] && !player.inShot && map[87] && map[65] && player.g) { //Shoot + Jump + Left
             player.shoot();
             player.inShot = true;
             player.dx = -5;
             player.right = false;
-            player.dy = 10;
+            player.dy = 15;
             player.g = false;
         } else if (map[83] && !player.inShot && map[68]) { //Shoot + Right
             player.shoot();
@@ -41,19 +41,19 @@ onkeydown = onkeyup = function (e) {
         } else if (map[87] && map[68] && player.g) { //Jump + Right
             player.dx = 5;
             player.right = true;
-            player.dy = 10;
+            player.dy = 15;
             player.g = false;
             player.inShot = false;
         } else if (map[87] && map[65] && player.g) { //Jump + Left
             player.dx = -5;
             player.right = false;
-            player.dy = 10;
+            player.dy = 15;
             player.g = false;
             player.inShot = false;
         } else if (map[83] && !player.inShot && map[87] && player.g) { //Shoot + Jump
             player.shoot();
             player.inShot = true;
-            player.dy = 10;
+            player.dy = 15;
             player.g = false;
             player.dx = 0;
         } else if (map[68]) { //Right
@@ -65,7 +65,7 @@ onkeydown = onkeyup = function (e) {
             player.right = false;
             player.inShot = false;
         } else if (map[87] && player.g) { //Jump
-            player.dy = 10;
+            player.dy = 15;
             player.g = false;
             player.dx = 0;
             player.inShot = false;

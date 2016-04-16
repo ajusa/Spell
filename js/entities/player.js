@@ -32,7 +32,7 @@ function Player(xval, yval, width, height, id) {
     this.bias = [0.250, 0.250, 0.250, 0.250]; // earth fire air water
     this.skillpoints = 0;
     this.sprite.anchor = new PIXI.Point(0.5, 0);
-
+    this.dead = false;
     var lastLvl = -1;
 
     this.update = function() {
@@ -91,7 +91,7 @@ function Player(xval, yval, width, height, id) {
                 x = this.x - this.width / 2;
             }
             y = this.y + this.height / 2;
-            multi.spell(x, y, speed, spellID);
+            multi.spell(x, y, spellID, this.sprite.scale.x);
         }
     }
 
@@ -100,9 +100,11 @@ function Player(xval, yval, width, height, id) {
     }
 
     this.die = function() {
-        //Setting to gameover screen
         screens[1] = false;
         screens[2] = true;
+        this.dead = true;
+        multi.item.remove();
+        //Setting to gameover screen
     }
 
     this.regen = function() {

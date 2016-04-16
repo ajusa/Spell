@@ -10,7 +10,6 @@ function Multiplayer(ip) {
             y: client.y,
         }
         this.item = playerRef.push()
-        this.spells = spellRef.push()
         this.item.set(obj);
         this.id = this.item.key()
         this.item.onDisconnect().remove()
@@ -24,36 +23,31 @@ function Multiplayer(ip) {
                 dy: client.dy
             }
             this.item.set(obj);
-        } else {
-            obj = {
-                x: client.x,
-                y: client.y,
-                dx: 0,
-                dy: 0
-            }
-            this.item.set(obj);
+        }
+        if (player.dead) {
+            this.item.remove()
         }
     }
-    this.spell = function(x, y, speed, spellID) {
+    this.spell = function(x, y, spellID, sign) {
         obj = {
             x: x,
             y: y,
-            speed: speed,
-            spellID: spellID
+            spellID: spellID,
+            sign: sign
         }
-        this.spells.set(obj)
+        spellRef.push(obj)
     }
     this.spellRemove = function(id) {
         spellRef.child(id).remove()
     }
     spellRef.on("child_added", function(snapshot) {
-        Spells.push(new Spell(snapshot.val().x, snapshot.val().y, snapshot.val().speed, snapshot.val().spellID, snapshot.key()));
+        Spells.push(new Spell(snapshot.val().x, snapshot.val().y, snapshot.val().spellID, snapshot.key(), snapshot.val().sign));
     });
     spellRef.on('child_removed', function(snapshot) {
         for (var i = Spells.length - 1; i >= 0; i--) {
             if (Spells[i].id == snapshot.key()) {
                 Spells[i].kill(i)
-                
+
             }
         }
     });
