@@ -105,8 +105,6 @@ function Player(xval, yval, width, height, id) {
         this.dead = true;
         multi.item.remove();
         //Setting to gameover screen
-        
-
     }
 
     this.regen = function() {
