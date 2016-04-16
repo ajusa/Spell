@@ -72,7 +72,7 @@ function Player(xval, yval, width, height, id) {
             x = 0;
             if (this.right) {
                 speed = Math.abs(this.speed);
-                x = this.x + this.width + 20; // Changing this breaks something?
+                x = this.sprite.x + this.width + 1; // Changing this breaks something?
             } else {
                 speed = -Math.abs(this.speed);
                 x = this.x - this.width / 2;
@@ -102,7 +102,6 @@ function Player(xval, yval, width, height, id) {
     this.levelUp = function() {
         // add skill buttons to stage
         // animate levelup somehow
-
         this.skillpoints += 1;
     }
 

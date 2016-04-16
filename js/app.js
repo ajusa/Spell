@@ -19,7 +19,7 @@ splashscreen.on('touchstart', gameStart).on('mousedown', gameStart)
 
 function gameStart() {
     multi = new Multiplayer();
-    player = new Player(WIDTH / 2 - 25, 450, 150, 232)
+    player = new Player(WIDTH / 2 - 25, 450, 150, 238)
         //setInterval(function(){player.interpolate()}, 20); This don't work right now. Pls fix
     multi.start(player);
     stage.removeChildren();
