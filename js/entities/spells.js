@@ -1,12 +1,14 @@
 function Spell(xval, yval, spell, id, sign) {
     this.x = xval;
     this.y = yval;
-    this.width = 24; // 20
-    this.height = 24; // 10
+    this.width = 32; // This is the size of the image
+    this.height = 32; // 10
     this.speed = sign * spelldata.spells[spell].speed;
     this.id = id;
     this.damage = spelldata.spells[spell].damage;
     this.sprite = new PIXI.Sprite.fromImage(spelldata.spells[spell].spritepath);
+    this.sprite.width = 32;
+    this.sprite.height = 32;
     this.distance = spelldata.spells[spell].distance;
     this.distanceSoFar;
     stage.addChild(this.sprite);
