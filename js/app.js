@@ -145,6 +145,9 @@ function gameStart() {
 
 function gameLoop() {
     if (screens[1]) {
+        for (var i = Spells.length - 1; i >= 0; i--) {
+            Spells[i].update(i)
+        }
         player.update();
         multi.update(player);
         for (var i = Players.length - 1; i >= 0; i--) {
@@ -153,9 +156,7 @@ function gameLoop() {
                 Players[i].death()
             }
         }
-        for (var i = Spells.length - 1; i >= 0; i--) {
-        	Spells[i].update(i)
-        }
+        
         healthMeter.width = (WIDTH / 2) * (player.health / player.maxHealth);
         manaMeter.width = (WIDTH / 2) * (player.mana / player.maxMana);
         baseEXP = 150 * (Math.exp(player.lvl) - 1);

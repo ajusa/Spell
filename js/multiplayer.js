@@ -41,7 +41,7 @@ function Multiplayer(ip) {
             speed: speed,
             spellID: spellID
         }
-        this.spells.set(obj)
+        spellRef.push(obj)
     }
     this.spellRemove = function(id) {
         spellRef.child(id).remove()
