@@ -9,6 +9,7 @@
         "damage": 8,
         "speed": 3,
         "cost": 5,
+        "distance" : 100,
         "spritepath": "assets/elements/projectiles/0.png"
       },
       {
@@ -109,6 +110,7 @@
         "damage": 4,
         "speed": 11,
         "cost": 5,
+        "distance" : 250,
         "spritepath": "assets/elements/projectiles/10.png"
       },
       {
@@ -169,6 +171,7 @@
         "damage": 2,
         "speed": 15,
         "cost": 5,
+        "distance" : 300,
         "spritepath": "assets/elements/projectiles/16.png"
       },
       {
@@ -199,6 +202,7 @@
         "damage": 6,
         "speed": 7,
         "cost": 5,
+        "distance" : 300,
         "spritepath": "assets/elements/projectiles/19.png"
       }
     ]
