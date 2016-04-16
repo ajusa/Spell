@@ -26,13 +26,15 @@ function gameStart() {
     world.addChild(stage);
     screens = [false, true, false];
     bg = new PIXI.Graphics();
-    bg.beginFill('0x34495e').drawRect(-10000, 0, 10000, HEIGHT).endFill();
+    bg.beginFill('0x34495e').drawRect(-5000, 0, 10000, HEIGHT).endFill();
     bg.beginFill('0x95a5a6').drawRect(GROUND.x, GROUND.y, GROUND.width, GROUND.height).endFill();
+    stage.addChild(bg);
+    bg = new PIXI.Graphics();
     bg.beginFill('0x660000').drawRect(0, 10, WIDTH / 2, 15).endFill();
     bg.beginFill('0x141452').drawRect(WIDTH / 2, 10, WIDTH / 2, 15).endFill();
     bg.beginFill('0x006600').drawRect(0, 0, WIDTH, 10).endFill();
     bg.cacheAsBitmap = true; // temporary for less resource usage
-    stage.addChild(bg);
+    world.addChild(bg);
     stage.addChild(player.sprite);
 
     healthMeter = new PIXI.Sprite(healthBar);
@@ -196,6 +198,10 @@ function gameLoop() {
         } else {
             skillDisplay.text = "";
         }
+       // if (Math.abs(player.x - camera.x) > 1200) {
+            camera.x = player.x;
+        //}
+        
     };
     if (screens[2]) {
         //Death Screen

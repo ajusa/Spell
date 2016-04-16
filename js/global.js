@@ -19,9 +19,9 @@ var VERSION = "Alpha 0.1.6",
     WIDTH = 1280,
     HEIGHT = 720,
     GROUND = {
-        x: 0,
+        x: -5000,
         y: HEIGHT - 50,
-        width: WIDTH,
+        width: 10000,
         height: 50
     };
 var Spells = [],
