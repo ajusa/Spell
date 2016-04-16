@@ -22,10 +22,11 @@ function gameStart() {
     player = new Player(WIDTH / 2 - 25, 450, 150, 238)
         //setInterval(function(){player.interpolate()}, 20); This don't work right now. Pls fix
     multi.start(player);
-    stage.removeChildren();
+    world.removeChildren();
+    world.addChild(stage);
     screens = [false, true, false];
     bg = new PIXI.Graphics();
-    bg.beginFill('0x34495e').drawRect(0, 0, WIDTH, HEIGHT).endFill();
+    bg.beginFill('0x34495e').drawRect(-10000, 0, 10000, HEIGHT).endFill();
     bg.beginFill('0x95a5a6').drawRect(GROUND.x, GROUND.y, GROUND.width, GROUND.height).endFill();
     bg.beginFill('0x660000').drawRect(0, 10, WIDTH / 2, 15).endFill();
     bg.beginFill('0x141452').drawRect(WIDTH / 2, 10, WIDTH / 2, 15).endFill();
@@ -38,19 +39,19 @@ function gameStart() {
     healthMeter.x = 0;
     healthMeter.y = 10;
     healthMeter.height = 15;
-    stage.addChild(healthMeter);
+    world.addChild(healthMeter);
 
     manaMeter = new PIXI.Sprite(manaBar);
     manaMeter.x = WIDTH / 2;
     manaMeter.y = 10;
     manaMeter.height = 15;
-    stage.addChild(manaMeter);
+    world.addChild(manaMeter);
 
     expMeter = new PIXI.Sprite(expBar);
     expMeter.x = 0;
     expMeter.y = 0;
     expMeter.height = 10;
-    stage.addChild(expMeter);
+    world.addChild(expMeter);
     expText = new PIXI.Text("Level 0", {
         font: '24px VT323',
         fill: 0xEEEEEE,
@@ -58,17 +59,17 @@ function gameStart() {
     });
     expText.x = 5;
     expText.y = 30;
-    stage.addChild(expText);
+    world.addChild(expText);
 
     icon1 = new PIXI.Sprite();
     icon1.x = 539;
-    stage.addChild(icon1);
+    world.addChild(icon1);
     icon2 = new PIXI.Sprite();
     icon2.x = 608;
-    stage.addChild(icon2);
+    world.addChild(icon2);
     icon3 = new PIXI.Sprite();
     icon3.x = 677;
-    stage.addChild(icon3);
+    world.addChild(icon3);
     icons = [icon1, icon2, icon3];
     for (i in icons) {
         icons[i].y = 40;
@@ -83,7 +84,7 @@ function gameStart() {
     });
     fps.x = 2;
     fps.y = HEIGHT - fps.height;
-    stage.addChild(fps);
+    world.addChild(fps);
     setInterval(function() {
         var _fps = Math.round(1000 / frameTime);
         fps.text = "FPS: " + _fps;
@@ -109,27 +110,27 @@ function gameStart() {
     });
     biasText.x = WIDTH - biasText.width - 5;
     biasText.y = 30;
-    stage.addChild(biasText);
+    world.addChild(biasText);
 
     biasMeterEarth = new PIXI.Sprite(earthBar);
     biasMeterEarth.y = 55;
     biasMeterEarth.height = 5;
-    stage.addChild(biasMeterEarth);
+    world.addChild(biasMeterEarth);
 
     biasMeterFire = new PIXI.Sprite(fireBar);
     biasMeterFire.y = 60;
     biasMeterFire.height = 5;
-    stage.addChild(biasMeterFire);
+    world.addChild(biasMeterFire);
 
     biasMeterAir = new PIXI.Sprite(airBar);
     biasMeterAir.y = 65;
     biasMeterAir.height = 5;
-    stage.addChild(biasMeterAir);
+    world.addChild(biasMeterAir);
 
     biasMeterWater = new PIXI.Sprite(waterBar);
     biasMeterWater.y = 70;
     biasMeterWater.height = 5;
-    stage.addChild(biasMeterWater);
+    world.addChild(biasMeterWater);
 
     skillDisplay = new PIXI.Text("Skill Points: 0", {
         font: '36px VT323',
@@ -138,7 +139,7 @@ function gameStart() {
     });
     skillDisplay.x = (WIDTH / 2) - (skillDisplay.width / 2);
     skillDisplay.y = 150;
-    stage.addChild(skillDisplay);
+    world.addChild(skillDisplay);
 
 }
 
@@ -203,5 +204,6 @@ function gameLoop() {
     frameTime += (thisFrameTime - frameTime) / filterStrength;
     lastLoop = thisLoop;
     requestAnimationFrame(gameLoop);
-    renderer.render(stage);
+    stage.update();
+    renderer.render(world);
 }

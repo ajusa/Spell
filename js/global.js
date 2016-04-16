@@ -28,8 +28,17 @@ var Spells = [],
     screens = [true, false, false],
     Speed = 6;
 var spellTimer = 0;
-var stage = new PIXI.Container();
+var world = new PIXI.Container();
 var renderer = PIXI.autoDetectRenderer(WIDTH, HEIGHT);
+var stage = new pixicam.World({
+    screenWidth: WIDTH,
+    screenHeight: HEIGHT,
+    width: 50000,
+    height: 720,
+    x: 0
+  });
+var camera = stage.camera;
+
 var container = document.createElement('div');
 var text = new PIXI.Text(VERSION, {
     font: '48px VT323',
@@ -44,8 +53,8 @@ document.body.appendChild(container);
 container.appendChild(renderer.view);
 renderer.view.style.cssText = "border: 1px solid black; width: " + 64 + "%; height: " + 36 + "%;";
 container.style.cssText = "text-align: center;";
-stage.addChild(splashscreen);
-stage.addChild(text);
+world.addChild(splashscreen);
+world.addChild(text);
 setInterval(function() {
     if (screens[1]) player.regen();
 }, 1000);
