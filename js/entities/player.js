@@ -2,12 +2,8 @@ function Player(xval, yval, width, height, id) {
     //Note that all of those must be given some value on creation
     this.x = xval;
     this.y = yval;
-    this.lastx = xval; // for server interpolation
-    this.lasty = yval; // for server interpolation
     this.dx = 0;
     this.dy = 0;
-    this.sdx = 0; //for server interpolation
-    this.sdy = 0; // for server interpolation
     this.width = width;
     this.height = height;
     this.mana = 20;
@@ -19,8 +15,6 @@ function Player(xval, yval, width, height, id) {
     this.inShot = false;
     this.g = false; //State variable for when player is touching the ground.
     this.right = true;
-    this.speed = 6; //Changed from 4 so you can't hit yourself. Thanks - Arham
-    this.id = id;
     this.color = 0xe67e22;
     this.mps = 1;
     this.sprite = new PIXI.Sprite(playerImg);
@@ -133,16 +127,5 @@ function Player(xval, yval, width, height, id) {
             }
         }
         this.bias[keyID - 1] += totalC;
-    }
-    this.interpolate = function() {
-        if (this.lastx != this.x || this.lasty != this.y) {
-            this.sdx = calculateSlope(this.lastx, this.x)
-            this.sdy = calculateSlope(this.lasty, this.y)
-        } else {
-            this.sdx = 0;
-            this.sdy = 0;
-        }
-        this.lastx = this.x;
-        this.lasty = this.y;
     }
 }

@@ -11,6 +11,10 @@ function Spell(xval, yval, spell, id, sign) {
     this.update = function(i) {
         if(this.x > WIDTH || this.x < 0)
             multi.spellRemove(Spells[i].id)
+        if (isCollide(this, player)) {
+                player.health = player.health - this.damage;
+                multi.spellRemove(this.id)
+            };
         this.x += this.speed;
         this.sprite.x = this.x;
         this.sprite.y = this.y;
