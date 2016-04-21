@@ -42,13 +42,6 @@ function Player(xval, yval, width, height, id) {
         this.x += this.dx
         this.y -= this.dy;
         if (!this.g) this.dy -= 0.5;
-
-        if (this.x <= width / 2) {
-            this.x = width / 2;
-        }
-        if (this.x >= WIDTH - width / 2) {
-            this.x = WIDTH - width / 2;
-        }
         this.sprite.x = this.x;
         this.sprite.y = this.y;
         this.exp += this.expRate;
