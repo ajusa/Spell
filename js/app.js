@@ -35,7 +35,7 @@ function gameStart() {
     bg.beginFill('0x95a5a6').drawRect(100, 100, 500, GROUND.height).endFill();
     stage.addChild(bg)
     stage.addChild(player.sprite);
-
+    
     healthMeter = new PIXI.Sprite(healthBar);
     bg = new PIXI.Graphics();
     bg.beginFill('0x660000').drawRect(0, 10, WIDTH / 2, 15).endFill();
