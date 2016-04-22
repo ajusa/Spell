@@ -4,7 +4,32 @@ var spellID = 0;
 var keyUp = [];
 var map = [];
 var lastSkillKey = 0;
-onkeydown = onkeyup = function (e) {
+var listener = new window.keypress.Listener(); //for keys
+listener.register_combo({
+    "keys": "a",
+    "on_keydown": function() { player.moveLeft() },
+    "on_keyup": function() { player.dx = 0 },
+});
+listener.register_combo({
+    "keys": "s",
+    "on_keydown": function() { player.moveDown() },
+    "on_keyup": function() { player.dy = 0 },
+});
+listener.register_combo({
+    "keys": "d",
+    "on_keydown": function() { player.moveRight() },
+    "on_keyup": function() { player.dx = 0 },
+});
+listener.register_combo({
+    "keys": "w",
+    "on_keydown": function() { player.moveUp() },
+    "on_keyup": function() { player.dy = 0 },
+});
+listener.register_combo({
+    "keys": "space",
+    "on_keydown": function() { console.log("Shoot")},
+});
+onkeydown = onkeyup = function(e) {
     e = e || event; //IE
     map[e.keyCode] = e.type == 'keydown';
     keyUp[e.keyCode] = e.type == 'keyup';
@@ -13,74 +38,10 @@ onkeydown = onkeyup = function (e) {
             screens[0] = false;
             screens[1] = true;
         }
-    } else {
-        if (map[83] && !player.inShot && map[87] && map[68] && player.g) { //Shoot + Jump + Right
-            player.shoot();
-            player.inShot = true;
-            player.right = true;
-            player.dx = 5;
-            player.g = false;
-            player.dy = 15;
-        } else if (map[83] && !player.inShot && map[87] && map[65] && player.g) { //Shoot + Jump + Left
-            player.shoot();
-            player.inShot = true;
-            player.dx = -5;
-            player.right = false;
-            player.dy = 15;
-            player.g = false;
-        } else if (map[83] && !player.inShot && map[68]) { //Shoot + Right
-            player.shoot();
-            player.inShot = true;
-            player.dx = 5;
-            player.right = true;
-        } else if (map[83] && !player.inShot && map[65]) { //Shoot + Left
-            player.shoot();
-            player.inShot = true;
-            player.dx = -5;
-            player.right = false;
-        } else if (map[87] && map[68] && player.g) { //Jump + Right
-            player.dx = 5;
-            player.right = true;
-            player.dy = 15;
-            player.g = false;
-            player.inShot = false;
-        } else if (map[87] && map[65] && player.g) { //Jump + Left
-            player.dx = -5;
-            player.right = false;
-            player.dy = 15;
-            player.g = false;
-            player.inShot = false;
-        } else if (map[83] && !player.inShot && map[87] && player.g) { //Shoot + Jump
-            player.shoot();
-            player.inShot = true;
-            player.dy = 15;
-            player.g = false;
-            player.dx = 0;
-        } else if (map[68]) { //Right
-            player.dx = 5;
-            player.right = true;
-            player.inShot = false;
-        } else if (map[65]) { //Left
-            player.dx = -5;
-            player.right = false;
-            player.inShot = false;
-        } else if (map[87] && player.g) { //Jump
-            player.dy = 15;
-            player.g = false;
-            player.dx = 0;
-            player.inShot = false;
-        } else if (map[83] && !player.inShot) { //Shoot
-            player.shoot();
-            player.inShot = true;
-            player.dx = 0;
-        } else {
-            player.dx = 0;
-            player.inShot = false;
-        }
     }
-    
+
     if (screens[1]) {
-        if (spellString.length >= 6 ) {
+        if (spellString.length >= 6) {
             spellID = getSpell(spellString);
             spellString = "";
             lastSpellKey = 0;
@@ -120,9 +81,7 @@ onkeydown = onkeyup = function (e) {
             for (i in icons) { icons[i].texture = PIXI.Texture.EMPTY; }
         }
 
-        if (keyUp[49] && (lastSkillKey = 1)) { lastSkillKey = 0; }
-        else if (keyUp[50] && (lastSkillKey = 2)) { lastSkillKey = 0; }
-        else if (keyUp[51] && (lastSkillKey = 3)) { lastSkillKey = 0; }
+        if (keyUp[49] && (lastSkillKey = 1)) { lastSkillKey = 0; } else if (keyUp[50] && (lastSkillKey = 2)) { lastSkillKey = 0; } else if (keyUp[51] && (lastSkillKey = 3)) { lastSkillKey = 0; }
         if (player.skillpoints > 0) {
             if (map[49] && (lastSkillKey != 1)) {
                 player.maxHealth = Math.ceil(player.maxHealth * 1.10);
