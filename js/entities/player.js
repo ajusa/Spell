@@ -13,7 +13,6 @@ function Player(xval, yval, width, height, id) {
     this.maxHealth = 10;
     this.healthRegen = 0.0;
     this.inShot = false;
-    this.g = false; //State variable for when player is touching the ground.
     this.right = true;
     this.color = 0xe67e22;
     this.mps = 1;
@@ -25,23 +24,18 @@ function Player(xval, yval, width, height, id) {
     this.expRate = 1.0;
     this.bias = [0.250, 0.250, 0.250, 0.250]; // earth fire air water
     this.skillpoints = 0;
-    this.sprite.anchor = new PIXI.Point(0.5, 0);
+    this.sprite.anchor.x = 0.5;
+    this.sprite.anchor.y = 0.5;
     this.dead = false;
+    this.speed = 5;
     var lastLvl = -1;
 
     this.update = function() {
         if (player.health < 1) {
             player.die();
         }
-
-        if (isCollide(GROUND, this) && (this.dy < 0)) { //&& !this.g) {
-            this.dy = 0;
-            this.g = true;
-        }
-
         this.x += this.dx
         this.y -= this.dy;
-        if (!this.g) this.dy -= 0.5;
         this.sprite.x = this.x;
         this.sprite.y = this.y;
         this.exp += this.expRate;
@@ -50,14 +44,8 @@ function Player(xval, yval, width, height, id) {
             this.levelUp();
             lastLvl = this.lvl;
         }
-
-        if (this.right) {
-            this.sprite.scale.x = 1;
-        } else {
-            this.sprite.scale.x = -1;
-        }
     }
-    
+
     this.shoot = function() {
         if (this.mana >= spelldata.spells[spellID].cost) {
             this.mana = this.mana - spelldata.spells[spellID].cost;
@@ -97,7 +85,23 @@ function Player(xval, yval, width, height, id) {
         // animate levelup somehow
         this.skillpoints += 1;
     }
-
+    this.moveRight = function() {
+        this.dx = this.speed;
+        this.sprite.rotation = Math.PI / 2;
+    }
+    this.moveLeft = function() {
+        this.dx = -this.speed;
+        
+        this.sprite.rotation = 3 * Math.PI / 2;
+    }
+    this.moveUp = function() {
+        this.dy = this.speed;
+        this.sprite.rotation = 0;
+    }
+    this.moveDown = function() {
+        this.dy = -this.speed;
+        this.sprite.rotation = Math.PI;
+    }
     this.changeBias = function(keyID) { // Valid keyIDs are 1 2 3 4 for earth fire air water resp.
         var totalC = 0;
         for (i = 0; i < 4; i++) {

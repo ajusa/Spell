@@ -168,7 +168,7 @@
         "keyid": "OOO",
         "name": "Air Slice",
         "desc": "Fires a fast bolt of wind forward.",
-        "damage": .5,
+        "damage": 0.5,
         "speed": 15,
         "cost": 5,
         "distance" : 300,

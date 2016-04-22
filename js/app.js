@@ -12,6 +12,7 @@ window.WebFontConfig = {
         gameLoop();
     }
 };
+
 splashscreen.interactive = true;
 splashscreen.on('touchstart', gameStart).on('mousedown', gameStart)
     // include the web-font loader script
@@ -19,7 +20,7 @@ splashscreen.on('touchstart', gameStart).on('mousedown', gameStart)
 
 function gameStart() {
     multi = new Multiplayer();
-    player = new Player(WIDTH / 2 - 25, 450, 150, 238)
+    player = new Player(WIDTH / 2 - 25, 450, 128, 128)
         //setInterval(function(){player.interpolate()}, 20); This don't work right now. Pls fix
     multi.start(player);
     world.removeChildren();
@@ -29,27 +30,33 @@ function gameStart() {
     bg.beginFill('0x34495e').drawRect(-5000, 0, 10000, HEIGHT).endFill();
     bg.beginFill('0x95a5a6').drawRect(GROUND.x, GROUND.y, GROUND.width, GROUND.height).endFill();
     stage.addChild(bg);
-    bg = new PIXI.Graphics();
-    bg.beginFill('0x660000').drawRect(0, 10, WIDTH / 2, 15).endFill();
-    bg.beginFill('0x141452').drawRect(WIDTH / 2, 10, WIDTH / 2, 15).endFill();
-    bg.beginFill('0x006600').drawRect(0, 0, WIDTH, 10).endFill();
     bg.cacheAsBitmap = true; // temporary for less resource usage
     world.addChild(bg);
+    bg.beginFill('0x95a5a6').drawRect(100, 100, 500, GROUND.height).endFill();
+    stage.addChild(bg)
     stage.addChild(player.sprite);
 
     healthMeter = new PIXI.Sprite(healthBar);
+    bg = new PIXI.Graphics();
+    bg.beginFill('0x660000').drawRect(0, 10, WIDTH / 2, 15).endFill();
     healthMeter.x = 0;
     healthMeter.y = 10;
     healthMeter.height = 15;
+    world.addChild(bg);
     world.addChild(healthMeter);
 
+    bg = new PIXI.Graphics();
+    bg.beginFill('0x141452').drawRect(WIDTH / 2, 10, WIDTH / 2, 15).endFill();
     manaMeter = new PIXI.Sprite(manaBar);
     manaMeter.x = WIDTH / 2;
     manaMeter.y = 10;
     manaMeter.height = 15;
+    world.addChild(bg);
     world.addChild(manaMeter);
 
     expMeter = new PIXI.Sprite(expBar);
+    bg = new PIXI.Graphics();
+    bg.beginFill('0x006600').drawRect(0, 0, WIDTH, 10).endFill();
     expMeter.x = 0;
     expMeter.y = 0;
     expMeter.height = 10;
@@ -61,6 +68,7 @@ function gameStart() {
     });
     expText.x = 5;
     expText.y = 30;
+    world.addChild(bg);
     world.addChild(expText);
 
     icon1 = new PIXI.Sprite();
@@ -200,6 +208,7 @@ function gameLoop() {
         }
        // if (Math.abs(player.x - camera.x) > 1200) {
             camera.x = player.x;
+            camera.y = player.y;
         //}
         
     };
