@@ -35,28 +35,28 @@ listener.register_combo({
     "keys": "u",
     "on_keydown": function() {
         spellString += "U ";
-        changeBias(1);
+        player.changeBias(1);
     },
 });
 listener.register_combo({
     "keys": "i",
     "on_keydown": function() {
         spellString += "I ";
-        changeBias(2);
+        player.changeBias(2);
     },
 });
 listener.register_combo({
     "keys": "o",
     "on_keydown": function() {
         spellString += "O ";
-        changeBias(3);
+        player.changeBias(3);
     },
 });
 listener.register_combo({
     "keys": "p",
     "on_keydown": function() {
         spellString += "P ";
-        changeBias(4);
+        player.changeBias(4);
     },
 });
 listener.register_combo({
