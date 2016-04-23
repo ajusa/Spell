@@ -41,9 +41,10 @@ function killPlayer(id) {
     };
 }
 
-function calculateSlope(x1, x2) {
+function calculateSlope(a, b) {
     // rise over run
-    var s = (x2 - x1);
+    var s = (a.y - b.y) / (a.x - b.x);
+    console.log(s)
     /*if (x1==x2) {
         // slope is Infinity or -Infinity
     }*/

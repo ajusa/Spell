@@ -28,12 +28,13 @@ function Multiplayer(ip) {
             this.item.remove()
         }
     }
-    this.spell = function(x, y, spellID, sign) {
+    this.spell = function(x, y, slope, spellID, rotation) {
         obj = {
             x: x,
             y: y,
+            slope: slope,
             spellID: spellID,
-            sign: sign
+            rotation: rotation
         }
         spellRef.push(obj)
     }
@@ -41,7 +42,7 @@ function Multiplayer(ip) {
         spellRef.child(id).remove()
     }
     spellRef.on("child_added", function(snapshot) {
-        Spells.push(new Spell(snapshot.val().x, snapshot.val().y, snapshot.val().spellID, snapshot.key(), snapshot.val().sign));
+        Spells.push(new Spell(snapshot.val().x, snapshot.val().y, snapshot.val().slope, snapshot.val().spellID, snapshot.val().rotation, snapshot.key()));
     });
     spellRef.on('child_removed', function(snapshot) {
         for (var i = Spells.length - 1; i >= 0; i--) {

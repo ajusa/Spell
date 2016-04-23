@@ -64,7 +64,10 @@ function Player(xval, yval, width, height, id) {
                 x = this.x - this.width / 2;
             }
             y = this.y + this.height / 2;
-            multi.spell(x, y, spellID, this.sprite.scale.x);
+            var mousePosition = renderer.plugins.interaction.mouse.global;
+            var playerPosition = new PIXI.Point(WIDTH / 2, HEIGHT / 2);
+            slope = calculateSlope(mousePosition, playerPosition) 
+            multi.spell(x, y, slope, spellID, this.sprite.rotation);
         }
     }
 
