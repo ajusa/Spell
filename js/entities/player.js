@@ -48,7 +48,7 @@ function Player(xval, yval, width, height, id) {
         var mousePosition = renderer.plugins.interaction.mouse.global;
         var playerPosition = new PIXI.Point(WIDTH / 2, HEIGHT / 2);
         var xDiff = mousePosition.x - playerPosition.x;
-        this.sprite.rotation = Math.atan((mousePosition.y - playerPosition.y) / xDiff) + (Math.PI / 2) * (xDiff / Math.abs(xDiff));
+        this.sprite.rotation = Math.atan(calculateSlope(mousePosition, playerPosition)) + (Math.PI / 2) * (xDiff / Math.abs(xDiff));
     }
 
     this.shoot = function() {
@@ -66,7 +66,7 @@ function Player(xval, yval, width, height, id) {
             y = this.y + this.height / 2;
             var mousePosition = renderer.plugins.interaction.mouse.global;
             var playerPosition = new PIXI.Point(WIDTH / 2, HEIGHT / 2);
-            slope = calculateSlope(mousePosition, playerPosition) 
+            slope = calculateSlope(mousePosition, playerPosition)
             multi.spell(x, y, slope, spellID, this.sprite.rotation);
         }
     }
