@@ -44,6 +44,13 @@ function Player(xval, yval, width, height, id) {
             this.levelUp();
             lastLvl = this.lvl;
         }
+
+        var mousePosition = renderer.plugins.interaction.mouse.global;
+        var playerPosition = new PIXI.Point(WIDTH / 2, HEIGHT / 2);
+        var angle = Math.atan((mousePosition.y - playerPosition.y) / (mousePosition.x - playerPosition.x));
+        if (mousePosition.x - playerPosition.x < 0) { angle -= 90 * Math.PI / 180; }
+        else { angle += 90 * Math.PI / 180; }
+        this.sprite.rotation = angle;
     }
 
     this.shoot = function() {
@@ -87,20 +94,19 @@ function Player(xval, yval, width, height, id) {
     }
     this.moveRight = function() {
         this.dx = this.speed;
-        this.sprite.rotation = Math.PI / 2;
+        // this.sprite.rotation = Math.PI / 2;
     }
     this.moveLeft = function() {
         this.dx = -this.speed;
-        
-        this.sprite.rotation = 3 * Math.PI / 2;
+        // this.sprite.rotation = 3 * Math.PI / 2;
     }
     this.moveUp = function() {
         this.dy = this.speed;
-        this.sprite.rotation = 0;
+        // this.sprite.rotation = 0;
     }
     this.moveDown = function() {
         this.dy = -this.speed;
-        this.sprite.rotation = Math.PI;
+        // this.sprite.rotation = Math.PI;
     }
     this.changeBias = function(keyID) { // Valid keyIDs are 1 2 3 4 for earth fire air water resp.
         var totalC = 0;
