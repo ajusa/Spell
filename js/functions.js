@@ -49,7 +49,9 @@ function calculateSlope(x1, x2) {
     }*/
     return s;
 }
-
+function getDistance(x1, x2, y1, y2){
+    return Math.sqrt( (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2) );
+}
 
 var spellMap = ["UUU", "UUI", "UUO", "UUP", "UII", "UIO", "UIP", "UOO", "UOP", "UPP",
     "III", "IIO", "IIP", "IOO", "IOP", "IPP",

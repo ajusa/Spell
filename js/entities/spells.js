@@ -1,10 +1,13 @@
 function Spell(xval, yval, spell, id, sign) {
     this.x = xval;
     this.y = yval;
+    this.dy = dy;
+    this.dx = dx;
     this.width = 32; // This is the size of the image
     this.height = 32; // 10
     this.speed = sign * spelldata.spells[spell].speed;
     this.id = id;
+    this.rotation = rotation;
     this.damage = spelldata.spells[spell].damage;
     this.sprite = new PIXI.Sprite.fromImage(spelldata.spells[spell].spritepath);
     this.sprite.width = 32;
@@ -19,8 +22,8 @@ function Spell(xval, yval, spell, id, sign) {
                 player.health = player.health - this.damage;
                 multi.spellRemove(this.id)
             };
-        this.x += this.speed;
-        this.distanceSoFar = Math.abs(this.x-xval)
+        this.x += this.dx;
+        this.distanceSoFar = Math.abs(getDistance(this.x, this.y, xval, yval))
         this.sprite.x = this.x;
         this.sprite.y = this.y;
     }

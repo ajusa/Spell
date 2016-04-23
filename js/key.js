@@ -29,6 +29,7 @@ listener.register_combo({
     "on_keydown": function() {
         console.log("Shoot");
         spellID = getSpell(spellString);
+        player.shoot()
     },
 });
 listener.register_combo({
