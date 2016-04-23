@@ -178,7 +178,7 @@ function gameLoop() {
         spellCode = spellString.split(" ").join("");
         keyMap = ["U", "I", "O", "P"];
         spellIconMap = [earthIcon, fireIcon, airIcon, waterIcon];
-        if (spellCode.length == 1) {
+        if (spellCode.length == 0) {
             for (i in icons) {
                 icons[i].texture = PIXI.Texture.EMPTY;
             }
@@ -210,7 +210,7 @@ function gameLoop() {
             camera.x = player.x;
             camera.y = player.y;
         //}
-        
+
     };
     if (screens[2]) {
         //Death Screen
