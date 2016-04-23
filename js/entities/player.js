@@ -48,8 +48,7 @@ function Player(xval, yval, width, height, id) {
         var mousePosition = renderer.plugins.interaction.mouse.global;
         var playerPosition = new PIXI.Point(WIDTH / 2, HEIGHT / 2);
         var xDiff = mousePosition.x - playerPosition.x;
-        var angle = Math.atan((mousePosition.y - playerPosition.y) / xDiff) + 90 * Math.PI / 180 * (xDiff / Math.abs(xDiff));
-        this.sprite.rotation = angle;
+        this.sprite.rotation = Math.atan((mousePosition.y - playerPosition.y) / xDiff) + (Math.PI / 2) * (xDiff / Math.abs(xDiff));
     }
 
     this.shoot = function() {
