@@ -1,8 +1,5 @@
-var spellString = "";
-var spellID = 0;
-var keyUp = [];
-var map = [];
-var lastSkillKey = 0;
+var spellCode = [0, 0, 0, 0];
+var spellID = -1;
 var listener = new window.keypress.Listener(); //for keys
 listener.register_combo({
     "keys": "a",
@@ -28,37 +25,25 @@ listener.register_combo({
     "keys": "space",
     "on_keydown": function() {
         console.log("Shoot");
-        spellID = getSpell(spellString);
+        spellID = getSpell();
         player.shoot()
     },
 });
 listener.register_combo({
     "keys": "u",
-    "on_keydown": function() {
-        spellString += "U ";
-        player.changeBias(1);
-    },
+    "on_keydown": function() { updateSpellString(1); },
 });
 listener.register_combo({
     "keys": "i",
-    "on_keydown": function() {
-        spellString += "I ";
-        player.changeBias(2);
-    },
+    "on_keydown": function() { updateSpellString(2); },
 });
 listener.register_combo({
     "keys": "o",
-    "on_keydown": function() {
-        spellString += "O ";
-        player.changeBias(3);
-    },
+    "on_keydown": function() { updateSpellString(3); },
 });
 listener.register_combo({
     "keys": "p",
-    "on_keydown": function() {
-        spellString += "P ";
-        player.changeBias(4);
-    },
+    "on_keydown": function() { updateSpellString(4); },
 });
 listener.register_combo({
     "keys": "1",

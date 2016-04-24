@@ -53,6 +53,7 @@ function Player(xval, yval, width, height, id) {
 
     this.shoot = function() {
         if (this.mana >= spelldata.spells[spellID].cost) {
+            shotTaken = true;
             this.mana = this.mana - spelldata.spells[spellID].cost;
             speed = 0;
             x = 0;
