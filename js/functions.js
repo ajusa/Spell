@@ -41,40 +41,54 @@ function killPlayer(id) {
     };
 }
 
-function calculateSlope(x1, x2) {
+function calculateSlope(a, b) {
     // rise over run
-    var s = (x2 - x1);
+    var s = (a.y - b.y) / (a.x - b.x);
+    // console.log(s)
     /*if (x1==x2) {
         // slope is Infinity or -Infinity
     }*/
     return s;
 }
-
+function getDistance(x1, x2, y1, y2) {
+    return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+}
 
 var spellMap = ["UUU", "UUI", "UUO", "UUP", "UII", "UIO", "UIP", "UOO", "UOP", "UPP",
     "III", "IIO", "IIP", "IOO", "IOP", "IPP",
     "OOO", "OOP", "OPP",
-    "PPP"
+    "PPP",
+    "UU", "UI", "UO", "UP",
+    "II", "IO", "IP",
+    "OO", "OP",
+    "PP",
+    "U", "I", "O", "P"
 ];
 
-function getSpell(inS) {
-    var inA = inS.trim().split(" ");
-    var u = 0,
-        i = 0,
-        o = 0,
-        p = 0;
-    for (k = 0; k < inA.length; k++) {
-        if (inA[k] == "U") { u++; } else if (inA[k] == "I") { i++; } else if (inA[k] == "O") { o++; } else if (inA[k] == "P") { p++; }
+function getSpell() {
+    var s = "";
+    var elements = ["U", "I", "O", "P"];
+    for (i = 0; i < 4; i++) {
+        for (k = 0; k < spellCode[i]; k++) {
+            s += elements[i];
+        }
     }
-
-    var outS = "";
-    for (k = 0; k < u; k++) { outS += "U"; }
-    for (k = 0; k < i; k++) { outS += "I"; }
-    for (k = 0; k < o; k++) { outS += "O"; }
-    for (k = 0; k < p; k++) { outS += "P"; }
-
-    for (k = 0; k < spellMap.length; k++) {
-        if (outS == spellMap[k]) return k;
+    for (sp in spellMap) {
+        if (s == spellMap[sp]) { return sp; }
     }
+    return -1;
 }
 
+function updateSpellString(q) {
+    var elements = ["U", "I", "O", "P"]; // 1 2 3 4
+    var sum = 0;
+    for (i = 0; i < 4; i++) { sum += spellCode[i]; }
+    if (shotTaken || sum >= 3) {
+        spellCode = [0, 0, 0, 0];
+        for (k = 0; k < 3; k++) { icons[k].texture = PIXI.Texture.EMPTY; }
+    }
+    // console.log(shotTaken);
+    spellCode[q - 1] += 1;
+    player.changeBias(q);
+    shotTaken = false;
+}

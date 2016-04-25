@@ -65,3 +65,4 @@ var frameTime = 0,
     thisLoop;
 var biasStrength = 0.003;
 var spellIconMap;
+var shotTaken = false;

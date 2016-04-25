@@ -30,7 +30,7 @@ function gameStart() {
     bg.beginFill('0x34495e').drawRect(-5000, 0, 10000, HEIGHT).endFill();
     bg.beginFill('0x95a5a6').drawRect(GROUND.x, GROUND.y, GROUND.width, GROUND.height).endFill();
     stage.addChild(bg);
-    bg.cacheAsBitmap = true; // temporary for less resource usage
+    bg.cacheAsBitmap = false; // temporary for less resource usage
     world.addChild(bg);
     bg.beginFill('0x95a5a6').drawRect(100, 100, 500, GROUND.height).endFill();
     stage.addChild(bg)
@@ -175,19 +175,11 @@ function gameLoop() {
         expMeter.width = WIDTH * (currentEXP / maxEXP);
         expText.text = "Level " + player.lvl;
 
-        spellCode = spellString.split(" ").join("");
-        keyMap = ["U", "I", "O", "P"];
         spellIconMap = [earthIcon, fireIcon, airIcon, waterIcon];
-        if (spellCode.length == 1) {
-            for (i in icons) {
-                icons[i].texture = PIXI.Texture.EMPTY;
-            }
-        }
-        for (i = 0; i < spellCode.length; i++) {
-            for (c in keyMap) {
-                if (keyMap[c] == spellCode.charAt(i)) {
-                    icons[i].texture = spellIconMap[c];
-                }
+        var iconCounter = 0;
+        for (i = 0; i < 4; i++) {
+            for (k = 0; k < spellCode[i]; k++){
+                icons[iconCounter++].texture = spellIconMap[i];
             }
         }
 
@@ -210,7 +202,7 @@ function gameLoop() {
             camera.x = player.x;
             camera.y = player.y;
         //}
-        
+
     };
     if (screens[2]) {
         //Death Screen

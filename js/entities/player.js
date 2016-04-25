@@ -44,10 +44,16 @@ function Player(xval, yval, width, height, id) {
             this.levelUp();
             lastLvl = this.lvl;
         }
+
+        var mousePosition = renderer.plugins.interaction.mouse.global;
+        var playerPosition = new PIXI.Point(WIDTH / 2, HEIGHT / 2);
+        var xDiff = mousePosition.x - playerPosition.x;
+        this.sprite.rotation = Math.atan(calculateSlope(mousePosition, playerPosition)) + (Math.PI / 2) * (xDiff / Math.abs(xDiff));
     }
 
     this.shoot = function() {
         if (this.mana >= spelldata.spells[spellID].cost) {
+            shotTaken = true;
             this.mana = this.mana - spelldata.spells[spellID].cost;
             speed = 0;
             x = 0;
@@ -59,7 +65,10 @@ function Player(xval, yval, width, height, id) {
                 x = this.x - this.width / 2;
             }
             y = this.y + this.height / 2;
-            multi.spell(x, y, spellID, this.sprite.scale.x);
+            var mousePosition = renderer.plugins.interaction.mouse.global;
+            var playerPosition = new PIXI.Point(WIDTH / 2, HEIGHT / 2);
+            slope = calculateSlope(mousePosition, playerPosition)
+            multi.spell(x, y, slope, spellID, this.sprite.rotation);
         }
     }
 
@@ -87,20 +96,19 @@ function Player(xval, yval, width, height, id) {
     }
     this.moveRight = function() {
         this.dx = this.speed;
-        this.sprite.rotation = Math.PI / 2;
+        // this.sprite.rotation = Math.PI / 2;
     }
     this.moveLeft = function() {
         this.dx = -this.speed;
-        
-        this.sprite.rotation = 3 * Math.PI / 2;
+        // this.sprite.rotation = 3 * Math.PI / 2;
     }
     this.moveUp = function() {
         this.dy = this.speed;
-        this.sprite.rotation = 0;
+        // this.sprite.rotation = 0;
     }
     this.moveDown = function() {
         this.dy = -this.speed;
-        this.sprite.rotation = Math.PI;
+        // this.sprite.rotation = Math.PI;
     }
     this.changeBias = function(keyID) { // Valid keyIDs are 1 2 3 4 for earth fire air water resp.
         var totalC = 0;
