@@ -22,27 +22,19 @@ listener.register_combo({
     "on_keyup": function() { player.dy = 0 },
 });
 listener.register_combo({
-    "keys": "space",
-    "on_keydown": function() {
-        console.log("Shoot");
-        spellID = getSpell();
-        player.shoot()
-    },
-});
-listener.register_combo({
-    "keys": "u",
+    "keys": "z",
     "on_keydown": function() { updateSpellString(1); },
 });
 listener.register_combo({
-    "keys": "i",
+    "keys": "x",
     "on_keydown": function() { updateSpellString(2); },
 });
 listener.register_combo({
-    "keys": "o",
+    "keys": "c",
     "on_keydown": function() { updateSpellString(3); },
 });
 listener.register_combo({
-    "keys": "p",
+    "keys": "v",
     "on_keydown": function() { updateSpellString(4); },
 });
 listener.register_combo({

@@ -14,6 +14,7 @@ window.WebFontConfig = {
 };
 
 splashscreen.interactive = true;
+world.interactive = true;
 splashscreen.on('touchstart', gameStart).on('mousedown', gameStart)
     // include the web-font loader script
     /* jshint ignore:start */
@@ -35,7 +36,10 @@ function gameStart() {
     bg.beginFill('0x95a5a6').drawRect(100, 100, 500, GROUND.height).endFill();
     stage.addChild(bg)
     stage.addChild(player.sprite);
-
+    world.on('mousedown', function() { // This is to shoot spells when the mouse is clicked
+        spellID = getSpell();
+        player.shoot();
+    })
     healthMeter = new PIXI.Sprite(healthBar);
     bg = new PIXI.Graphics();
     bg.beginFill('0x660000').drawRect(0, 10, WIDTH / 2, 15).endFill();
@@ -178,7 +182,7 @@ function gameLoop() {
         spellIconMap = [earthIcon, fireIcon, airIcon, waterIcon];
         var iconCounter = 0;
         for (i = 0; i < 4; i++) {
-            for (k = 0; k < spellCode[i]; k++){
+            for (k = 0; k < spellCode[i]; k++) {
                 icons[iconCounter++].texture = spellIconMap[i];
             }
         }
@@ -198,9 +202,9 @@ function gameLoop() {
         } else {
             skillDisplay.text = "";
         }
-       // if (Math.abs(player.x - camera.x) > 1200) {
-            camera.x = player.x;
-            camera.y = player.y;
+        // if (Math.abs(player.x - camera.x) > 1200) {
+        camera.x = player.x;
+        camera.y = player.y;
         //}
 
     };
