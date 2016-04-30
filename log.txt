@@ -1,0 +1,673 @@
+2a24b24123c63be3eece3cc7f9217255016972a9 Reworked game input
+ js/app.js | 14 +++++++++-----
+ js/key.js | 16 ++++------------
+ 2 files changed, 13 insertions(+), 17 deletions(-)
+acce63700919c76d829d5d1e16e98b76800408df Reworked Spell Input
+ js/app.js             | 20 ++++++-------------
+ js/entities/player.js |  1 +
+ js/functions.js       | 53 +++++++++++++++++++++++++++++++--------------------
+ js/global.js          |  1 +
+ js/key.js             | 29 +++++++---------------------
+ 5 files changed, 47 insertions(+), 57 deletions(-)
+ca663030d7b85a683f259eb15f7a2fb6e693d51f Even further optimized angle calculation
+ js/entities/player.js |  4 ++--
+ jsconfig.json         | 14 ++++++++++++++
+ 2 files changed, 16 insertions(+), 2 deletions(-)
+3e5b20c5718e0feb7c038a22e7eb5ad80c4b6a26 Kinda working Spell code
+ index.html            |  4 ++--
+ js/entities/player.js |  5 ++++-
+ js/entities/spells.js | 18 ++++++++++--------
+ js/functions.js       |  5 +++--
+ js/multiplayer.js     |  7 ++++---
+ 5 files changed, 23 insertions(+), 16 deletions(-)
+78c4434b673f8f157ad478313f590617488446f3 Broken Code
+ js/entities/spells.js | 7 +++++--
+ js/functions.js       | 4 +++-
+ js/key.js             | 1 +
+ 3 files changed, 9 insertions(+), 3 deletions(-)
+a4bfc19032a76bcc115e1f7ff422758e5c704ae8 Fixed broken changeBias function
+ js/key.js | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+83187bc591eac30e67c8624254708ffdb8cf6ae7 test
+ js/app.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+2c9a869ff293b93d03df0c1fad594d52844994e1 Further optimized angle calculation
+ js/entities/player.js | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+31658bace8fe9c48d5bff4dc87f0b79c4d66f919 Rewrote Input Code
+ js/app.js |   4 +-
+ js/key.js | 125 ++++++++++++++++++++++++++------------------------------------
+ 2 files changed, 55 insertions(+), 74 deletions(-)
+879a4f77330c8948e106f61c4d4be466c2ae9b1e Optimized angle calculation
+ js/entities/player.js | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+ca4e0af17b3aafd9a65c7dd565b01291e8e83ec8 Added player rotation
+ js/entities/player.js | 16 +++++++++++-----
+ 1 file changed, 11 insertions(+), 5 deletions(-)
+f320720ab5dde278de108d6bce3d9267510a3122 Rewrote Movement Input Code
+ images.js              |  2 +-
+ index.html             |  2 +
+ js/app.js              | 19 +++++++---
+ js/entities/player.js  | 38 ++++++++++---------
+ js/key.js              | 99 +++++++++++++++-----------------------------------
+ js/lib/keypress.min.js | 33 +++++++++++++++++
+ js/spelldata.json      |  2 +-
+ 7 files changed, 101 insertions(+), 94 deletions(-)
+bb23ac9759e21be31cf5b088094f50de5c9357f8 Topdown Added
+ assets/Wizard Topdown.png | Bin 0 -> 880 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+08ddc790310b37b0fc021b00edde4e885db72735 Update spelldata.json
+ js/spelldata.json | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+249f518465095736bf193137c2eff4e179ffb2c6 Working Camera
+ js/app.js             | 10 ++++++++--
+ js/entities/player.js |  7 -------
+ js/global.js          |  4 ++--
+ 3 files changed, 10 insertions(+), 11 deletions(-)
+10cd35f3e4590839e9d9a0dc0e45e4786d69cf1f Camera
+ js/app.js    | 36 +++++++++++++++++++-----------------
+ js/global.js | 15 ++++++++++++---
+ 2 files changed, 31 insertions(+), 20 deletions(-)
+a844a6a29073e2c5b87eb392245e83138ed79e3a Added PIXICAM and fixed spell height and width
+ index.html            |  1 +
+ js/entities/spells.js |  6 ++++--
+ js/lib/pixi.min.js    | 22 +++++++++++-----------
+ js/lib/pixicam.min.js |  3 +++
+ 4 files changed, 19 insertions(+), 13 deletions(-)
+3caa5cef3d766ecfd9bf6e85ed87bf8696c33745 Fixed incorrect Player Height
+ js/app.js             | 2 +-
+ js/entities/player.js | 3 +--
+ 2 files changed, 2 insertions(+), 3 deletions(-)
+bdf158bf9a08fd5cec37cacaf233d62021e0cd39 Corrected Mana Drain
+ js/entities/player.js | 11 ++---------
+ 1 file changed, 2 insertions(+), 9 deletions(-)
+480a7b807f7cf1ea012f39eb878d7c63d15c394d Added basic distance
+ js/entities/spells.js | 5 ++++-
+ js/spelldata.json     | 4 ++++
+ 2 files changed, 8 insertions(+), 1 deletion(-)
+8a3c0a6d20a267dbec63255bbce24deba38c6244 Cleaned up player code
+ js/entities/player.js | 17 -----------------
+ js/entities/spells.js |  4 ++++
+ 2 files changed, 4 insertions(+), 17 deletions(-)
+c3628b7623ea520d6f7494ae728e5325c5b2616a Version Bump
+ js/global.js | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+09a5859affa38edf710419f880b9b84b467f6ca8 Update url
+ README.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ef5cd309121c02b14cc90a5362ceb652ebba1941 Gave player hops
+ js/entities/player.js |  2 --
+ js/key.js             | 12 ++++++------
+ 2 files changed, 6 insertions(+), 8 deletions(-)
+fca43e217ebb0b1cf0cde6c563bc9ca9db3baeea Fixed a small bug from last commit
+ js/entities/player.js | 1 +
+ js/multiplayer.js     | 3 ++-
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+223f433e1028023008db2120f9ae227ab07bbe14 Added a "death"
+ js/app.js             | 19 ++++++++++---------
+ js/entities/player.js |  9 ++++++---
+ js/entities/spells.js |  5 +++--
+ js/multiplayer.js     | 21 +++++++--------------
+ 4 files changed, 26 insertions(+), 28 deletions(-)
+2afc157c3cbbdda61ae70417c91295f9cbdc6362 Fixed Spells Firing
+ js/app.js             | 7 ++++---
+ js/entities/spells.js | 3 +--
+ js/multiplayer.js     | 2 +-
+ 3 files changed, 6 insertions(+), 6 deletions(-)
+4f7f0f50f7372c7f15679ddce2f7df559e6ecb06 Small Bugfix
+ js/entities/spells.js | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+ced21ce3beb0b963b4482e8d2bfcc32d7fc5cff9 Working Spell Multiplayer
+ js/entities/player.js      |  4 ++--
+ js/entities/playermulti.js |  4 ++--
+ js/entities/spells.js      |  8 ++++---
+ js/functions.js            |  4 ----
+ js/multiplayer.js          | 52 +++++++++++++++++++++++++++++++++++++++++-----
+ 5 files changed, 56 insertions(+), 16 deletions(-)
+8cfb2c52a967bbf3415a0a02e1380903ae1b7a1a Bug Fixes  - Adjusted sprite anchoring in playermulti.js so it would reflect that of player.js  - Added Skill Point controls to instructions.html
+ instructions.html          | 14 +++++++++++++-
+ js/entities/playermulti.js |  1 +
+ 2 files changed, 14 insertions(+), 1 deletion(-)
+ea227193726f13e51a44c688a70fb987391a161a Resolved #54  - Please check `js/entities/player.js` at line 88    - Spells spawn very far away from the player only when looking right
+ js/entities/player.js | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+faf687ca492acb92cdddd98ac4d6e1c98d2fef0b Structure Update
+ index.html   |  1 +
+ js/app.js    | 85 +++++-------------------------------------------------------
+ js/global.js | 58 +++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 66 insertions(+), 78 deletions(-)
+41b52eafb82c1c0efbd0317aedd2697d7d745d80 Fixed for loop
+ js/app.js | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+28117e9d77e0ff15b5ff67727dee714ae30db1db Attemped to fix Spell rendering  - Implemented a new asset naming scheme    - All projectile asset files should be named after their respective spell IDs  - Optimized spells.js, player.js  - Added a call to update spells from app.js (this was missing?)
+ assets/elements/projectiles/0.png                  | Bin 0 -> 958 bytes
+ assets/elements/projectiles/10.png                 | Bin 0 -> 471 bytes
+ assets/elements/projectiles/16.png                 | Bin 0 -> 329 bytes
+ assets/elements/projectiles/19.png                 | Bin 0 -> 482 bytes
+ assets/elements/projectiles/air_projectile.png     | Bin 329 -> 0 bytes
+ .../elements/projectiles/fire_ball_projectile.png  | Bin 471 -> 0 bytes
+ assets/elements/projectiles/rock_projectile.png    | Bin 958 -> 0 bytes
+ .../elements/projectiles/water_bolt_projectile.png | Bin 482 -> 0 bytes
+ js/app.js                                          |   3 ++
+ js/entities/player.js                              |  16 ++++----
+ js/entities/spells.js                              |  15 ++++---
+ js/spelldata.json                                  |  44 ++++++++++-----------
+ 12 files changed, 38 insertions(+), 40 deletions(-)
+dfdfe0b8efe337a102051b7dd87df5d66bc065b2 Skill Rebalancing  - Fixed Passive Experience Rate not changing after an upgrade  - Reverted previous balance change to P.E.R.
+ js/entities/player.js | 4 ++--
+ js/key.js             | 6 +++---
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+0cc055800afca76e8b67d5d55f82f4ca1860d57e Fixed placement of skillpoint text
+ assets/oldweedsplash.jpg | Bin 0 -> 68833 bytes
+ assets/snoop.png         | Bin 0 -> 28665 bytes
+ assets/weed.png          | Bin 0 -> 126111 bytes
+ assets/weedsplash.jpg    | Bin 0 -> 30845 bytes
+ images.js                |  13 +++++++++++++
+ index.html               |   1 +
+ js/app.js                |   4 ++--
+ js/lib/cheet.min.js      |   1 +
+ 8 files changed, 17 insertions(+), 2 deletions(-)
+dc197b82c17c005d9ccad6c7d58808dcadca0797 Updated sprite path for earth spell
+ js/entities/spells.js | 3 ++-
+ js/spelldata.json     | 2 +-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+38bbffc3a14f5c9e83de4a8debba63db98c8e900 Introduces Basic Projectile Set
+ assets/elements/projectiles/air_projectile.png        | Bin 0 -> 329 bytes
+ assets/elements/projectiles/fire_ball_projectile.png  | Bin 0 -> 471 bytes
+ assets/elements/projectiles/rock_projectile.png       | Bin 0 -> 958 bytes
+ assets/elements/projectiles/water_bolt_projectile.png | Bin 0 -> 482 bytes
+ 4 files changed, 0 insertions(+), 0 deletions(-)
+7cbfcd45ff28724713506200debf91ac4bdd2139 Small Sprite Change  - Wizard now turns around when moving left  - This was annoying me far more than it should have
+ js/entities/player.js | 21 +++++++++++++++------
+ 1 file changed, 15 insertions(+), 6 deletions(-)
+bc6f8bf20378d2d7f0975898afd2c849573e5db0 Merge remote-tracking branch 'refs/remotes/origin/multiplayer'
+71547ed52e7421bbceda113646e9c20025206d30 I removed it, but the code is still their
+ js/app.js                  | 2 +-
+ js/entities/playermulti.js | 6 +++---
+ js/multiplayer.js          | 4 ++--
+ 3 files changed, 6 insertions(+), 6 deletions(-)
+6e3dd401d411b62adcae1a5fd6155aa425a3879f I think I did interpolation
+ js/app.js                  |  3 +++
+ js/entities/player.js      | 24 +++++++++++++++++++-----
+ js/entities/playermulti.js |  4 ++++
+ js/functions.js            | 28 +++++++++++++---------------
+ js/multiplayer.js          |  4 ++++
+ 5 files changed, 43 insertions(+), 20 deletions(-)
+381b8de599481fc869d5ee11d134b7f2ba86c3ec Merge pull request #50 from Ajusa/multiplayer
+64b51283ea4a7e24e65f29d4064eed051f00f220 WORKING MULTIPLAYER OMG
+ index.html                 |  7 ++-----
+ js/app.js                  | 12 +++++++-----
+ js/entities/playermulti.js | 33 +++++++++++++++++----------------
+ js/multiplayer.js          | 44 +++++++++++++++++++++++++++++++++-----------
+ 4 files changed, 59 insertions(+), 37 deletions(-)
+97b0bf1c449ec4f33ff11356cfde1aa93bc2fe1a Merge pull request #49 from Ajusa/master
+cf278c5192da3f7c773b569d3bab1df27d77157e Skill Points Changes  - Added text under skill points display to tell player what key upgrades what  - Balanced the per-level attribute upgrades by making them multiplicative instead of additive
+ js/app.js | 3 ++-
+ js/key.js | 6 +++---
+ 2 files changed, 5 insertions(+), 4 deletions(-)
+81f98190a960beee408ddfd545e2940b401f6c15 Resolved #44  - Added skill points  - You get one point every levelup
+ js/app.js             |  15 ++++
+ js/entities/player.js | 210 +++++++++++++++++++++++++-------------------------
+ js/key.js             |  20 +++++
+ 3 files changed, 142 insertions(+), 103 deletions(-)
+95fb73f0641879f474299caa7617735a35f15143 Added color indication when FPS drops below ideal levels  - This is supposed to correspond with #45  - Also added Visual Studio solution files (just for me)
+ .vs/config/applicationhost.config | 1027 +++++++++++++++++++++++++++++++++++++
+ Spell.sln                         |   37 ++
+ js/app.js                         |   33 +-
+ 3 files changed, 1088 insertions(+), 9 deletions(-)
+dc036c7ad81aa963519fabf834fea82b55670484 Slight Changes to Reworked Wizard
+ assets/wizard.png | Bin 2631 -> 2630 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+49d346872d22f7c60e3401c13d54a66b7b335c50 gun is laggy, but works
+ index.html        | 16 +++++++++++-----
+ js/app.js         |  1 +
+ js/multiplayer.js | 48 +++++++++++++++---------------------------------
+ 3 files changed, 27 insertions(+), 38 deletions(-)
+a88f7e3a7e2c66a7340379f3e78b38811f039ede test
+ js/multiplayer.js | 1 +
+ 1 file changed, 1 insertion(+)
+3244689cad53e48c54d1cd0adb9492308fa51dea Added missing bias meter sprite files  - We need a new meter drawing system
+ assets/elements/air_bar.png   | Bin 0 -> 2792 bytes
+ assets/elements/earth_bar.png | Bin 0 -> 2792 bytes
+ assets/elements/fire_bar.png  | Bin 0 -> 2792 bytes
+ assets/elements/water_bar.png | Bin 0 -> 2792 bytes
+ 4 files changed, 0 insertions(+), 0 deletions(-)
+975c9af6b6a7a0632bc2ef1b4b66fc19b2d58482 Added Element Bias  - Also added basic framework for skill points
+ images.js             |  5 +++++
+ js/app.js             | 43 ++++++++++++++++++++++++++++++++++++++++++-
+ js/entities/player.js | 29 +++++++++++++++++++++++++++--
+ js/key.js             |  4 ++++
+ 4 files changed, 78 insertions(+), 3 deletions(-)
+fc25c613781bec8a4b899a88b7f66ddef897ab6d Fixed Width
+ js/app.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+5052a0868ecb4b5c24daebc659aff677c11da352 Fixed some things
+ README.md | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+28332df1885c52b67d986fbc92ae60d9634c48b0 Rewrote Readme
+ README.md | 16 ++++++++++++++--
+ 1 file changed, 14 insertions(+), 2 deletions(-)
+fcedfdf3a9d39f9cda790c17057d95139560b7be Resolved #37, c863b43f  - Fixed automatic population of the spell list in instructions.html
+ instructions.html     | 141 +++++++++++++++++++++++++++-----------------------
+ js/app.js             |   2 +-
+ js/entities/spells.js |   2 +-
+ 3 files changed, 77 insertions(+), 68 deletions(-)
+c863b43fc83788deb3d18b17249bdfec0d395c70 Attempted Instructions Table population  - @ajusa, please look at the script starting at line 81 in instructions.html  - Some kind of scope error is baffling me
+ instructions.html | 182 +++++++++++++++---------------------------------------
+ 1 file changed, 50 insertions(+), 132 deletions(-)
+64f18ab49833185cabbf2759cedee86b20bfc619 Removed duplicate files
+ assets/elements/leagacy_air_icon.png  | Bin 438 -> 0 bytes
+ assets/elements/legacy_earth_icon.png | Bin 354 -> 0 bytes
+ assets/elements/legacy_fire_icon.png  | Bin 411 -> 0 bytes
+ assets/elements/legacy_water_icon.png | Bin 381 -> 0 bytes
+ 4 files changed, 0 insertions(+), 0 deletions(-)
+108f7be15aa03c696af6b4dbf1e642bf65fa13d8 Introduced Redone Wizard Sprite
+ assets/elements/leagacy_air_icon.png  | Bin 0 -> 438 bytes
+ assets/elements/legacy_earth_icon.png | Bin 0 -> 354 bytes
+ assets/elements/legacy_fire_icon.png  | Bin 0 -> 411 bytes
+ assets/elements/legacy_water_icon.png | Bin 0 -> 381 bytes
+ assets/legacy_wizard.png              | Bin 0 -> 2148 bytes
+ assets/wizard.png                     | Bin 2148 -> 2631 bytes
+ 6 files changed, 0 insertions(+), 0 deletions(-)
+cf69d772f14d3c7a83aad225b3ed879fbdd07e27 Completed Rendering Spells (see commit desc.)  - NOTE: Texture files are still needed. I chose not to use the element icons because that didn't make sense.  - Added the rest of the spells to spelldata.json  - Casting (pressing `s`) will cause errors due to missing texture files
+ js/entities/spells.js |   4 +-
+ js/spelldata.json     | 162 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 165 insertions(+), 1 deletion(-)
+6482cf1166c9a1836fbc2308ecb884b675697b1f Bug Fixes  - fixed JSON parsing (thanks for an hour of frustration, @ajusa)  - Fixed duplicate variable names  - Began preperation for spell rendering
+ js/app.js             |   7 +-
+ js/entities/player.js |   2 +-
+ js/entities/spells.js |  19 ++---
+ js/functions.js       |   2 +-
+ js/key.js             | 228 +++++++++++++++++++++++++-------------------------
+ 5 files changed, 128 insertions(+), 130 deletions(-)
+cb91638955dd0d76edf45e4b5be300dc3e4b8b34 Fixed splashscreen
+ images.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+fab87742e92b281055ec9ccfdc84f6181428ca7c Fixed gh-pages bug
+ images.js | 8 ++++----
+ js/app.js | 2 +-
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+ef224c99250a1e956d1e39fdd2d478bd1f87e67a Version Change
+ js/app.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+3bd8afba74c83cc4398cca801bd203f6df57e916 Changed server ip
+ js/multiplayer.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+9260cd69a13dad9de088ad534dcea817d146846e Working Multiplayer!
+ js/app.js                  | 29 ++++++++++++++++--------
+ js/entities/playermulti.js | 18 ++++++++-------
+ js/multiplayer.js          | 56 +++++++++++++++++++++++++++++++++-------------
+ 3 files changed, 71 insertions(+), 32 deletions(-)
+1128068113098302d13d6c8a565dd31aa4b8b9aa Added an FPS counter  - Updates every half second  - Numbers respond only slightly to oddities in framerate
+ js/app.js | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+bf118fbc31907b0505b765ec2777566d9b0fc0ad Small changes  - Added SHIFT instruction  - General code cleanup
+ instructions.html | 6 +++++-
+ js/key.js         | 3 +--
+ 2 files changed, 6 insertions(+), 3 deletions(-)
+1c6d9bb31416bb1260108719f53f73bb04164dff Merge 63773e18 (new icons) into spell indication code  - Also moved legacy icons into a folder
+ assets/elements/air_icon_legacy.png          | Bin 438 -> 0 bytes
+ assets/elements/earth_icon_legacy.png        | Bin 354 -> 0 bytes
+ assets/elements/fire_icon_legacy.png         | Bin 411 -> 0 bytes
+ assets/elements/legacy/air_icon_legacy.png   | Bin 0 -> 438 bytes
+ assets/elements/legacy/earth_icon_legacy.png | Bin 0 -> 354 bytes
+ assets/elements/legacy/fire_icon_legacy.png  | Bin 0 -> 411 bytes
+ assets/elements/legacy/water_icon_legacy.png | Bin 0 -> 381 bytes
+ assets/elements/water_icon_legacy.png        | Bin 381 -> 0 bytes
+ images.js                                    |   8 ++++----
+ 9 files changed, 4 insertions(+), 4 deletions(-)
+258550cb41b46f0a7bdba90c6711ac40fcfb869a Merge branch 'master' of https://github.com/Ajusa/Spell.git
+b1baed6d5464b0dd1c99f7d7a43186e0eff23730 Added Indicators  - Spell indicator now present at top of screen  - Use SHIFT to clear a half-inputted(?) spell  - Complete spell will stay inputted until new spell invokation begins  - Added level number indicator  - Added regen values for Player class (for later use)
+ images.js             |  5 +++++
+ js/app.js             | 52 +++++++++++++++++++++++++++++++++++++++--------
+ js/entities/player.js |  7 +++++--
+ js/functions.js       |  6 +++---
+ js/key.js             | 56 +++++++++++++++++++++------------------------------
+ 5 files changed, 80 insertions(+), 46 deletions(-)
+63773e18cbf85f4ad3db26917447c528e5545f39 Introduced Revised Element Icons
+ assets/elements/air_icon.png   | Bin 0 -> 1500 bytes
+ assets/elements/earth_icon.png | Bin 0 -> 591 bytes
+ assets/elements/fire_icon.png  | Bin 0 -> 1150 bytes
+ assets/elements/water_icon.png | Bin 0 -> 635 bytes
+ 4 files changed, 0 insertions(+), 0 deletions(-)
+6d6e97433dc743508564acf2ec16543c482a02c4 Revamped Stat Bars  - Added EXP Bar  - Normalized appearance of all bars by moving them to the top of the screen (for space saving; this change can be reverted if necessary)
+ assets/exp.png    | Bin 0 -> 119 bytes
+ assets/health.png | Bin 131 -> 120 bytes
+ assets/mana.png   | Bin 132 -> 120 bytes
+ images.js         |   1 +
+ js/app.js         |  46 ++++++++++++++++++++++++++++++----------------
+ 5 files changed, 31 insertions(+), 16 deletions(-)
+a6bdadda5bfa770c0141dfe8933ad97312ac0bd7 Actually fixed HP/Mana Bars this time
+ assets/health.png | Bin 0 -> 131 bytes
+ assets/mana.png   | Bin 0 -> 132 bytes
+ images.js         |   1 +
+ js/app.js         | 219 +++++++++++++++++++++++++++---------------------------
+ 4 files changed, 111 insertions(+), 109 deletions(-)
+c98cd2e494f7233784ff76f99a947a5ba056aca0 Merge app.js  changes
+725769a87e78ba0a278451f04a29d4203b349312 Fixed Mana Graphics
+ images.js |   3 +-
+ js/app.js | 223 +++++++++++++++++++++++++++++++-------------------------------
+ 2 files changed, 114 insertions(+), 112 deletions(-)
+229f21ce7fbfe84cad5e2026275949ef2b109ea6 Delete water_icon.pdn
+ assets/elements/water_icon.pdn | Bin 5199 -> 0 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+15de51b5432320c8b559705d05dfe847d92b1686 Preparing to change out icons.
+ assets/elements/air_icon.png          | Bin 438 -> 0 bytes
+ assets/elements/air_icon_legacy.png   | Bin 0 -> 438 bytes
+ assets/elements/earth_icon.png        | Bin 354 -> 0 bytes
+ assets/elements/earth_icon_legacy.png | Bin 0 -> 354 bytes
+ assets/elements/fire_icon.png         | Bin 411 -> 0 bytes
+ assets/elements/fire_icon_legacy.png  | Bin 0 -> 411 bytes
+ assets/elements/water_icon.pdn        | Bin 0 -> 5199 bytes
+ assets/elements/water_icon.png        | Bin 381 -> 0 bytes
+ assets/elements/water_icon_legacy.png | Bin 0 -> 381 bytes
+ 9 files changed, 0 insertions(+), 0 deletions(-)
+1820c7e23f619d7df6518ac2d5261fe0c0271613 Did more multiplayer
+ js/app.js         | 14 ++++++++------
+ js/multiplayer.js |  3 ++-
+ 2 files changed, 10 insertions(+), 7 deletions(-)
+93561bff04143e4dadd82cec392654dfb87527f5 Did more multiplayer
+ js/multiplayer.js | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+aa16057f8c5c61c5386404cd1b160b94723b4b3e Fixed it. The thing.
+ js/app.js | 2 ++
+ 1 file changed, 2 insertions(+)
+4c51d251e141d21ace40b6871790f865334876be fixed more things
+ index.html |  3 --
+ js/app.js  | 95 --------------------------------------------------------------
+ 2 files changed, 98 deletions(-)
+d871150e22bfbd1839a604cab3d6be16edb34312 Merge remote-tracking branch 'origin/master'
+4f2101303d3cdd66a6f3e0c75715fad90620bcb8 Started work on multiplayer
+ index.html        | 3 ++-
+ js/app.js         | 7 ++++---
+ js/multiplayer.js | 6 +++++-
+ 3 files changed, 11 insertions(+), 5 deletions(-)
+1d08c779c19d7daa888a5f485f556ebc9f4dd6a9 Added EXP system Also added bars for HP/mana
+0966f9acd7b1c47ffc2f813b6df38d446f033759 Levels and Experience  - Added foundations of EXP system  - Added graphics for health and mana (EXP soon)
+ js/app.js             | 21 +++++++++++++++++++--
+ js/entities/player.js |  6 +++++-
+ 2 files changed, 24 insertions(+), 3 deletions(-)
+0ab531e31bf18094c793991f2849e1de724c28db Did stuff
+ assets/normalize.css | 427 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ assets/skeleton.css  | 418 +++++++++++++++++++++++++++++++++++++++++++++++++
+ index.html           |   1 +
+ js/app.js            |   4 +-
+ js/multiplayer.js    |   4 +
+ 5 files changed, 851 insertions(+), 3 deletions(-)
+a7db0dccc7426e993506d6893b47cdfc214c3fec Merge branch 'master' of https://github.com/Ajusa/Spell.git
+a046c03fd664a9875e8fa3e4ab2f97ccee582383 Multiple Small Changes  - Removed irrelevent commented code
+ js/entities/player.js | 13 +------------
+ js/key.js             |  3 ---
+ 2 files changed, 1 insertion(+), 15 deletions(-)
+0bcf12446693e24fc5be897f0b362fd4699f4537 Did stuff, broke stuff
+ index.html         |  3 ++-
+ js/app.js          |  6 ++++++
+ js/lib/ajax.min.js |  1 +
+ js/lib/pixi.min.js | 11 +++++++++++
+ js/pixi.min.js     | 11 -----------
+ 5 files changed, 20 insertions(+), 12 deletions(-)
+1d09a054d45234b1c82ca78309471d406506dfe2 Merge branch 'master' of https://github.com/Ajusa/Spell.git
+3865aafb5da734859a3442d067ed2b06ce544daf Moved instructions into their own file
+ assets/wizard.png | Bin 393 -> 2148 bytes
+ index.html        | 184 +---------------------------------------------------
+ instructions.html | 191 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 194 insertions(+), 181 deletions(-)
+5a2fbf1c467d93f30417c22508cd9549ee31c9e8 Fixed player width and height
+ js/entities/player.js | 2 ++
+ 1 file changed, 2 insertions(+)
+dc5e311d807f9c5c2d1e39c1fe276ab901ae912e Merge branch 'master' of https://github.com/Ajusa/Spell.git
+8b06b9cd7b8f2721b1e7983d5844aedf9d17a2cd Made wizard transparent
+ assets/wizard.png | Bin 345 -> 393 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+c039c09eff8691660181d56b1d7194b042919922 Pls. Image is white box
+ images.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+924f1108f0689a4e735587fa7af2a3d7374884b3 More assets Readded splash screen Added wizard player character
+ assets/splashscreen.png | Bin 0 -> 20328 bytes
+ assets/wizard.png       | Bin 0 -> 345 bytes
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+57c0a0b1f368368ce40339747824c62e18ae7720 Merge branch 'master' of https://github.com/Ajusa/Spell.git
+848bade0cd486ad827a1627d5ebeef916a60dd3e Asset Management Added four element icons Removed ZDefense assets (they are copied to my HD if needed in the future)
+ assets/Arrow.png               | Bin 726 -> 0 bytes
+ assets/Splashscreen.png        | Bin 20328 -> 0 bytes
+ assets/Thumbs.db               | Bin 13312 -> 0 bytes
+ assets/a.png                   | Bin 4050 -> 0 bytes
+ assets/back.png                | Bin 2186 -> 0 bytes
+ assets/bg.jpg                  | Bin 573737 -> 0 bytes
+ assets/bow.png                 | Bin 784 -> 0 bytes
+ assets/button.png              | Bin 2083 -> 0 bytes
+ assets/button_mute.png         | Bin 1247 -> 0 bytes
+ assets/button_name.png         | Bin 1825 -> 0 bytes
+ assets/d.png                   | Bin 4067 -> 0 bytes
+ assets/elements/air_icon.png   | Bin 0 -> 438 bytes
+ assets/elements/earth_icon.png | Bin 0 -> 354 bytes
+ assets/elements/fire_icon.png  | Bin 0 -> 411 bytes
+ assets/elements/water_icon.png | Bin 0 -> 381 bytes
+ assets/heart.png               | Bin 1087 -> 0 bytes
+ assets/herobrine.png           | Bin 1978 -> 0 bytes
+ assets/pause.png               | Bin 2385 -> 0 bytes
+ assets/play.png                | Bin 2502 -> 0 bytes
+ assets/player.png              | Bin 239 -> 0 bytes
+ assets/s.png                   | Bin 4146 -> 0 bytes
+ assets/settings.jpg            | Bin 881543 -> 0 bytes
+ assets/settings.png            | Bin 18457 -> 0 bytes
+ assets/settings_ico.png        | Bin 3057 -> 0 bytes
+ assets/splash.png              | Bin 381093 -> 0 bytes
+ assets/tiles.png               | Bin 1726 -> 0 bytes
+ assets/w.png                   | Bin 5102 -> 0 bytes
+ assets/zombie.png              | Bin 1763 -> 0 bytes
+ assets/zombie_heart.png        | Bin 1205 -> 0 bytes
+ 29 files changed, 0 insertions(+), 0 deletions(-)
+6de7996fb0cbc9401e253ca09f5a05c9f326211d Made spell names more descriptive
+ js/spelldata.json | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+3fb7e29beab927f64d31761da1cfa69253aa934d Added spelldata.json This is where all of the properties of our spells will be. I've added some starter spells to give ideas and a framework for the json.
+ js/spelldata.json | 46 ++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 46 insertions(+)
+5c2195edb9d960dbc3d9ff9e788faec63aede42a Merge branch 'master' of https://github.com/Ajusa/Spell.git
+c86df0c666343a78bf80983fb8fbabc9873e4157 Multiple Changes HTML: Removed unnecessary code HTML: Added and partially populated Instructions section (@epicmittmitt will move this into its own document later) FUNCTIONS: Removed unnecessary code and cleaned up getSpell's code according to programming customs
+ index.html      | 241 +++++++++++++++++++++++++++++++++++++++++++++++---------
+ js/functions.js | 184 ++++++++++++++++++++----------------------
+ 2 files changed, 291 insertions(+), 134 deletions(-)
+b564e6f0a40ceef6c1b636af994a96704e791b49 Now he flies
+ js/app.js             | 2 +-
+ js/entities/player.js | 6 +++---
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+2c24c731d68a7b94026dc0906f0b526ed6dd4569 I DID IT
+ images.js             |  1 +
+ js/app.js             |  5 ++++-
+ js/entities/player.js | 11 ++++++-----
+ 3 files changed, 11 insertions(+), 6 deletions(-)
+37f2dd0da940127b732f1f2a0fb38fdb2ea94b13 Whiteness is not a sin
+ index.html | 4 +++-
+ js/app.js  | 8 ++++++++
+ 2 files changed, 11 insertions(+), 1 deletion(-)
+a5f5b8c45feaa53f786e2f2d7663dfeebac79d9a Added splashscreen
+ assets/Spell Splashscreen.png | Bin 20328 -> 0 bytes
+ assets/Splashscreen.png       | Bin 0 -> 20328 bytes
+ images.js                     |   3 +-
+ index.html                    |   2 +-
+ js/app.js                     |  84 +++++++++++++++++++++++-------------------
+ 5 files changed, 50 insertions(+), 39 deletions(-)
+4372a1de051c57b3d9ed17934cd0c714f656e9a7 Added splash screen asset
+ assets/Spell Splashscreen.png | Bin 0 -> 20328 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+7f4d2b6683b8c1d9d4dbb76932c99a2ad07cd4a0 Did stuff, dont sue meh
+ index.html    |  22 ++++----
+ js/app-old.js | 131 +++++++++++++++++++++++++++++++++++++++++++++
+ js/app.js     | 167 +++++++++++++++++++---------------------------------------
+ 3 files changed, 199 insertions(+), 121 deletions(-)
+1359cf687ecd390945ec87e0d221fd133d62b409 I fixed my coolness
+ js/app.js | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+0afe564babbcf07e89fbcd843e38ce8d9a3eca9d I am ze coolest
+ index.html     |   1 +
+ js/app.js      | 169 ++++++++++++++++++++++++++++-----------------------------
+ js/pixi.min.js |  11 ++++
+ 3 files changed, 96 insertions(+), 85 deletions(-)
+b3e18c1bb952aeb104306a975d25ff34c030a7a8 Refactored Code
+ js/app.js             | 41 ++++++++--------------------
+ js/entities/player.js | 74 ++++++++++++++++++++++++---------------------------
+ js/functions.js       | 40 +++++++++++++++++-----------
+ 3 files changed, 70 insertions(+), 85 deletions(-)
+3e0042d537b19d32010aba9335f0bbd7164961b3 Refactored code;
+ assets/Thumbs.db           | Bin 0 -> 13312 bytes
+ index.html                 |   1 -
+ js/app.js                  |  16 ++++++++++------
+ js/entities/player.js      |   5 +++--
+ js/entities/playermulti.js |   2 +-
+ 5 files changed, 14 insertions(+), 10 deletions(-)
+152699812417b1e05d082cbedef084bbdcb61b42 Protocal
+ index.html            |    2 +
+ js/app.js             |  157 +-
+ js/entities/player.js |    2 +-
+ js/key.js             |  132 ++
+ js/socket.io.js       | 6172 -------------------------------------------------
+ 5 files changed, 159 insertions(+), 6306 deletions(-)
+8552b5947029dcc7771669a58319f5814bca7f5d Removed socket.io
+ js/app.js             | 38 ++------------------------------------
+ js/entities/player.js | 11 ++---------
+ 2 files changed, 4 insertions(+), 45 deletions(-)
+a37a16f67edead02bc0e80d9607eea777cb4955d Added basic playermulti class
+ js/entities/playermulti.js | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+a9f1c87f6f2be00704a654df20b4bc087b568dc2 Minor changes Added some graphics (i.e. bars for health and mana). Changed some colors (yes @ajusa, I did use the flat color website).
+ js/app.js             |  46 +++++++++++++----------
+ js/entities/player.js | 102 +++++++++++++++++++++++++++-----------------------
+ 2 files changed, 82 insertions(+), 66 deletions(-)
+bbc5caebf0b75f40a7b522b41af7d0e2235b9891 Merge branch 'master' of https://github.com/Ajusa/Spell.git
+6e4306f4e5cc0704b514e3942d9017463555aa9f Mana changes. Added regen and disallowed negative mana
+ js/app.js             | 15 ++++++------
+ js/entities/player.js | 67 +++++++++++++++++++++++++++------------------------
+ 2 files changed, 44 insertions(+), 38 deletions(-)
+4de77f4667f596ba9f16ce55afd55c1bdd8ccb90 Made it so the game would fit on my screen -_-
+ js/app.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+83f543d03d1e10b74a217c64aa19531f5dee9cbc Finalized spell input. Returns a spell id based on the key combos. UOP = PUO = OUP etc.
+ js/app.js       | 16 +++++++++++-----
+ js/functions.js | 42 +++++++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 52 insertions(+), 6 deletions(-)
+17ecd581ddecda1e834af4e961c0a66b7f7ca584 Spell Input
+ js/app.js             | 74 ++++++++++++++++++++++++++++++++++++++++++++++++---
+ js/entities/player.js |  3 ++-
+ 2 files changed, 73 insertions(+), 4 deletions(-)
+bafd0beb9d1e0f8b2063bacd70778b1080826853 Fixed jumping.
+ js/app.js             | 10 +++++-----
+ js/entities/player.js | 10 +++++-----
+ js/entities/spells.js |  2 +-
+ 3 files changed, 11 insertions(+), 11 deletions(-)
+769d0241a0dc6e9d6a6257bf920fff20e40ba4a9 Added boundaries. Broke jumping.
+ js/entities/player.js | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
+d00877ff9a130fc2926d6bf294cbde8c02ed3bd3 Fixed shooting issue
+ index.html |  7 ++++---
+ js/app.js  | 52 ++--------------------------------------------------
+ 2 files changed, 6 insertions(+), 53 deletions(-)
+5255d6a31cc04ffea21b96deec728ec369880209 Better input detection
+ js/app.js | 143 ++++++++++++++++++++++++++++++++++++++++++++++----------------
+ 1 file changed, 107 insertions(+), 36 deletions(-)
+b28e599d1101c987b35c376ebd1e8f6692d755ed Plz wrks
+ js/app.js | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
+9f0b0bf74b15acd202a327834cb43423e5e84b0a Plz wrk
+ js/app.js | 20 +++++++++++++-------
+ 1 file changed, 13 insertions(+), 7 deletions(-)
+3354272bcdfe08c6ecba8687442b17b0209ace70 Test, new uuid
+ js/app.js | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+f0cd74fbf5354d9d9fffe97c7672fe054dbb1b2a Update app.js
+ js/app.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ebb1699802211cca591da5a4f07b18ec098b2096 Added Jumping
+ index.html            |  2 +-
+ js/app.js             | 14 +++++++++++---
+ js/entities/player.js | 22 ++++++++++++++++------
+ 3 files changed, 28 insertions(+), 10 deletions(-)
+70899135053382bcd6c4b788d463bd1751da73ea Implemented death
+ js/app.js             | 11 +++++++++--
+ js/entities/player.js |  6 ++----
+ js/functions.js       |  2 +-
+ 3 files changed, 12 insertions(+), 7 deletions(-)
+b8bd51adbc2a41451b34c1554a98d0f4883e54df Started work on death
+ js/app.js             |  4 ++++
+ js/entities/player.js | 19 ++++++++++---------
+ js/functions.js       |  7 +++++++
+ 3 files changed, 21 insertions(+), 9 deletions(-)
+a7f748561cca1d0cd0aef1d00ba2e7e95d0b9ed3 Multiplayer!
+ js/app.js       | 6 ++----
+ js/functions.js | 9 +++++++++
+ 2 files changed, 11 insertions(+), 4 deletions(-)
+5ec25670e7c56335eec9f4bf7ee1082c207feef0 Mobile
+ index.html | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+305821c4e586cabca61c5e9093398a45836e075d Final Multiplayer!
+ js/app.js             | 49 +++++++++++++++++--------------------------------
+ js/entities/player.js |  2 +-
+ js/functions.js       | 23 +++++++++++++++++++----
+ 3 files changed, 37 insertions(+), 37 deletions(-)
+c2dc5efe39da3bf5683d1069294f4de3bf83d4d6 Did stuff
+ js/app.js             | 49 ++++++++++++++++++++++++++-----------------------
+ js/entities/player.js |  3 ++-
+ 2 files changed, 28 insertions(+), 24 deletions(-)
+5136b97183ff882513d9c530615cb5c062cd4e4b Stuff
+ js/app.js | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
+e77334b45c165cf4ee25589e0dda5fe8ab363165 Multiplayer
+ js/app.js             | 31 +++++++++++++----------
+ js/entities/player.js | 69 ++++++++++++++++++++-------------------------------
+ js/functions.js       |  8 ++++++
+ 3 files changed, 53 insertions(+), 55 deletions(-)
+d5d54b52a157e6eaf17ad6336e18b564a04e6566 Did stuff
+ js/app.js | 20 +++-----------------
+ 1 file changed, 3 insertions(+), 17 deletions(-)
+8c71dd8a61c9a413e6a4c402ba7c9c72ed640154 Added the second player's stats
+ js/app.js             | 15 ++++++++---
+ js/entities/player.js | 69 ++++++++++++++++++++++++++++++++-------------------
+ js/entities/spells.js |  3 ++-
+ 3 files changed, 56 insertions(+), 31 deletions(-)
+5d70b172cda21844ebdaf5f2b02eb8db1d1b0553 Sharing Spells
+ js/app.js             |  8 ++++++++
+ js/entities/player.js | 26 +++++++++++++++++++++++---
+ 2 files changed, 31 insertions(+), 3 deletions(-)
+88de3a9f74da4d6e86df4b3dc235e0354959d2ff Merge branch 'master' of https://github.com/Ajusa/Spell
+fc0485d5c1ab992f8ba1561a70d1105a8ed71808 Updated ip
+ js/app.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+9057a2eded1c4db0be7ae381d7b6de69f4615e12 Update README.md
+ README.md | 13 ++-----------
+ 1 file changed, 2 insertions(+), 11 deletions(-)
+89e8f16f0ce03888796c07ea397a57163f04b149 Init
+ LCD.ttf                 |  Bin 0 -> 34900 bytes
+ README.md               |   11 +
+ assets/Arrow.png        |  Bin 0 -> 726 bytes
+ assets/a.png            |  Bin 0 -> 4050 bytes
+ assets/back.png         |  Bin 0 -> 2186 bytes
+ assets/bg.jpg           |  Bin 0 -> 573737 bytes
+ assets/bow.png          |  Bin 0 -> 784 bytes
+ assets/button.png       |  Bin 0 -> 2083 bytes
+ assets/button_mute.png  |  Bin 0 -> 1247 bytes
+ assets/button_name.png  |  Bin 0 -> 1825 bytes
+ assets/d.png            |  Bin 0 -> 4067 bytes
+ assets/heart.png        |  Bin 0 -> 1087 bytes
+ assets/herobrine.png    |  Bin 0 -> 1978 bytes
+ assets/pause.png        |  Bin 0 -> 2385 bytes
+ assets/play.png         |  Bin 0 -> 2502 bytes
+ assets/player.png       |  Bin 0 -> 239 bytes
+ assets/s.png            |  Bin 0 -> 4146 bytes
+ assets/settings.jpg     |  Bin 0 -> 881543 bytes
+ assets/settings.png     |  Bin 0 -> 18457 bytes
+ assets/settings_ico.png |  Bin 0 -> 3057 bytes
+ assets/splash.png       |  Bin 0 -> 381093 bytes
+ assets/tiles.png        |  Bin 0 -> 1726 bytes
+ assets/w.png            |  Bin 0 -> 5102 bytes
+ assets/zombie.png       |  Bin 0 -> 1763 bytes
+ assets/zombie_heart.png |  Bin 0 -> 1205 bytes
+ images.js               |    1 +
+ index.html              |   27 +
+ js/app.js               |  159 ++
+ js/entities/player.js   |   52 +
+ js/entities/spells.js   |   22 +
+ js/functions.js         |   11 +
+ js/socket.io.js         | 6172 +++++++++++++++++++++++++++++++++++++++++++++++
+ sounds.js               |    9 +
+ 33 files changed, 6464 insertions(+)

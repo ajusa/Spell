@@ -96,19 +96,15 @@ function Player(xval, yval, width, height, id) {
     }
     this.moveRight = function() {
         this.dx = this.speed;
-        // this.sprite.rotation = Math.PI / 2;
     }
     this.moveLeft = function() {
         this.dx = -this.speed;
-        // this.sprite.rotation = 3 * Math.PI / 2;
     }
     this.moveUp = function() {
         this.dy = this.speed;
-        // this.sprite.rotation = 0;
     }
     this.moveDown = function() {
         this.dy = -this.speed;
-        // this.sprite.rotation = Math.PI;
     }
     this.changeBias = function(keyID) { // Valid keyIDs are 1 2 3 4 for earth fire air water resp.
         var totalC = 0;
