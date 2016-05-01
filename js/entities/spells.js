@@ -1,9 +1,8 @@
-function Spell(xval, yval, slope, spell, rotation, id) {
+function Spell(xval, yval, dx, dy, spell, rotation, id) {
     this.x = xval;
     this.y = yval;
-    this.speed = spelldata.spells[spell].speed * (1/10);
-    this.dy = slope * this.speed;
-    this.dx = 1 * this.speed;
+    this.dy = dy;
+    this.dx = dx;
     this.width = 32; // This is the size of the image
     this.height = 32; // 10
     this.id = id;
