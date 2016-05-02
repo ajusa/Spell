@@ -64,6 +64,7 @@ function gameStart() {
     expMeter.x = 0;
     expMeter.y = 0;
     expMeter.height = 10;
+    world.addChild(bg);
     world.addChild(expMeter);
     expText = new PIXI.Text("Level 0", {
         font: '24px VT323',
@@ -72,7 +73,7 @@ function gameStart() {
     });
     expText.x = 5;
     expText.y = 30;
-    world.addChild(bg);
+    
     world.addChild(expText);
 
     icon1 = new PIXI.Sprite();

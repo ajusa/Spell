@@ -55,20 +55,12 @@ function Player(xval, yval, width, height, id) {
         if (this.mana >= spelldata.spells[spellID].cost) {
             shotTaken = true;
             this.mana = this.mana - spelldata.spells[spellID].cost;
-            speed = 0;
-            x = 0;
-            if (this.right) {
-                speed = Math.abs(this.speed);
-                x = this.sprite.x + this.width + 1; // Changing this breaks something?
-            } else {
-                speed = -Math.abs(this.speed);
-                x = this.x - this.width / 2;
-            }
-            y = this.y + this.height / 2;
-            var mousePosition = renderer.plugins.interaction.mouse.global;
-            var playerPosition = new PIXI.Point(WIDTH / 2, HEIGHT / 2);
-            slope = calculateSlope(mousePosition, playerPosition)
-            multi.spell(x, y, slope, spellID, this.sprite.rotation);
+            x = this.x + 200
+            y = this.y + 200
+            console.log(this.sprite.rotation)
+            dx = Math.cos(this.sprite.rotation - (Math.PI / 2)) * spelldata.spells[spellID].speed/10;
+            dy = Math.sin(this.sprite.rotation - (Math.PI / 2)) * spelldata.spells[spellID].speed/10;
+            multi.spell(x, y, dx, dy, spellID, this.sprite.rotation);
         }
     }
 
@@ -96,19 +88,15 @@ function Player(xval, yval, width, height, id) {
     }
     this.moveRight = function() {
         this.dx = this.speed;
-        // this.sprite.rotation = Math.PI / 2;
     }
     this.moveLeft = function() {
         this.dx = -this.speed;
-        // this.sprite.rotation = 3 * Math.PI / 2;
     }
     this.moveUp = function() {
         this.dy = this.speed;
-        // this.sprite.rotation = 0;
     }
     this.moveDown = function() {
         this.dy = -this.speed;
-        // this.sprite.rotation = Math.PI;
     }
     this.changeBias = function(keyID) { // Valid keyIDs are 1 2 3 4 for earth fire air water resp.
         var totalC = 0;
