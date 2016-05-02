@@ -31,6 +31,9 @@ function Player(xval, yval, width, height, id) {
     var lastLvl = -1;
 
     this.update = function() {
+        if (player.dead = true) {
+            player.die();
+        }
         if (player.health < 1) {
             player.die();
         }
