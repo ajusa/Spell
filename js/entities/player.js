@@ -31,12 +31,11 @@ function Player(xval, yval, width, height, id) {
     var lastLvl = -1;
 
     this.update = function() {
-        if (this.dead = true) {
-            this.die();
-            this.health = 0;
+        if (player.dead = true) {
+            player.die();
         }
-        if (this.health < 1) {
-            this.die();
+        if (player.health < 1) {
+            player.die();
         }
         this.x += this.dx
         this.y -= this.dy;
