@@ -12,7 +12,6 @@ window.WebFontConfig = {
         gameLoop();
     }
 };
-
 splashscreen.interactive = true;
 world.interactive = true;
 splashscreen.on('touchstart', gameStart).on('mousedown', gameStart)

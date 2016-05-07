@@ -13,7 +13,6 @@ function Player(xval, yval, width, height, id) {
     this.maxHealth = 10;
     this.healthRegen = 0.0;
     this.inShot = false;
-    this.right = true;
     this.mps = 1;
     this.sprite = new PIXI.Sprite(playerImg);
     this.sprite.width = width;
@@ -56,8 +55,8 @@ function Player(xval, yval, width, height, id) {
             this.mana = this.mana - spelldata.spells[spellID].cost;
             dx = Math.cos(this.sprite.rotation - (Math.PI / 2)) * spelldata.spells[spellID].speed / 10;
             dy = Math.sin(this.sprite.rotation - (Math.PI / 2)) * spelldata.spells[spellID].speed / 10;
-            x = this.sprite.x + (this.width) * Math.cos(this.sprite.rotation - (Math.PI / 2))
-            y = this.sprite.y + (this.width) * Math.sin(this.sprite.rotation - (Math.PI / 2))
+            x = this.sprite.x + (182) * Math.cos(this.sprite.rotation - (Math.PI/2))
+            y = this.sprite.y + (182) * Math.sin(this.sprite.rotation - (Math.PI/2))
             multi.spell(x, y, dx, dy, spellID, this.sprite.rotation);
         }
     }
