@@ -14,7 +14,6 @@ function Player(xval, yval, width, height, id) {
     this.healthRegen = 0.0;
     this.inShot = false;
     this.right = true;
-    this.color = 0xe67e22;
     this.mps = 1;
     this.sprite = new PIXI.Sprite(playerImg);
     this.sprite.width = width;
@@ -31,9 +30,6 @@ function Player(xval, yval, width, height, id) {
     var lastLvl = -1;
 
     this.update = function() {
-        if (player.dead = true) {
-            player.die();
-        }
         if (player.health < 1) {
             player.die();
         }
@@ -58,19 +54,16 @@ function Player(xval, yval, width, height, id) {
         if (this.mana >= spelldata.spells[spellID].cost) {
             shotTaken = true;
             this.mana = this.mana - spelldata.spells[spellID].cost;
-            x = this.x + 200
-            y = this.y + 200
-            console.log(this.sprite.rotation)
-            dx = Math.cos(this.sprite.rotation - (Math.PI / 2)) * spelldata.spells[spellID].speed/10;
-            dy = Math.sin(this.sprite.rotation - (Math.PI / 2)) * spelldata.spells[spellID].speed/10;
+            dx = Math.cos(this.sprite.rotation - (Math.PI / 2)) * spelldata.spells[spellID].speed / 10;
+            dy = Math.sin(this.sprite.rotation - (Math.PI / 2)) * spelldata.spells[spellID].speed / 10;
+            x = this.sprite.x + (this.width) * Math.cos(this.sprite.rotation - (Math.PI / 2))
+            y = this.sprite.y + (this.width) * Math.sin(this.sprite.rotation - (Math.PI / 2))
             multi.spell(x, y, dx, dy, spellID, this.sprite.rotation);
         }
     }
-
     this.takeDamage = function(damage) {
         this.health -= damage;
     }
-
     this.die = function() {
         screens[1] = false;
         screens[2] = true;
@@ -78,12 +71,10 @@ function Player(xval, yval, width, height, id) {
         multi.item.remove();
         //Setting to gameover screen
     }
-
     this.regen = function() {
         if (this.mana < this.maxMana) this.mana += this.manaRegen;
         if (this.mana > this.maxMana) this.mana = this.maxMana;
     }
-
     this.levelUp = function() {
         // add skill buttons to stage
         // animate levelup somehow
