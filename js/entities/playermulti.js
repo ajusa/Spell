@@ -5,8 +5,8 @@ function playermulti(x, y, dx, dy, id) {
     this.dy;
     this.id = id;
     this.sprite = new PIXI.Sprite(playerImg);
-    this.sprite.width = 150;
-    this.sprite.height = 232;
+    this.sprite.width = 128;
+    this.sprite.height = 128;
     this.sprite.anchor = new PIXI.Point(0.5, 0);
     stage.addChild(this.sprite);
     this.update = function() {
