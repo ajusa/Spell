@@ -57,7 +57,7 @@ function Player(xval, yval, width, height, id) {
             dy = Math.sin(this.sprite.rotation - (Math.PI / 2)) * spelldata.spells[spellID].speed / 10;
             x = this.sprite.x + (182) * Math.cos(this.sprite.rotation - (Math.PI/2))
             y = this.sprite.y + (182) * Math.sin(this.sprite.rotation - (Math.PI/2))
-            multi.spell(x, y, dx, dy, spellID, this.sprite.rotation);
+            multi.spell(x, y, dx, dy, spellID, this.sprite.rotation - (Math.PI/2));
         }
     }
     this.takeDamage = function(damage) {

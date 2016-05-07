@@ -1,4 +1,4 @@
-function playermulti(x, y, dx, dy, id) {
+function playermulti(x, y, id) {
     this.x = x;
     this.y = y;
     this.dx;
