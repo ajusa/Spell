@@ -24,7 +24,7 @@ function Spell(xval, yval, dx, dy, spell, rotation, id) {
         };
         this.x += this.dx;
         this.y += this.dy;
-        this.distanceSoFar = Math.abs(getDistance(this.x, this.y, xval, yval))
+        this.distanceSoFar = Math.abs(getDistance(this.x, xval, this.y, yval))
         this.sprite.x = this.x;
         this.sprite.y = this.y;
     }
