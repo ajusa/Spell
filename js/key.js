@@ -22,19 +22,19 @@ listener.register_combo({
     "on_keyup": function() { player.dy = 0 },
 });
 listener.register_combo({
-    "keys": "z",
+    "keys": "x",
     "on_keydown": function() { updateSpellString(1); },
 });
 listener.register_combo({
-    "keys": "x",
+    "keys": "c",
     "on_keydown": function() { updateSpellString(2); },
 });
 listener.register_combo({
-    "keys": "c",
+    "keys": "v",
     "on_keydown": function() { updateSpellString(3); },
 });
 listener.register_combo({
-    "keys": "v",
+    "keys": "b",
     "on_keydown": function() { updateSpellString(4); },
 });
 listener.register_combo({
