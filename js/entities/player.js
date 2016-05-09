@@ -53,8 +53,8 @@ function Player(xval, yval, width, height, id) {
         if (this.mana >= spelldata.spells[spellID].cost) {
             shotTaken = true;
             this.mana = this.mana - spelldata.spells[spellID].cost;
-            dx = Math.cos(this.sprite.rotation - (Math.PI / 2)) * spelldata.spells[spellID].speed / 10;
-            dy = Math.sin(this.sprite.rotation - (Math.PI / 2)) * spelldata.spells[spellID].speed / 10;
+            dx = Math.cos(this.sprite.rotation - (Math.PI / 2)) * spelldata.spells[spellID].speed;
+            dy = Math.sin(this.sprite.rotation - (Math.PI / 2)) * spelldata.spells[spellID].speed;
             x = this.sprite.x + (182) * Math.cos(this.sprite.rotation - (Math.PI/2))
             y = this.sprite.y + (182) * Math.sin(this.sprite.rotation - (Math.PI/2))
             multi.spell(x, y, dx, dy, spellID, this.sprite.rotation - (Math.PI/2));
