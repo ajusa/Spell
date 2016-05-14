@@ -8,10 +8,10 @@ function Player(xval, yval, width, height, id) {
     this.height = height;
     this.mana = 20;
     this.maxMana = 20;
-    this.manaRegen = 1.0;
+    this.manaRegen = (1/20);
     this.health = 10;
     this.maxHealth = 10;
-    this.healthRegen = 0.0;
+    this.healthRegen = (1/10);
     this.inShot = false;
     this.mps = 1;
     this.sprite = new PIXI.Sprite(playerImg);
@@ -71,8 +71,12 @@ function Player(xval, yval, width, height, id) {
         //Setting to gameover screen
     }
     this.regen = function() {
-        if (this.mana < this.maxMana) this.mana += this.manaRegen;
+        //Mana
+        if (this.mana < this.maxMana) this.mana += (this.manaRegen * this.maxMana);
         if (this.mana > this.maxMana) this.mana = this.maxMana;
+        //Health
+        if (this.health < this.maxHealth) this.health += (this.healthRegen * this.maxHealth);
+        if (this.health > this.maxHealth) this.health = this.maxHealth;
     }
     this.levelUp = function() {
         // add skill buttons to stage
