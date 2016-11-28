@@ -11,7 +11,7 @@ function Player(xval, yval, width, height, id) {
     this.manaRegen = 1.0;
     this.health = 10;
     this.maxHealth = 10;
-    this.healthRegen = 0.0;
+    this.healthRegen = this.maxHealth/10;
     this.inShot = false;
     this.mps = 1;
     this.sprite = new PIXI.Sprite(playerImg);
@@ -27,7 +27,6 @@ function Player(xval, yval, width, height, id) {
     this.dead = false;
     this.speed = 5;
     var lastLvl = -1;
-
     this.update = function() {
         if (player.health < 1) {
             player.die();
