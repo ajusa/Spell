@@ -154,6 +154,9 @@ function gameStart() {
     skillDisplay.x = (WIDTH / 2) - (skillDisplay.width / 2);
     skillDisplay.y = 150;
     world.addChild(skillDisplay);
+    setInterval(function(){
+        player.regen();
+    }, 1000)
 
 }
 
