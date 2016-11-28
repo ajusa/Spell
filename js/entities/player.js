@@ -11,7 +11,7 @@ function Player(xval, yval, width, height, id) {
     this.manaRegen = 1.0;
     this.health = 10;
     this.maxHealth = 10;
-    this.healthRegen = this.maxHealth/10;
+    this.healthRegen = this.maxHealth / 30;
     this.inShot = false;
     this.mps = 1;
     this.sprite = new PIXI.Sprite(playerImg);
@@ -31,6 +31,7 @@ function Player(xval, yval, width, height, id) {
         if (player.health < 1) {
             player.die();
         }
+        this.healthRegen = this.maxHealth / 30;
         this.x += this.dx
         this.y -= this.dy;
         this.sprite.x = this.x;
@@ -54,9 +55,9 @@ function Player(xval, yval, width, height, id) {
             this.mana = this.mana - spelldata.spells[spellID].cost;
             dx = Math.cos(this.sprite.rotation - (Math.PI / 2)) * spelldata.spells[spellID].speed;
             dy = Math.sin(this.sprite.rotation - (Math.PI / 2)) * spelldata.spells[spellID].speed;
-            x = this.sprite.x + (182) * Math.cos(this.sprite.rotation - (Math.PI/2))
-            y = this.sprite.y + (182) * Math.sin(this.sprite.rotation - (Math.PI/2))
-            multi.spell(x, y, dx, dy, spellID, this.sprite.rotation - (Math.PI/2));
+            x = this.sprite.x + (182) * Math.cos(this.sprite.rotation - (Math.PI / 2))
+            y = this.sprite.y + (182) * Math.sin(this.sprite.rotation - (Math.PI / 2))
+            multi.spell(x, y, dx, dy, spellID, this.sprite.rotation - (Math.PI / 2));
         }
     }
     this.takeDamage = function(damage) {
@@ -72,6 +73,7 @@ function Player(xval, yval, width, height, id) {
     this.regen = function() {
         if (this.mana < this.maxMana) this.mana += this.manaRegen;
         if (this.mana > this.maxMana) this.mana = this.maxMana;
+        if (this.health < this.maxHealth) this.health += this.healthRegen
     }
     this.levelUp = function() {
         // add skill buttons to stage
